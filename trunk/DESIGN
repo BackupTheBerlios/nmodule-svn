@@ -1,0 +1,51 @@
+Module Layout:
+
+
+  Modules for the Dreamshadow Module Core will use the following attributes to advertise themselves to the
+  plugin loading code for dependency resolution and proper initialization of interfaces:
+
+  Assembly-Level Attributes:
+
+  AssemblyTitle:  The name of the assembly as referenced by depencies.
+  AssemblyVersion:  Version of the assembly.
+    -> AssemblyVersion is actually determined by the compiler, so it can be left as x.x.* or x.x.x.* or x.x.x.x depending on your preference.
+       The Module Core only pays attention to the major and minor version numbers.
+
+  ModuleDependency:  A string stating module dependencies that must be resolved/loaded before this module can be loaded.
+    -> Dependency strings use the form (op (op dep) (op dep)) and can be nested indefinitely.  The following operators are
+       allowed:
+
+          &&:  AND operator
+          ||:  OR operator
+          ^^:  XOR operator
+          !!:  NOT operator
+          ==:  EQUAL operator
+          !=:  NOT EQUAL operator
+          <=:  LESS THAN EQUAL operator
+          <<:  LESS THAN operator
+          >=:  GREATER THAN EQUAL operator
+          >>:  GREATER THAN operator
+          ??:  OPTIONAL operator
+
+       Example:
+          Elfblade.Core.Net.Xcp
+          (&& (>> Elfblade.Core.Net[2.0]) (!= Elfblade.Core[1.0]) (!! (<= Elfblade.Core.Net.Extensions[2.0])) (?? Elfblade.Core.Net.Extensions))
+  
+    -> While this might look strange at first, its very easy to parse.  For example, I could turn the following into the token tree:
+          NEST AND 
+            NEST GT "Elfblade.Core.net" VER "2.0" END 
+            NEST NEQ "Elfblade.Core" VER "1.0" END
+            NEST NOT
+              NEST LTEQ "Elfblade.Core.Net.Extensions" VER "2.0" END
+            END
+            NEST OPT "Elfblade.Core.Net.Extensions" END
+          END
+
+    -> Dependency operator precendence will be determined later.
+
+  ModuleRoles:  A comma seperated list of the roles this module will provide services for.  An example might be:
+    ModuleRoles("IServer,IConnection,ISocket,IPacketHandler") for Elfblade.Core.Net.Xcp
+    When the module loader sees this, it goes over each role.  It searches for a module controller which can handle
+    the given role, finds the typename of the given module, then passes the AppDomain of the loaded assembly and the typename
+    to the module controller, along with the role it is providing.  It is then up to the module controller what to do with
+    the given type.
