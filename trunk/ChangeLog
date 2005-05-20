@@ -1,0 +1,14 @@
+Fri May 20th, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0600
+
+A   Documentation/Documentation.mdp
+A   Documentation/Documentation.mds
+* Added the documentation MonoDevelop solution/project.
+A   NModule.Dependency.Parser/AssemblyInfo.cs
+A   NModule.Dependency.Parser/MyClass.cs
+* New files created as part of the MonoDevelop project.
+A   NModule.Dependency.Parser/NModule.Dependency.Parser.mdp
+A   NModule.Dependency.Parser/NModule.Dependency.Parser.mds
+A   NModule.Dependency.Parser/NModule.Dependency.Parser.pidb
+* New files created by the MonoDevelop solution stuff.
+A   nmodule.mds
+* New MonoDevelop solution.
