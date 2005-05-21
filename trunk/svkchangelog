@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mv ChangeLog .ChangeLog.sch
+
+echo "$(date "+%a %b %d, %Y") $SVKCNAME ($SVKEMAIL) $(date "+%z")" > ChangeLog
+
+svk status | sed -e 's@\?.*@@g' -e 's@.*ChangeLog.*@@' '/^$/d' >> ChangeLog
+
+echo "" >> ChangeLog
+
+cat .ChangeLog.sch >> ChangeLog
+
+rm -f .ChangeLog.sch
+
+

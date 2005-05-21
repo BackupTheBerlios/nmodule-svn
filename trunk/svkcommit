@@ -1,0 +1,21 @@
+#!/bin/bash
+
+n=1
+
+while read -a target; do
+        if [ -z "${target}" -a $n -gt 1 ]; then
+                break;
+        fi
+        if [[ "${target[@]:0:1}" == "*" ]]; then
+                echo -n "  " >> .svk-commit.tmp
+        fi
+
+        echo "${target[@]}" >> .svk-commit.tmp
+        n="$(expr ${n} + 1)"
+done < ./ChangeLog
+
+svk ci -F .svk-commit.tmp
+
+rm -f .svk-commit.tmp
+
+
