@@ -1,4 +1,8 @@
 Wed Jun 01, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
+M   AUTHORS
+  * Fix my e-mail address.
+
+Wed Jun 01, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
 M   Documentation/DESIGN
   * Updated the design to reflect the new operator (##) and precedence rules.
 M   NModule.Dependency.Parser/nmodule-dep.g
