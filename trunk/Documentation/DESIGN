@@ -29,7 +29,7 @@ Module Layout:
   plugin loading code for dependency resolution and proper initialization of interfaces:
 
   Assembly-Level Attributes:
-
+  
   AssemblyTitle:  The name of the assembly as referenced by depencies.
   AssemblyVersion:  Version of the assembly.
     -> AssemblyVersion is actually determined by the compiler, so it can be left as x.x.* or x.x.x.* or x.x.x.x depending on your preference.
@@ -50,23 +50,22 @@ Module Layout:
           >=:  GREATER THAN EQUAL operator
           >>:  GREATER THAN operator
           ??:  OPTIONAL operator
+          ##:  LOADED operator
 
        Example:
           Elfblade.Core.Net.Xcp
-          (&& (>> Elfblade.Core.Net 2.0) (!= Elfblade.Core 1.0) (!! (<= Elfblade.Core.Net.Extensions 2.0)) (?? Elfblade.Core.Net.Extensions))
+          (&& (>> Elfblade.Core.Net 2.0) (!= Elfblade.Core 1.0) (!! (<= Elfblade.Core.Net.Extensions 2.0)) (?? (## Elfblade.Core.Net.Extensions)))
   
     -> While this might look strange at first, its very easy to parse.  For example, I could turn the following into the token tree:
-          NEST AND 
-            NEST GT "Elfblade.Core.net" VER "2.0" END 
-            NEST NEQ "Elfblade.Core" VER "1.0" END
-            NEST NOT
-              NEST LTEQ "Elfblade.Core.Net.Extensions" VER "2.0" END
-            END
-            NEST OPT "Elfblade.Core.Net.Extensions" END
-          END
-
-    -> Dependency operator precendence will be determined later.
-
+    -> Top-Level Operators
+       && || ^^ !! ??
+       
+    -> First-level Operators
+       == != <= << >= >> ##
+       
+    Top-level operators must contain one or more first-level operators.  First-level operators contain a module name and an optional version.  See nmodule-dep.g in the
+    NModule.Dependency.Parser project/subdirectory for more detail.
+    
   ModuleRoles:  A comma seperated list of the roles this module will provide services for.  An example might be:
     ModuleRoles("IServer,IConnection,ISocket,IPacketHandler") for Elfblade.Core.Net.Xcp
     When the module loader sees this, it goes over each role.  It searches for a module controller which can handle

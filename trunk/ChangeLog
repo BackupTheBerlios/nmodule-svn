@@ -1,3 +1,13 @@
+Wed Jun 01, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
+M   Documentation/DESIGN
+  * Updated the design to reflect the new operator (##) and precedence rules.
+M   NModule.Dependency.Parser/nmodule-dep.g
+  * Updated the parser to move opt (??) and loaded (##) to top-level.
+M   svkchangelog
+  * Copied the working version from dnsh.
+A   AUTHORS
+  * New file used to list the maintainers of the project.
+
 Fri May 20, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
 M   COPYING
   * Changed Ximian references to my name.

@@ -26,6 +26,11 @@ oexpr:
 	
 iexpr: CLASS ( VER )?;
 
+{	
+	public class DepNode
+	{
+		public enum DepOp { NOT, AND, OR, XOR, OPT, EQ, NEQ, LTE, LT, GTE, GT, LD };
+		
 class DepLexer extends Lexer;
 
 options
