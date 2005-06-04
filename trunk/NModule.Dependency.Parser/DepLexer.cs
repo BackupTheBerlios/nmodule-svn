@@ -461,22 +461,36 @@ _loop49_breakloop:			;
 		_ttype = VER;
 		
 		mINT(false);
-		{    // ( ... )*
-			for (;;)
+		{
+			if ((cached_LA1=='.'))
 			{
-				if ((cached_LA1=='.'))
+				mDOT(false);
+				mINT(false);
 				{
-					mDOT(false);
-					mINT(false);
+					if ((cached_LA1=='.'))
+					{
+						mDOT(false);
+						mINT(false);
+						{
+							if ((cached_LA1=='.'))
+							{
+								mDOT(false);
+								mINT(false);
+							}
+							else {
+							}
+							
+						}
+					}
+					else {
+					}
+					
 				}
-				else
-				{
-					goto _loop52_breakloop;
-				}
-				
 			}
-_loop52_breakloop:			;
-		}    // ( ... )*
+			else {
+			}
+			
+		}
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
 			_token = makeToken(_ttype);
@@ -614,11 +628,11 @@ _loop52_breakloop:			;
 				}
 				else
 				{
-					goto _loop62_breakloop;
+					goto _loop63_breakloop;
 				}
 				
 			}
-_loop62_breakloop:			;
+_loop63_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -644,11 +658,11 @@ _loop62_breakloop:			;
 				}
 				else
 				{
-					goto _loop65_breakloop;
+					goto _loop66_breakloop;
 				}
 				
 			}
-_loop65_breakloop:			;
+_loop66_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{

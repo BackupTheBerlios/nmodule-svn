@@ -134,7 +134,7 @@ LD: "##" ;
 protected
 INT: ('0' .. '9')+;
 
-VER: INT (DOT INT)*;
+VER: INT (DOT INT (DOT INT (DOT INT)?)?)?;
 
 // Dot operator
 protected

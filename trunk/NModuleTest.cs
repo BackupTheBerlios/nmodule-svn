@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using NModule.Dependency.Parser;
 using antlr.collections;
 
@@ -33,12 +34,17 @@ namespace NModule
 
 	       	public static void Main(string[] args)
 	        {
-			DepNode root = new DepNode();
+			foreach(string file in args)
+			{
+				DepNode root = new DepNode();
 
-        	        DepLexer lexer = new DepLexer(Console.OpenStandardInput());
-                	DepParser parser = new DepParser(lexer);
-	                parser.expr(root);
-                	PrintTree(root, 0);
+				Console.WriteLine("==== Testing Input from {0} ====", file);
+				DepLexer lexer = new DepLexer(new FileStream(file, FileMode.Open));
+		                DepParser parser = new DepParser(lexer);
+	                	parser.expr(root);
+                		PrintTree(root, 0);
+			}
+		
 	        }
 	}
 }

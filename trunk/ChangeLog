@@ -1,4 +1,15 @@
 Sat Jun 04, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
+M   NModule.Dependency.Parser/DepLexer.cs
+  * Regenerated the lexer because of rule changes.
+M   NModule.Dependency.Parser/nmodule-dep.g
+  * Changed VER so that it is limited to valid .NET version numbers.
+M   NModuleTest.cs
+  * Fixed a bug in the test case.
+A   test-1.txt
+A   test-2.txt
+  * Sample test cases, almost identical until I implement error checking.
+
+Sat Jun 04, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
 M   NModule.Dependency.Parser/nmodule-dep.g
   * Grammar now generates dependency trees :)
 A   NModule.Dependency.Parser/DepConstraint.cs
