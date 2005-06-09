@@ -1,3 +1,8 @@
+2005-06-09 Michael Tindal <urilith@gentoo.org>
+
+	* lib:  Added antlr source.
+	* src:  Moved NModule.Dependency.Parser to src to support new layout.
+
 2005-06-08 Michael Tindal <urilith@gentoo.org>
 
 	* Documentation/DESIGN: Start working on actual architecture notes.
