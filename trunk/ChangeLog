@@ -1,4 +1,44 @@
 Sat Jun 04, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
+M   NModule.Dependency.Parser/AssemblyInfo.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepConstraint.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepLexer.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepNode.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepOps.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepParser.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepParserTokenTypes.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/DepVersion.cs
+  * Added Copyright headers.
+M   NModule.Dependency.Parser/nmodule-dep.g
+  * Added Copyright headers.
+D   NModule.Dependency.Parser/MyClass.cs
+  * Removed pointless class MD made.
+M   NModuleTest.cs
+  * Added Copyright headers.
+A   misc
+  * New misc folder.
+A   misc/bash-copy.hdr
+  * Bash style copyright header.
+A   misc/cs-copy.hdr
+  * C# style copyright header.
+A + misc/svkchangelog
+  * Moved svkchangelog to misc.
+A + misc/svkcommit
+  * Moved svkcommit to misc.
+A   misc/xml-copy.hdr
+  * XML style copyright header.
+D   svkchangelog
+  * Moved to misc.
+D   svkcommit
+  * Moved to misc.
+
+Sat Jun 04, 2005 Michael Tindal (mtindal@paradoxpoint.com) -0500
 M   NModule.Dependency.Parser/DepLexer.cs
   * Regenerated the lexer because of rule changes.
 M   NModule.Dependency.Parser/nmodule-dep.g
