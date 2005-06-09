@@ -1,5 +1,11 @@
 2005-06-07 Michael Tindal <mtindal@paradoxpoint.com>
 
+	* ChangeLog:  Change to GNU format.  The other way just sucked.
+	* AUTHORS:  Fix my e-mail address (again).
+	* COPYING:  Fix some bad grammar.
+
+2005-06-07 Michael Tindal <mtindal@paradoxpoint.com>
+
 	* NModule.Dependency.Parser/DepParser.cs: Regenerate.
 	* NModule.Dependency.Parser/nmodule-dep.g: Refactor parser.
 	* NModule.Dependency.Parser/build.sh: Removed.
