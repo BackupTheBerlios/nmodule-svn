@@ -108,7 +108,7 @@ namespace NModule.Dependency.Parser
 		
 		
 		try {      // for error handling
-			cexpr(root, true);
+			cexpr(root);
 		}
 		catch (RecognitionException ex)
 		{
@@ -118,7 +118,7 @@ namespace NModule.Dependency.Parser
 	}
 	
 	public void cexpr(
-		DepNode parent,bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
@@ -126,22 +126,22 @@ namespace NModule.Dependency.Parser
 		try {      // for error handling
 			if ((LA(1)==LPAREN) && (LA(2)==NOTO))
 			{
-				notexpr(parent, root);
+				notexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==AND)) {
-				andexpr(parent, root);
+				andexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==OR)) {
-				orexpr(parent, root);
+				orexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==XOR)) {
-				xorexpr(parent, root);
+				xorexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==OPT)) {
-				optexpr(parent, root);
+				optexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD))) {
-				oexpr(parent, root);
+				oexpr(parent, true);
 			}
 			else
 			{
@@ -157,11 +157,10 @@ namespace NModule.Dependency.Parser
 	}
 	
 	public void notexpr(
-		DepNode parent, bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
-		DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Not;
 		
 		try {      // for error handling
 			match(LPAREN);
@@ -172,12 +171,12 @@ namespace NModule.Dependency.Parser
 				{
 					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
 					{
-						oexpr(child, false);
+						oexpr(parent, false);
 					}
 					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
 						{
-							DepNode nchild = parent.CreateNewChild();
-							cexpr(nchild, true);
+							DepNode child = parent.CreateNewChild();
+							cexpr(child);
 						}
 					}
 					else
@@ -199,11 +198,10 @@ _loop6_breakloop:				;
 	}
 	
 	public void andexpr(
-		DepNode parent, bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
-		DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.And;
 		
 		try {      // for error handling
 			match(LPAREN);
@@ -214,12 +212,12 @@ _loop6_breakloop:				;
 				{
 					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
 					{
-						oexpr(child, false);
+						oexpr(parent, false);
 					}
 					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
 						{
-							DepNode nchild = parent.CreateNewChild();
-							cexpr(nchild, true);
+							DepNode child = parent.CreateNewChild();
+							cexpr(child);
 						}
 					}
 					else
@@ -241,11 +239,10 @@ _loop10_breakloop:				;
 	}
 	
 	public void orexpr(
-		DepNode parent, bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
-		DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Or;
 		
 		try {      // for error handling
 			match(LPAREN);
@@ -256,12 +253,12 @@ _loop10_breakloop:				;
 				{
 					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
 					{
-						oexpr(child, false);
+						oexpr(parent, false);
 					}
 					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
 						{
-							DepNode nchild = parent.CreateNewChild();
-							cexpr(nchild, true);
+							DepNode child = parent.CreateNewChild();
+							cexpr(child);
 						}
 					}
 					else
@@ -283,11 +280,10 @@ _loop14_breakloop:				;
 	}
 	
 	public void xorexpr(
-		DepNode parent, bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
-		DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Xor;
 		
 		try {      // for error handling
 			match(LPAREN);
@@ -298,12 +294,12 @@ _loop14_breakloop:				;
 				{
 					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
 					{
-						oexpr(child, false);
+						oexpr(parent, false);
 					}
 					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
 						{
-							DepNode nchild = parent.CreateNewChild();
-							cexpr(nchild, true);
+							DepNode child = parent.CreateNewChild();
+							cexpr(child);
 						}
 					}
 					else
@@ -325,11 +321,10 @@ _loop18_breakloop:				;
 	}
 	
 	public void optexpr(
-		DepNode parent, bool root
+		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
 		
-		DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Opt;
 		
 		try {      // for error handling
 			match(LPAREN);
@@ -340,12 +335,12 @@ _loop18_breakloop:				;
 				{
 					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
 					{
-						oexpr(child, false);
+						oexpr(parent, false);
 					}
 					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
 						{
-							DepNode nchild = parent.CreateNewChild();
-							cexpr(nchild, true);
+							DepNode child = parent.CreateNewChild();
+							cexpr(child);
 						}
 					}
 					else

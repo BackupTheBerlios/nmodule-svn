@@ -39,43 +39,38 @@ options {
 
 // Rebuild this to generate the dep tree
 expr[DepNode root]
-	: cexpr[root, true]
+	: cexpr[root]
 	;
 
 // LPAREN! ((NOTO^|AND^|OR^|XOR^|OPT^) (oexpr|cexpr)+) RPAREN!
-cexpr[DepNode parent,bool root]
-		: notexpr[parent, root]
-		| andexpr[parent, root]
-		| orexpr[parent, root]
-		| xorexpr[parent, root]
-		| optexpr[parent, root]
-    | oexpr[parent, root]
+cexpr[DepNode parent]
+		: notexpr[parent]
+		| andexpr[parent]
+		| orexpr[parent]
+		| xorexpr[parent]
+		| optexpr[parent]
+    | oexpr[parent, true]
     ;
 
-notexpr[DepNode parent, bool root]
-{ DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Not; }
-	: LPAREN! NOTO (oexpr[child, false]|({DepNode nchild = parent.CreateNewChild(); } cexpr[nchild, true]))+ RPAREN!
+notexpr[DepNode parent]
+	: LPAREN! NOTO (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
-andexpr[DepNode parent, bool root]
-{ DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.And; }
-	: LPAREN! AND (oexpr[child, false]|({DepNode nchild = parent.CreateNewChild(); } cexpr[nchild, true]))+ RPAREN!
+andexpr[DepNode parent]
+	: LPAREN! AND (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
-orexpr[DepNode parent, bool root]
-{ DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Or; }
-	: LPAREN! OR (oexpr[child, false]|({DepNode nchild = parent.CreateNewChild(); } cexpr[nchild, true]))+ RPAREN!
+orexpr[DepNode parent]
+	: LPAREN! OR (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
-xorexpr[DepNode parent, bool root]
-{ DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Xor; }
-	: LPAREN! XOR (oexpr[child, false]|({DepNode nchild = parent.CreateNewChild(); } cexpr[nchild, true]))+ RPAREN!
+xorexpr[DepNode parent]
+	: LPAREN! XOR (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 
-optexpr[DepNode parent, bool root]
-{ DepNode child = !(root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.Opt; }
-	: LPAREN! OPT (oexpr[child, false]|({DepNode nchild = parent.CreateNewChild(); } cexpr[nchild, true]))+ RPAREN!
+optexpr[DepNode parent]
+	: LPAREN! OPT (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 // LPAREN! ((EQ^|NEQ^|LTE^|LS^|GTE^|GT^|LD^) iexpr) RPAREN!
