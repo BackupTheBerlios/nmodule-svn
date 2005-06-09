@@ -1,10 +1,20 @@
-2005-06-07 Michael Tindal <mtindal@paradoxpoint.com>
+2005-06-08 Michael Tindal <urilith@gentoo.org>
+
+	* Documentation/DESIGN: Start working on actual architecture notes.
+	* NModule.Dependency.Parser/DepOps.cs: Um, dunno what I did to this, probably some whitespace.
+	* NModule.Dependency.Parser/NModule.Dependency.Parser.mdp: MonoDevelop.
+	* NModule.Dependency.Parser/NModule.Dependency.Parser.pidb: MonoDevelop.
+	* NModule.Dependency.Parser/nmodule-dep.g: Cosmetic changes.
+	* NModule.Dependency.Parser/antlr.astframe.dll: Removed.
+	* NModule.Dependency.Parser/antlr.runtime.dll: Removed.
+
+2005-06-07 Michael Tindal <urilith@gentoo.org>
 
 	* ChangeLog:  Change to GNU format.  The other way just sucked.
 	* AUTHORS:  Fix my e-mail address (again).
 	* COPYING:  Fix some bad grammar.
 
-2005-06-07 Michael Tindal <mtindal@paradoxpoint.com>
+2005-06-07 Michael Tindal <urilith@gentoo.org>
 
 	* NModule.Dependency.Parser/DepParser.cs: Regenerate.
 	* NModule.Dependency.Parser/nmodule-dep.g: Refactor parser.

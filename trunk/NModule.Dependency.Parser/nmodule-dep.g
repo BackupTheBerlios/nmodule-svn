@@ -44,13 +44,13 @@ expr[DepNode root]
 
 // LPAREN! ((NOTO^|AND^|OR^|XOR^|OPT^) (oexpr|cexpr)+) RPAREN!
 cexpr[DepNode parent]
-		: notexpr[parent]
-		| andexpr[parent]
-		| orexpr[parent]
-		| xorexpr[parent]
-		| optexpr[parent]
-    | oexpr[parent, true]
-    ;
+	: notexpr[parent]
+	| andexpr[parent]
+	| orexpr[parent]
+	| xorexpr[parent]
+	| optexpr[parent]
+	| oexpr[parent, true]
+	;
 
 notexpr[DepNode parent]
 	: LPAREN! NOTO (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
@@ -67,7 +67,6 @@ orexpr[DepNode parent]
 xorexpr[DepNode parent]
 	: LPAREN! XOR (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
-
 
 optexpr[DepNode parent]
 	: LPAREN! OPT (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
@@ -164,15 +163,15 @@ DOT: '.' ;
 
 // Basic Identifier
 protected
-ID_START_LETTER: 
-    ('a' .. 'z')
+ID_START_LETTER 
+	: ('a' .. 'z')
 	| ('A' .. 'Z')
 	| ('_')
 	;
 
 protected
-ID_LETTER: 
-  ID_START_LETTER
+ID_LETTER
+	: ID_START_LETTER
 	| ('0' .. '9')
 	;
 	
@@ -184,9 +183,9 @@ CLASS: ID ( DOT ID )* ;
 
 // Whitespace
 WS: ( ' '
-    | '\r' '\n'
-    | '\n'
-    | '\t'
-    )
-    {$setType(Token.SKIP);}
-    ;
+	| '\r' '\n'
+	| '\n'
+	| '\t'
+	)
+	{$setType(Token.SKIP);}
+	;

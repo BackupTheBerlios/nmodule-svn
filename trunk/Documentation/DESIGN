@@ -64,7 +64,7 @@ Module Layout:
        == != <= << >= >> ##
        
     Top-level operators must contain one or more first-level operators.  First-level operators contain a module name and an optional version.  See nmodule-dep.g in the
-    NModule.Dependency.Parser project/subdirectory for more detail.
+    NModule.Dependency.Parser project/subdirectory for more detail. Top-level operators can nest other top-level operators.
     
   ModuleRoles:  A comma seperated list of the roles this module will provide services for.  An example might be:
     ModuleRoles("IServer,IConnection,ISocket,IPacketHandler") for Elfblade.Core.Net.Xcp
@@ -72,3 +72,6 @@ Module Layout:
     the given role, finds the typename of the given module, then passes the AppDomain of the loaded assembly and the typename
     to the module controller, along with the role it is providing.  It is then up to the module controller what to do with
     the given type.
+
+Applications which use this architecture will advertise their roles, with the interfaces that correspond to those roles, as well as a handler that can register the types
+that implement the interfaces with the rest of the engine.
