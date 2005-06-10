@@ -1,3 +1,16 @@
+2005-06-10 Michael Tindal <mtindal@paradoxpoint.com>
+
+	* Documentation/DESIGN: Some design updates again.
+	* lib/keyfiles: Directory to hold keyfiles.
+	* lib/keyfiles/nmodule.snk: Main NModule keyfile.
+	* nmodule.mds: Added the loader namespace.
+	* src/NModule.Dependency.Parser/AssemblyInfo.cs: Added appropriate assembly info.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.pidb: Updated.
+	* src/NModule.Core.Loader: New directory for loader namespace.
+	* src/NModule.Core.Loader/AssemblyInfo.cs: Assembly info for loader assembly.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mdp: MonoDevelop project for loader.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mds: MonoDevelop solution for loader.
+
 2005-06-09 Michael Tindal <urilith@gentoo.org>
 
 	* lib:  Added antlr source.

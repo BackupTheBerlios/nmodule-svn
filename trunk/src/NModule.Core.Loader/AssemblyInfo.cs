@@ -31,8 +31,8 @@ using System.Runtime.CompilerServices;
 // change them to the information which is associated with the assembly
 // you compile.
 
-[assembly: AssemblyTitle("NModule.Dependency.Parser")]
-[assembly: AssemblyDescription("NModule Dependency String Parser/Dependency Tree Generator")]
+[assembly: AssemblyTitle("NModule.Core.Loader")]
+[assembly: AssemblyDescription("NModule Loader Facilities (not including Dependency Resolution)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NModule")]

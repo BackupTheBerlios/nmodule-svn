@@ -3,18 +3,25 @@
     <Configuration name="Debug" ctype="CombineConfiguration">
       <Entry build="True" name="Documentation" />
       <Entry build="True" name="NModule.Dependency.Parser" />
+      <Entry build="True" name="NModule.Dependency.Parser" />
+      <Entry build="True" name="NModule.Core.Loader" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="Documentation" />
       <Entry build="True" name="NModule.Dependency.Parser" />
+      <Entry build="True" name="NModule.Dependency.Parser" />
+      <Entry build="True" name="NModule.Core.Loader" />
     </Configuration>
   </Configurations>
   <StartMode startupentry="Documentation" single="True">
     <Execute type="None" entry="Documentation" />
     <Execute type="None" entry="NModule.Dependency.Parser" />
+    <Execute type="None" entry="NModule.Dependency.Parser" />
+    <Execute type="None" entry="NModule.Core.Loader" />
   </StartMode>
   <Entries>
     <Entry filename="./Documentation/Documentation.mdp" />
-    <Entry filename="./NModule.Dependency.Parser/NModule.Dependency.Parser.mdp" />
+    <Entry filename="./src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp" />
+    <Entry filename="./src/NModule.Core.Loader/NModule.Core.Loader.mdp" />
   </Entries>
 </Combine>

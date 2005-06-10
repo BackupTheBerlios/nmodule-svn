@@ -69,7 +69,7 @@ Module Layout:
   ModuleRoles:  A comma seperated list of the roles this module will provide services for.  An example might be:
     ModuleRoles("IServer,IConnection,ISocket,IPacketHandler") for Elfblade.Core.Net.Xcp
     When the module loader sees this, it goes over each role.  It searches for a module controller which can handle
-    the given role, finds the typename of the given module, then passes the AppDomain of the loaded assembly and the typename
+    the given role, finds the typename of the given module, then passes the Assembly of the loaded assembly and the typename
     to the module controller, along with the role it is providing.  It is then up to the module controller what to do with
     the given type.
 
