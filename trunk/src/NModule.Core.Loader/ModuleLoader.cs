@@ -99,7 +99,7 @@ namespace NModule.Core.Loader {
 				
 			// Okay, well, now we know the module exists at least in the file (we hope its a proper dll, but we'll see :).  Now we
 			// need to create the temporary AppDomain and load it to get the info from it.
-			AppDomain _tempDomain = AppDomain.Create ("_temp_" + _name);
+			AppDomain _tempDomain = AppDomain.CreateDomain ("_temp_" + _name);
 			
 			byte[] _raw_bytes = LoadRawFile (_filename);
 			
@@ -146,7 +146,7 @@ namespace NModule.Core.Loader {
 			
 			// alright, we've got them all loaded, they exist in the assembly map.
 			// now we create the *real* app domain.
-			AppDomain _domain = AppDomain.Create (_name);
+			AppDomain _domain = AppDomain.CreateDomain (_name);
 			
 			// let's load this assembly into the real app domain.
 			_domain.Load (_raw_bytes);

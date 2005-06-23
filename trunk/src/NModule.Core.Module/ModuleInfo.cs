@@ -30,6 +30,7 @@ namespace NModule.Core.Module {
 	
 	using NModule.Dependency.Core;
 	using NModule.Dependency.Parser;
+	using NModule.Core;
 	
 	public class ModuleInfo {
 		// name
@@ -41,14 +42,16 @@ namespace NModule.Core.Module {
 		// dependency stuff
 		protected DepNode _dependencies;
 		
+		// roles
+		protected string _roles;
+		
 		public ModuleInfo (Assembly _asm) {
 			_name = _asm.GetName().Name;
 			_version = DepVersion.VersionParse (_asm.GetName().Version);
 			
 			ModuleDependencyAttribute _depAttr = ((ModuleDependencyAttribute)_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute)));
 			
-			if (_depAttr != null)
-			{	
+			if (_depAttr != null) {	
 				DepLexer _lexer = new DepLexer (new StringReader (_depAttr.DepString));
 				DepParser _parser = new DepParser (_lexer);
 				
@@ -56,9 +59,15 @@ namespace NModule.Core.Module {
 				_dependencies = new DepNode ();
 				
 				_parser.expr (_dependencies);
-			}
-			else
+			} else
 				_depenencies = null;
+				
+			ModuleRoleAttribute _roleAttr = ((ModuleRoleAttribute)_asm.GetCustomAttributes (typeof (ModuleRoleAttribute));
+			
+			if (_roleAttr != null) {
+				_roles = _roleAttr.Roles;
+			} else
+				_roles = null;
 		}
 		
 		public string Name {
@@ -76,6 +85,12 @@ namespace NModule.Core.Module {
 		public DepNode Dependencies {
 			get {
 				return _dependencies;
+			}
+		}
+		
+		public string Roles {
+			get {
+				return _roles;
 			}
 		}
 	}		

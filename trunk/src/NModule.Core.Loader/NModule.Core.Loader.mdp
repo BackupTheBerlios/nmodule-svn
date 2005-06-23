@@ -17,6 +17,7 @@
     <ProjectReference type="Project" localcopy="True" refto="NModule.Core.Module" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Resolver" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
@@ -24,9 +25,9 @@
   <Contents>
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleLoader.cs" subtype="Code" buildaction="Compile" />
-    <File name="./ModuleController.cs" subtype="Code" buildaction="Compile" />
     <File name="./InvalidModuleException.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleImageException.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleNotFoundException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleController.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

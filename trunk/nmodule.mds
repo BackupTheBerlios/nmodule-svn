@@ -32,7 +32,7 @@
     <Execute type="None" entry="NModule.Core" />
   </StartMode>
   <Entries>
-    <Entry filename="./Documentation/Documentation.mdp" />
+    <Entry filename="./doc/Documentation.mdp" />
     <Entry filename="./src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp" />
     <Entry filename="./src/NModule.Core.Loader/NModule.Core.Loader.mdp" />
     <Entry filename="./src/NModule.Core.Module/NModule.Core.Module.mdp" />

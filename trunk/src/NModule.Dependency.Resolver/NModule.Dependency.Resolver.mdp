@@ -14,9 +14,9 @@
     </Configuration>
   </Configurations>
   <References>
-    <ProjectReference type="Project" localcopy="True" refto="NModule.Core.Loader" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Core.Module" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />

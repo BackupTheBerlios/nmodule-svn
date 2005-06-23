@@ -35,7 +35,7 @@ namespace NModule.Dependency.Resolver {
 	public class DepResolver {
 #region Members
 		// ModuleController used for loading modules to sastify dependencies.
-		protected ModuleController	_controller;
+		protected ModuleController _controller;
 		
 		// Search Path for modules
 		protected ArrayList _search_path;

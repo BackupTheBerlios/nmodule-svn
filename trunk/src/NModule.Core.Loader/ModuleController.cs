@@ -166,9 +166,7 @@ namespace NModule.Core.Loader {
 
 #region Role Handlers
 		protected void CallRoleHandlers (ModuleInfo _info) {
-			foreach (ModuleRoleAttribute _attr in _info.ModuleRoleAttributes) {
-				string _myRole = _attr.Role;
-				
+			foreach (string _myRole in _info.Roles.Split(',')) {
 				foreach (ModuleRole _role in _roles) {
 					if (_role.Name == _myRole) {
 						Assembly _asm = _info.Owner;
@@ -201,9 +199,7 @@ namespace NModule.Core.Loader {
 		}
 		
 		protected void CallRoleUnregisterHandlers (ModuleInfo _info) {
-			foreach (ModuleRoleAttribute _attr in _info.ModuleRoleAttributes) {
-				string _myRole = _attr.Role;
-				
+			foreach (string _myRole in _info.Roles.Split(',')) {
 				foreach (ModuleRole _role in _roles) {
 					if (_role.Name == _myRole) {
 						Assembly _asm = _info.Owner;
