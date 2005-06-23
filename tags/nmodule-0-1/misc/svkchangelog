@@ -1,0 +1,20 @@
+#!/bin/bash
+
+mv ChangeLog .ChangeLog.sch
+
+echo "$(date "+%Y-%m-%d") $SVKCNAME <$SVKEMAIL>" > ChangeLog
+echo >> ChangeLog
+
+svk status | sed -e 's@^\?.*@@g' -e '/^$/d' | egrep -o '[^ ]*(/.*)?$' | sed -e 's@^\..*@@'  -e 's@.*ChangeLog@@g' -e '/^$/d' -e 's@^\./@@g' > .tmp-list
+
+for i in $(cat .tmp-list); do
+	echo -e "\t* ${i}: " >> ChangeLog
+done
+
+echo "" >> ChangeLog
+
+cat .ChangeLog.sch >> ChangeLog
+
+rm -f .ChangeLog.sch .tmp-list
+
+
