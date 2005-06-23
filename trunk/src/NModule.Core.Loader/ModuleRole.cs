@@ -21,60 +21,59 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  *
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
-
+ 
 using System;
 using System.Collections;
+using System.Reflection;
 
-namespace NModule.Dependency.Parser {
-	public class DepNode {
-		private DepConstraint _constraint;
-		private DepOps _op;
-		private DepNode _parent;
-		private ArrayList _children;
-
-		public DepNode () {
-			_parent = null;
-			_children = new ArrayList ();
+namespace NModule.Core.Loader {
+	public delegate ModuleRoleHandler (Assembly asm, Type basetype);
+	
+	// FIXME:  Document this class using NDoc tags.
+	/*
+	 * This class handles the roles used by the module loader.
+	 * It represents a role given its name, base type, and the
+	 * handler used to instantiate that role.  This role is opaque,
+	 * and could easily be used as a value type, but I feel this is
+	 * the best way to go to ensure future changes dont require semantic
+	 * changes to the engine.
+	 */
+	public class ModuleRole {
+		private Type _baseType;
+		private string _roleName;
+		private ModuleRoleHandler _handler;
+		
+		// Lets get this baby setup :)
+		public ModuleRole (Type basetype, string name, ModuleRoleHandler handler) {
+			_baseType = basetype;
+			_roleName = name;
+			_handler = handler;
 		}
-
-		public DepNode (DepNode parent) {
-			_parent = parent;
-			_children = new ArrayList ();
+		
+		public InitiateRole (Assembly asm, Type type) {
+			handler (asm, type);
 		}
-
-		public DepNode Parent {
+		
+		// all properties are read-only for the moment except the handler (which could conceivably change as other modules are loaded which may take the load
+		// off the main engine)
+		public Type BaseType {
 			get {
-				return _parent;
+				return _baseType;
 			}
 		}
-
-		public ArrayList Children {
+		
+		public string RoleName {
 			get {
-				return _children;
+				return _roleName;
 			}
 		}
-
-		public DepNode CreateNewChild () {
-			DepNode child = new DepNode (this);
-			_children.Add (child);
-			return child;
-		}
-
-		public DepOps DepOp {
+		
+		public ModuleRoleHandler Handler {
 			get {
-				return _op;
+				return _handler;
 			}
 			set {
-				_op = value;
-			}
-		}
-
-		public DepConstraint Constraint {
-			get {
-				return _constraint;
-			}
-			set {
-				_constraint = value;
+				_handler = value;
 			}
 		}
 	}

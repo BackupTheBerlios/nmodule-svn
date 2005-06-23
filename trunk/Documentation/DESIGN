@@ -1,77 +1,30 @@
-/***************************************************************************
- * Copyright (c) 2005 Michael Tindal and the individuals listed            *
- * on the ChangeLog entries.                                               *
- *                                                                         *
- * Permission is hereby granted, free of charge, to any person obtaining   *
- * a copy of this software and associated documentation files (the         *
- * "Software"), to deal in the Software without restriction, including     *
- * without limitation the rights to use, copy, modify, merge, publish,     *
- * distribute, sublicense, and/or sell copies of the Software, and to      *
- * permit persons to whom the Software is furnished to do so, subject to   *
- * the following conditions:                                               *
- *                                                                         *
- * The above copyright notice and this permission notice shall be          *
- * included in all copies or substantial portions of the Software.         *
- *                                                                         *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,         *
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF      *
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                   *
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE  *
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION  *
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION   *
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.         *
- ***************************************************************************/
+NModule is a high level plugin framework for the .NET framework.
 
-Module Layout:
+The author (Michael Tindal) actively targets the mono framework, but it should
+run unmodified on the .NET framework as well.
 
+NModule takes plugin frameworks to a whole new level by providing interfaces and abstractions
+that make it suitable for any task.  NModule maintains several pieces of information about a "module":
 
-  Modules for the Dreamshadow Module Core will use the following attributes to advertise themselves to the
-  plugin loading code for dependency resolution and proper initialization of interfaces:
-
-  Assembly-Level Attributes:
+  -> The module info, including name, and version, plus dependency information.
+  -> A set of "roles" the module provides (see below).
   
-  AssemblyTitle:  The name of the assembly as referenced by depencies.
-  AssemblyVersion:  Version of the assembly.
-    -> AssemblyVersion is actually determined by the compiler, so it can be left as x.x.* or x.x.x.* or x.x.x.x depending on your preference.
-       The Module Core only pays attention to the major and minor version numbers.
+NModule abstracts a lot of the plug-in API away from itself, instead, it defines a set of low-level interfaces
+for loading and managing plug-ins while allowing application writers the freedom to define their own set of APIs.
+What is unique about NModules approach to this is that even though NModule does not define the plug-in APIs, it
+can still interact with them!  This is done using NModule's role system.
 
-  ModuleDependency:  A string stating module dependencies that must be resolved/loaded before this module can be loaded.
-    -> Dependency strings use the form (op (op dep) (op dep)) and can be nested indefinitely.  The following operators are
-       allowed:
+When an application defines an interface to be used by plug-ins, that interface has a purpose.  For example, I might
+define an interface called IAction that represented an action, and IController that represented a controller.  Different
+modules could fulfill different roles, this is where the role facility comes into play.  The application registers
+a "role" with the NModule master controller, using the RegisterRole() method.  When a module is loaded, its typed are
+searched for the [ModuleRole()] attribute.  If this is found, it checks the role to see if it is registered, and if it is,
+calls the appropriate handler with the assembly and type information.
 
-          &&:  AND operator
-          ||:  OR operator
-          ^^:  XOR operator
-          !!:  NOT operator
-          ==:  EQUAL operator
-          !=:  NOT EQUAL operator
-          <=:  LESS THAN EQUAL operator
-          <<:  LESS THAN operator
-          >=:  GREATER THAN EQUAL operator
-          >>:  GREATER THAN operator
-          ??:  OPTIONAL operator
-          ##:  LOADED operator
+-->> Loading/Unloading Modules <<--
 
-       Example:
-          Elfblade.Core.Net.Xcp
-          (&& (>> Elfblade.Core.Net 2.0) (!= Elfblade.Core 1.0) (!! (<= Elfblade.Core.Net.Extensions 2.0)) (?? (## Elfblade.Core.Net.Extensions)))
-  
-    -> While this might look strange at first, its very easy to parse.  For example, I could turn the following into the token tree:
-    -> Top-Level Operators
-       && || ^^ !! ??
-       
-    -> First-level Operators
-       == != <= << >= >> ##
-       
-    Top-level operators must contain one or more first-level operators.  First-level operators contain a module name and an optional version.  See nmodule-dep.g in the
-    NModule.Dependency.Parser project/subdirectory for more detail. Top-level operators can nest other top-level operators.
-    
-  ModuleRoles:  A comma seperated list of the roles this module will provide services for.  An example might be:
-    ModuleRoles("IServer,IConnection,ISocket,IPacketHandler") for Elfblade.Core.Net.Xcp
-    When the module loader sees this, it goes over each role.  It searches for a module controller which can handle
-    the given role, finds the typename of the given module, then passes the Assembly of the loaded assembly and the typename
-    to the module controller, along with the role it is providing.  It is then up to the module controller what to do with
-    the given type.
-
-Applications which use this architecture will advertise their roles, with the interfaces that correspond to those roles, as well as a handler that can register the types
-that implement the interfaces with the rest of the engine.
+Basic reflection in .NET uses the Assembly.Load and Assembly.LoadFrom methods.  However, this has the drawback that
+the loaded assemblies cannot be unloaded.  NModule gets around this by wrapping each load into an AppDomain.  (It is
+possible to reuse appdomains, or to disable them completely if necessary).  When NModule loads a module, it checks
+its dependencies, and attempts to load the dependencies.  NModule supports the detection of circular and unresolved
+dependencies, and supports several operators.  (See:  Dependencies for more information).

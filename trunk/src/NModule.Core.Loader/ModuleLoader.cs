@@ -21,61 +21,36 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  *
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
-
+ 
 using System;
 using System.Collections;
+using System.Reflection;
 
-namespace NModule.Dependency.Parser {
-	public class DepNode {
-		private DepConstraint _constraint;
-		private DepOps _op;
-		private DepNode _parent;
-		private ArrayList _children;
-
-		public DepNode () {
-			_parent = null;
-			_children = new ArrayList ();
+namespace NModule.Core.Loader {
+	// This class is simply the loader class, it just creates a new AppDomain,
+	// and loads the appropriate assembly into it.  It can also load an assembly into
+	// an existing app-domain (for example, grouped dependencies).  See the configuration
+	// options for an example.
+	public class ModuleLoader {
+		public static AppDomain Load (string module_name) {
+			AppDomain _myDomain = AppDomain.CreateDomain (module_name);
+			
+			return Load (_myDomain, module_name);
 		}
-
-		public DepNode (DepNode parent) {
-			_parent = parent;
-			_children = new ArrayList ();
-		}
-
-		public DepNode Parent {
-			get {
-				return _parent;
+		
+		public static AppDomain Load (AppDomain domain, string module_name) {
+			try {
+				domain.Load (module_name);
+			} catch (Exception e) {
+				// Logger logger = GlobalSettings.Logger;
+				// LogID id = logger.WriteLogMessage (LogType.Error, "Caught an exception trying to load {0}: ", module_name);
+				// logger.WriteException (id, e.Message);
+				// logger.WriteStackTrace (id, e.Message);
+				// logger.CommitMessage (id);
+				throw e;
 			}
-		}
-
-		public ArrayList Children {
-			get {
-				return _children;
-			}
-		}
-
-		public DepNode CreateNewChild () {
-			DepNode child = new DepNode (this);
-			_children.Add (child);
-			return child;
-		}
-
-		public DepOps DepOp {
-			get {
-				return _op;
-			}
-			set {
-				_op = value;
-			}
-		}
-
-		public DepConstraint Constraint {
-			get {
-				return _constraint;
-			}
-			set {
-				_constraint = value;
-			}
+			
+			return domain;
 		}
 	}
 }

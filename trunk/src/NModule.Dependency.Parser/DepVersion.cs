@@ -22,18 +22,75 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
 
-namespace NModule.Dependency.Parser
-{
-	public class DepVersion
-	{
-		public DepVersion()
-		{
-			Major = Minor = Build = Patch = 0;
+namespace NModule.Dependency.Parser {
+	public class DepVersion {
+		private int _major;
+		private int _minor;
+		private int _build;
+		private int _revision;
+		
+		public DepVersion (int major, int minor, int build, int revision) {
+			_major = major;
+			_minor = minor;
+			_build = build;
+			_revision = revision;
 		}
-
-		public int Major;
-		public int Minor;
-		public int Build;
-		public int Patch;
+		
+		public DepVersion (int major, int minor, int build) {
+			_major = major;
+			_minor = minor;
+			_build = build;
+			_revision = -1;
+		}
+		
+		public DepVersion (int major, int minor) {
+			_major = major;
+			_minor = minor;
+			_build = -1;
+			_revision = -1;
+		}
+		 
+		public DepVersion () {
+			_major = -1;
+			_minor = -1;
+			_build = -1;
+			_revision = -1;
+		}
+	
+		public int Major {
+			get {
+				return _major;
+			}
+			set {
+				_major = value;
+			}
+		}
+		
+		public int Minor {
+			get {
+				return _minor;
+			}
+			set {
+				_minor = value;
+			}
+		}
+		
+		public int Build {
+			get {
+				return _build;
+			}
+			set {
+				_build = value;
+			}
+		}
+		
+		public int Revision {
+			get {
+				return _revision;
+			}
+			set {
+				_revision = value;
+			}
+		}
 	}
 }

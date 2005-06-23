@@ -21,61 +21,32 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  *
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
-
+ 
 using System;
 using System.Collections;
+using System.Reflection;
+using NModule.Dependency.Parser;
 
-namespace NModule.Dependency.Parser {
-	public class DepNode {
-		private DepConstraint _constraint;
-		private DepOps _op;
-		private DepNode _parent;
-		private ArrayList _children;
-
-		public DepNode () {
-			_parent = null;
-			_children = new ArrayList ();
+namespace NModule.Core.Module {
+	public class Module {
+		protected struct ModuleInfo {
+			public string _name;
+			public DepVersion _version;
+			public Assembly _assembly;
+			public AppDomain _domain;
+			public DepNode _deptree;
 		}
-
-		public DepNode (DepNode parent) {
-			_parent = parent;
-			_children = new ArrayList ();
+		
+		protected ModuleInfo _info;
+		
+		public Module (string name, Assembly asm, AppDomain domain, DepVersion version, DepNode deptree) {
+			_info = new ModuleInfo();
+			
+			_info._name = name;
+			_info._assembly = asm;
+			_info._domain = domain;
+			_info._version = version;
+			_info._deptree = deptree;
 		}
-
-		public DepNode Parent {
-			get {
-				return _parent;
-			}
-		}
-
-		public ArrayList Children {
-			get {
-				return _children;
-			}
-		}
-
-		public DepNode CreateNewChild () {
-			DepNode child = new DepNode (this);
-			_children.Add (child);
-			return child;
-		}
-
-		public DepOps DepOp {
-			get {
-				return _op;
-			}
-			set {
-				_op = value;
-			}
-		}
-
-		public DepConstraint Constraint {
-			get {
-				return _constraint;
-			}
-			set {
-				_constraint = value;
-			}
-		}
-	}
-}
+		
+		

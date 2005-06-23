@@ -1,34 +1,26 @@
-<Project name="NModule.Dependency.Parser" fileversion="2.0" language="C#" ctype="DotNetProject">
+<Project name="NModule.Core.Module" fileversion="2.0" language="C#" ctype="DotNetProject">
   <Configurations>
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assembly="NModule.Dependency.Parser" />
+      <Output directory="./bin/Debug" assembly="NModule.Core.Module" />
       <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Release" assembly="NModule.Dependency.Parser" />
+      <Output directory="./bin/Release" assembly="NModule.Core.Module" />
       <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
   <References>
-    <ProjectReference type="Assembly" localcopy="True" refto="../../../../usr/lib/antlr.runtime.dll" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Parser" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
   </DeploymentInformation>
   <Contents>
-    <File name="./" subtype="Directory" buildaction="Compile" />
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
-    <File name="./nmodule-dep.g" subtype="Code" buildaction="Nothing" />
-    <File name="./DepConstraint.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepLexer.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepNode.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepOps.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepParser.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepParserTokenTypes.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepVersion.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleInfo.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

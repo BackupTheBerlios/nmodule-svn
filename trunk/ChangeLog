@@ -1,3 +1,28 @@
+2005-06-21 Michael Tindal <urilith@gentoo.org>
+
+	* Documentation/DESIGN: Started redoing it, its not even remotely complete, but should give a better overview of my plans.
+	* nmodule.mds: Updated.
+	* src/NModule.Core.Loader/AssemblyInfo.cs: Updated.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mdp: Updated.
+	* src/NModule.Core.Loader/ModuleController.cs: The new controller.  bah.  next commit I move the loading code from ModuleController to ModuleLoader.
+	* src/NModule.Core.Loader/ModuleLoader.cs: The loader.
+	* src/NModule.Core.Loader/ModuleRole.cs: Role descriptions.
+	* src/NModule.Core.Loader/NModule.Core.Loader.pidb: 
+	* src/NModule.Dependency.Parser/AssemblyInfo.cs: Um, dunno.
+	* src/NModule.Dependency.Parser/DepConstraint.cs: Dunno.
+	* src/NModule.Dependency.Parser/DepNode.cs: Dunno.
+	* src/NModule.Dependency.Parser/DepOps.cs: Dunno.
+	* src/NModule.Dependency.Parser/DepVersion.cs: Dunno.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp: Updated.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.pidb: Updated.
+	* src/NModule.Core.Module: New assembly.
+	* src/NModule.Core.Module/AssemblyInfo.cs: New assembly.
+	* src/NModule.Core.Module/ModuleInfo.cs: New assembly.
+	* src/NModule.Core.Module/MyClass.cs: New assembly.
+	* src/NModule.Core.Module/NModule.Core.Module.mdp: New assembly.
+	* src/NModule.Core.Module/NModule.Core.Module.mds: New assembly.
+	* src/NModule.Core.Module/NModule.Core.Module.pidb: New assembly.
+
 2005-06-10 Michael Tindal <mtindal@paradoxpoint.com>
 
 	* Documentation/DESIGN: Some design updates again.

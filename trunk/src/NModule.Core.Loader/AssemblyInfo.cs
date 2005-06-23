@@ -31,14 +31,14 @@ using System.Runtime.CompilerServices;
 // change them to the information which is associated with the assembly
 // you compile.
 
-[assembly: AssemblyTitle("NModule.Core.Loader")]
-[assembly: AssemblyDescription("NModule Loader Facilities (not including Dependency Resolution)")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NModule")]
-[assembly: AssemblyCopyright("Copyright (C) 2005 Michael Tindal and Contributors")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTitle ("NModule.Core.Loader")]
+[assembly: AssemblyDescription ("NModule Loader Facilities (not including Dependency Resolution)")]
+[assembly: AssemblyConfiguration ("")]
+[assembly: AssemblyCompany ("")]
+[assembly: AssemblyProduct ("NModule")]
+[assembly: AssemblyCopyright ("Copyright (C) 2005 Michael Tindal and Contributors")]
+[assembly: AssemblyTrademark ("")]
+[assembly: AssemblyCulture ("")]
 
 // The assembly version has following format :
 //
@@ -47,10 +47,14 @@ using System.Runtime.CompilerServices;
 // You can specify all values by your own or you can build default build and revision
 // numbers with the '*' character (the default):
 
-[assembly: AssemblyVersion("0.1.*")]
+[assembly: AssemblyVersion ("0.1.*")]
 
 // The following attributes specify the key for the sign of your assembly. See the
 // .NET Framework documentation for more information about signing.
 // This is not required, if you don't want signing let these attributes like they're.
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("../../lib/keyfiles/nmodule.snk")]
+[assembly: AssemblyDelaySign (false)]
+#if RELEASE
+[assembly: AssemblyKeyFile ("../../lib/keyfiles/nmodule.snk")]
+#else
+[assembly: AssemblyKeyFile ("")]
+#endif

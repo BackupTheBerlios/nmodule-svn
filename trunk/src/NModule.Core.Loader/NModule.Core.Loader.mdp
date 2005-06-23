@@ -13,11 +13,16 @@
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
-  <References />
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="Mono.C5, Version=0.5.1.1, Culture=neutral, PublicKeyToken=ba07f434b1c35cbd" />
+  </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
   </DeploymentInformation>
   <Contents>
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleRole.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleController.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>
