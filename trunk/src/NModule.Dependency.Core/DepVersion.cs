@@ -23,6 +23,8 @@
  **************************************************************************/
 
 namespace NModule.Dependency.Core {
+	using System;
+	
 	public class DepVersion {
 		private int _major;
 		private int _minor;

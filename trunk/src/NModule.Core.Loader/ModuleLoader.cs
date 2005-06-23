@@ -24,6 +24,7 @@
  
 using System;
 using System.Collections;
+using System.IO;
 using System.Reflection;
 using NModule.Dependency.Resolver;
 using NModule.Core.Module;
@@ -39,7 +40,7 @@ namespace NModule.Core.Loader {
 		
 		protected DepResolver _resolver;
 		
-		public ModuleLoader (string search_path, DepResolver resolver) {
+		public ModuleLoader (ArrayList search_path, DepResolver resolver) {
 			_search_path = search_path;
 			_resolver = resolver;
 		}
@@ -48,8 +49,8 @@ namespace NModule.Core.Loader {
 		protected byte[] LoadRawFile (string _filename) {
 			FileStream _fs = new FileStream (_filename, FileMode.Open);
 			byte[] _buffer = new byte [(int) _fs.Length];
-			fs.Read (_buffer, 0, _buffer.Length);
-			fs.Close ();
+			_fs.Read (_buffer, 0, _buffer.Length);
+			_fs.Close ();
    
 			return _buffer;
 		}
@@ -58,7 +59,7 @@ namespace NModule.Core.Loader {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
 					foreach (string f in Directory.GetFiles (s, "*.dll")) {
-						if (f.SubString (0, f.Length - 4) == _name) {
+						if (f.Substring (0, f.Length - 4) == _name) {
 							return s + "/" + f;
 						}
 					}
@@ -74,17 +75,13 @@ namespace NModule.Core.Loader {
 		 * parents list.  The parents list is used for detecting circular dependencies.
 		 */
 		public AppDomain LoadModule (string _name, out ModuleInfo _info) {
-			return LoadModule (null, _name, out _info);
+			return LoadModule (null, _name, out _info, false);
 		}
 		
-		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking=false) {
+		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking) {
 			// Okay, this is tricky.  First, we have to load the module into a temp domain
 			// to retrieve its module info.  Then, we have to attempt to resolve the dependencies.
 			// This is going to be fun.  Heh.
-			
-			if (_app_domain_map.HasKey (_name))
-				return; // Already loaded, no need to load it again.
-				
 			if (_parents == null)
 				_parents = new ArrayList ();
 				
@@ -108,7 +105,7 @@ namespace NModule.Core.Loader {
 			try {
 				_tempDomain.Load (_raw_bytes);
 			} catch (BadImageFormatException e) {
-				throw ModuleImageException (e.Message);
+				throw new ModuleImageException (e.Message);
 			}
 			
 			// Okay, now lets grab the module info from the assembly attributes.
@@ -117,12 +114,12 @@ namespace NModule.Core.Loader {
 			try {
 				_info = new ModuleInfo (_asm);
 			} catch (ModuleInfoException e) {
-				throw InvalidModuleException (e.Message);
+				throw new InvalidModuleException (e.Message);
 			}
 			
 			// unload the temp domain since its unneeded now.
 			
-			_tempDomain.Unload ();
+			AppDomain.Unload (_tempDomain);
 			
 			// okay, now we've got the info, let's do some magic with the dependencies.
 			// this will recursively load all of the appropriate assemblies as per the parsed

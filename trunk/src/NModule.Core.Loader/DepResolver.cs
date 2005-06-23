@@ -27,6 +27,7 @@ namespace NModule.Dependency.Resolver {
 	using System.Collections;
 	using System.IO;
 	using System.Reflection;
+	using System.Text;
 	
 	using NModule.Dependency.Core;
 	using NModule.Core.Loader;
@@ -53,7 +54,7 @@ namespace NModule.Dependency.Resolver {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
 					foreach (string f in Directory.GetFiles (s, "*.dll")) {
-						if (f.SubString (0, f.Length - 4) == _name) {
+						if (f.Substring (0, f.Length - 4) == _name) {
 							return s + "/" + f;
 						}
 					}
@@ -64,11 +65,11 @@ namespace NModule.Dependency.Resolver {
 		}
 		
 		protected void OpResolve (DepNode _node, ArrayList _parents, ModuleInfo _info, bool checking) {
-			DepOp _op = _node.DepOp;
+			bool _ret;
+			DepOps _op = _node.DepOp;
 			DepConstraint _constraint = _node.Constraint;
 			if ((_op == DepOps.And) || (_op == DepOps.Not) || (_op == DepOps.Opt) || (_op == DepOps.Or) || (_op == DepOps.Xor)) {
 				// combo-operators
-				int c = 0;
 				ArrayList _results = new ArrayList ();
 				ArrayList _c = new ArrayList ();
 				foreach (DepNode _child in _node.Children) {
@@ -87,17 +88,18 @@ namespace NModule.Dependency.Resolver {
 						int r = 0;
 						foreach (bool _result in _results) {
 							if (!_result) {
-								throw new UnresolvedDependencyInformation (
+								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: (AND operator)\n\t{1} ({2})",
 										_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version)
 								);
 							}
+							r++;
 						}
 						break;
 					case DepOps.Not:
 						foreach (bool _result in _results) {
-							if (_result) {
-								throw new UnresolvedDependencyInformation (
+							if (_result)
+								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: (NOT operator)\n\t{1} ({2})",
 										_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version)
 								);
@@ -108,13 +110,14 @@ namespace NModule.Dependency.Resolver {
 					case DepOps.Or:
 						_ret = false;
 						ArrayList _urexc = new ArrayList ();
-						
+						r = 0;
 						foreach (bool _result in _results) {
 							if (_result)
 								_ret = true;
 							else {
 								_urexc.Add (string.Format("{1} ({2})", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
 							}
+							r++;
 						}
 						
 						if (!_ret) {
@@ -122,25 +125,29 @@ namespace NModule.Dependency.Resolver {
 								string.Format("The following dependency for the module {0} could not be resolved: (OR operator)\n")
 							);
 							foreach (string _exc in _urexc) {
-								sb += string.Format("\t{0}\n", _exc);
+								_sb.Append(string.Format("\t{0}\n", _exc));
 							}
-							throw new UnresolvedDependencyInformation (sb.ToString ());
+							throw new UnresolvedDependencyException (_sb.ToString ());
 						}
 						break;
 					case DepOps.Xor:
-						_xt = true;
-						_xf = true;
-						ArrayList _urexc = new ArrayList ();
+						bool _xt = true;
+						bool _xf = true;
+						ArrayList _xexc = new ArrayList ();
 				
+						r = 0;
+						_ret = true;
+						
 						foreach (bool _result in _results) {
 							if (_result) {
 								_xf = false;
-								_urexc.Add (string.Format("{1} ({2}) (True)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
+								_xexc.Add (string.Format("{1} ({2}) (True)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
 							}
 							if (!_result) {
 								_xt = false;
-								_ur.Add (string.Format("{1} ({2}) (False)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
+								_xexc.Add (string.Format("{1} ({2}) (False)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
 							}
+							r++;
 						}
 						
 						if (_xt || _xf)
@@ -148,12 +155,12 @@ namespace NModule.Dependency.Resolver {
 							
 						if (!_ret) {
 							StringBuilder _sb = new StringBuilder (
-								string.Format("The following dependency for the module {0} could not be resolved: (XOR operator)\n")
+								string.Format ("The following dependency for the module {0} could not be resolved: (XOR operator)\n")
 							);
-							foreach (string _exc in _urexc) {
-								sb += string.Format("\t{0}\n", _exc);
+							foreach (string _exc in _xexc) {
+								_sb.Append (string.Format("\t{0}\n", _exc));
 							}
-							throw new UnresolvedDependencyInformation (sb.ToString ());
+							throw new UnresolvedDependencyException (_sb.ToString ());
 						}
 						break;
 				}
@@ -171,10 +178,10 @@ namespace NModule.Dependency.Resolver {
 				if ((_op == DepOps.Equal) || (_op == DepOps.GreaterThan) || (_op == DepOps.GreaterThanEqual) || (_op == DepOps.LessThan)
 					|| (_op == DepOps.LessThanEqual) || (_op == DepOps.NotEqual)) {
 					if (!IsEmptyVersion (_constraint.Version)) {
-						if (!VersionMatch (_ninfo, _version, _op)) {
-							throw new UnresolvedDependencyInformation (
+						if (!VersionMatch (_constraint.Version, _ninfo.Version, _op)) {
+							throw new UnresolvedDependencyException (
 								string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
-									_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version, OpToString (_op))
+									_info.Name, _constraint.Name, _constraint.Version, OpToString (_op))
 							);
 						}
 					}
@@ -185,22 +192,194 @@ namespace NModule.Dependency.Resolver {
 				// we got this far, so obviously it loaded okay
 			}		
 		}
+		
+		protected string OpToString (DepOps _op) {
+			switch (_op)
+			{
+				case DepOps.And:
+					return "&&";
+				case DepOps.Equal:
+					return "==";
+				case DepOps.GreaterThan:
+					return ">>";
+				case DepOps.GreaterThanEqual:
+					return ">=";
+				case DepOps.LessThan:
+					return "<<";
+				case DepOps.LessThanEqual:
+					return "<=";
+				case DepOps.Loaded:
+					return "##";
+				case DepOps.Not:
+					return "!!";
+				case DepOps.NotEqual:
+					return "!=";
+				case DepOps.Opt:
+					return "??";
+				case DepOps.Or:
+					return "||";
+				case DepOps.Xor:
+					return "^^";
+			}
 			
+			return "";
+		}
+		
+		protected bool IsEmptyVersion (DepVersion _ver) {
+			return ((_ver.Major == -1) && (_ver.Minor == -1) && (_ver.Build == -1) && (_ver.Revision == -1));
+		}
+		
+		protected bool VersionMatch (DepVersion _dver, DepVersion _ver, DepOps _op) {
+			bool mjgt = false, mngt = false, bgt = false, rgt = false;
+			bool mjeq = false, mneq = false, beq = false, req = false;
+			bool mjlt = false, mnlt = false, blt = false, rlt = false;
+			bool mji = false, mni = false, bi = false, ri = false;
+			
+			if (_dver.Major == -1) {
+				mji = true;
+			} else if (_dver.Major > _ver.Major) {
+				mjgt = true;
+			} else if (_dver.Major == _ver.Major) {
+				mjeq = true;
+			} else {
+				mjlt = true;
+			}
+			
+			if (_dver.Minor == -1) {
+				mni = true;
+			} else if (_dver.Minor > _ver.Minor) {
+				mngt = true;
+			} else if (_dver.Minor == _ver.Minor) {
+				mneq = true;
+			} else {
+				mnlt = true;
+			}
+			
+			if (_dver.Build == -1) {
+				bi = true;
+			} else if (_dver.Build > _ver.Build) {
+				bgt = true;
+			} else if (_dver.Build == _ver.Build) {
+				beq = true;
+			} else {
+				blt = true;
+			}
+			
+			if (_dver.Revision == -1) {
+				ri = true;
+			} else if (_dver.Revision > _ver.Revision) {
+				rgt = true;
+			} else if (_dver.Revision == _ver.Revision) {
+				req = true;
+			} else {
+				rlt = true;
+			}
+
+			if (mji)
+				return true;
+									
+			if ((_op == DepOps.Equal) || (_op == DepOps.GreaterThanEqual) || (_op == DepOps.LessThanEqual)) {					
+					if (mjeq && mni)
+						return true;
+						
+					if (mjeq && mneq && bi)
+						return true;
+						
+					if (mjeq && mneq && beq && ri)
+						return true;
+					
+					if (mjeq && mneq && beq && req)
+						return true;
+			}
+			
+			if (_op == DepOps.NotEqual) {
+				if (!mjeq && mni)
+					return true;
+					
+				if (!mjeq && !mneq && bi)
+					return true;
+					
+				if (!mjeq && !mneq && !beq && ri)
+					return true;
+					
+				if (!mjeq && !mneq && !beq && !req)
+					return true;
+			}
+			
+			if (_op == DepOps.GreaterThan) {
+				if (mjlt)
+					return false;
+					
+				if (mjgt)
+					return true;
+				
+				if (mjeq && mnlt)
+					return false;
+					
+				if (mngt)
+					return true;
+					
+				if (mjeq && mneq && blt)
+					return false;
+					
+				if (bgt)
+					return true;
+					
+				if (mjeq && mneq && beq && rlt)
+					return false;
+					
+				if (rgt)
+					return true;
+			}
+			
+			if (_op == DepOps.LessThan) {
+				if (mjgt)
+					return false;
+					
+				if (mjlt)
+					return true;
+				
+				if (mjeq && mngt)
+					return false;
+					
+				if (mnlt)
+					return true;
+					
+				if (mjeq && mneq && bgt)
+					return false;
+					
+				if (blt)
+					return true;
+					
+				if (mjeq && mneq && beq && rgt)
+					return false;
+					
+				if (rlt)
+					return true;
+			}
+			
+			if (_op == DepOps.Loaded)
+				return true;
+				
+			
+			return false;
+		}
+				
 		protected void InternalResolve (ArrayList _parents, ModuleInfo _info, bool checking) {
 			if (_info.Dependencies == null)
 				return;
 			
-			foreach (DepNode _node in _info.Dependencies) {
-				foreach (string _parent in _parents) {
-					if (_node.Constraint.Name == _parent) {
-						throw new CircularDependencyException (
-							string.Format("The module {0} is depending on {1} which is depending on {0}, causing a circular dependency.",
-								_parent, _info.Name, _parent)
-						);
-					}
+			DepNode _node = _info.Dependencies;
+			
+			foreach (string _parent in _parents) {
+				if (_node.Constraint.Name == _parent) {
+					throw new CircularDependencyException (
+						string.Format("The module {0} is depending on {1} which is depending on {0}, causing a circular dependency.",
+							_parent, _info.Name, _parent)
+					);
 				}
-				OpResolve (_node, _parents, _info, checking);
-			}			
+			}
+			OpResolve (_node, _parents, _info, checking);			
 		}
 #endregion
 

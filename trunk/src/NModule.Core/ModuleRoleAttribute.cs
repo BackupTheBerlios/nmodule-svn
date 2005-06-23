@@ -28,7 +28,7 @@ namespace NModule.Core {
 	public class ModuleRoleAttribute : Attribute {
 		protected string _roles;
 		
-		public ModuleDependencyAttribute (string role) {
+		public ModuleRoleAttribute (string role) {
 			_roles = role;
 		}
 		

@@ -27,9 +27,9 @@ using System.Collections;
 using System.Reflection;
 
 namespace NModule.Core.Module {
-	public delegate RoleRegisterHandler (Assembly asm, Type basetype);
+	public delegate void RoleRegisterHandler (Assembly asm, Type basetype);
 	
-	public delegate RoleUnregisterHandler (Assembly asm);
+	public delegate void RoleUnregisterHandler (Assembly asm);
 	
 	/*
 	 * This class handles the roles used by the module loader.
@@ -43,7 +43,7 @@ namespace NModule.Core.Module {
 		private Type _baseType;
 		private string _roleName;
 		private RoleRegisterHandler _regHandler;
-		private RoleUnregisterHandle _unregHandler;
+		private RoleUnregisterHandler _unregHandler;
 		
 		// Lets get this baby setup :)
 		public ModuleRole (string name, Type basetype, RoleRegisterHandler regHandler, RoleUnregisterHandler unregHandler) {

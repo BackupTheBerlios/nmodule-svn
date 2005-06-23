@@ -16,6 +16,7 @@
   <References>
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Parser" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
@@ -24,5 +25,6 @@
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleRole.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleInfoException.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

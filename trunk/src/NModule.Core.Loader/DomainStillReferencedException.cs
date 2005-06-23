@@ -22,12 +22,14 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
  
-using System;
-
-namespace NModule.Core {
-	public interface IModule {
-		void ModuleEntry (object controller);
+namespace NModule.Core.Module {
+	using System;
+	
+	public class DomainStillReferencedException : Exception {
+		public DomainStillReferencedException ( ) : base ( ) { }
 		
-		void ModuleExit (object controller);
+		public DomainStillReferencedException (string _msg) : base (_msg) { }
+		
+		public DomainStillReferencedException (string _msg, Exception _exc) : base (_msg) { }
 	}
 }

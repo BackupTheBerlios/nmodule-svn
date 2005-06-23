@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using NModule.Dependency.Core;
 using NModule.Dependency.Resolver;
 using NModule.Core.Module;
 
@@ -73,9 +74,15 @@ namespace NModule.Core.Loader {
 		}
 		
 		public void LoadModule (ArrayList _parents, string _name) {
+			if (_app_domain_map.ContainsKey (_name))
+			{
+				IncRef ((AppDomain)_app_domain_map[_name]);
+				return; // Already loaded, no need to load it again.
+			}
+			
 			ModuleInfo _info;
 			
-			AppDomain _domain = _loader.LoadModule (_parents, _name, out _info);
+			AppDomain _domain = _loader.LoadModule (_parents, _name, out _info, false);
 			
 			// set up the map
 			_app_domain_map.Add (_name, _domain);
@@ -86,7 +93,6 @@ namespace NModule.Core.Loader {
 			// increment the reference count for all the dependencies recursively (i.e.
 			// if module A depends on B which depends on C, B gets inc ref'd once, while C
 			// gets inc ref'd twice, for both A and B).
-			_resolver.IncRefs (_info);
 			
 			// Set up roles.
 			CallRoleHandlers (_info);
@@ -98,6 +104,13 @@ namespace NModule.Core.Loader {
 			CallEntryHandler (_domain.GetAssemblies()[0]);
 		}
 		
+		protected void DecRefs (DepNode _x) {
+			foreach (DepNode _d in _x.Children) {
+				DecRefs (_d);
+			}
+			DecRef ((AppDomain)_app_domain_map[_x.Constraint.Name]);
+		}
+		
 		public void UnloadModule (string _name) {
 			// This is fun stuff.  We can't unload a module any of the following conditions fail:
 			//  1) The module must be a top-level node in the dep map, i.e no other modules can
@@ -105,12 +118,12 @@ namespace NModule.Core.Loader {
 			//  2) The reference count on the appdomain must be 1, which means the only thing
 			//  using this appdomain is the module inside of it.
 			
-			if (!_domain_map.Contains (_name))
+			if (!_app_domain_map.ContainsKey (_name))
 				return; // suckers not loaded, why are we unloading it?
 			
 			ModuleInfo _info = (ModuleInfo)_info_map[_name];
 			
-			AppDomain _domain = (AppDomain)_domain_map[_name];
+			AppDomain _domain = (AppDomain)_app_domain_map[_name];
 			if (((int)_ref_counts[_domain]) > 1) {
 				throw new DomainStillReferencedException (string.Format ("The domain holding the module {0} cannot be unloaded because it is still being referenced.", _name));
 			}
@@ -118,8 +131,12 @@ namespace NModule.Core.Loader {
 			// okay, everything's good.  This will remove the domain from the reference list since its reference count is now 0.
 			DecRef (_domain);
 			
+			DepNode _root = _info.Dependencies;
+						
+			DecRefs (_root);
+			
 			// okay, lets remove the domain map association
-			_domain_map.Remove (_name);
+			_app_domain_map.Remove (_name);
 			
 			// the info map needs to go too
 			_info_map.Remove (_name);
@@ -131,7 +148,7 @@ namespace NModule.Core.Loader {
 			CallExitHandler (_domain.GetAssemblies()[0]);
 			
 			// And finally, unload the domain.
-			_domain.Unload ();
+			AppDomain.Unload (_domain);
 		}
 #endregion
 
@@ -145,7 +162,7 @@ namespace NModule.Core.Loader {
 		}
 		
 		protected void DecRef (AppDomain _domain) {
-			if (!_ref_counts.Contains (_domain)) {
+			if (!_ref_counts.Contains (_domain))
 				return;
 				
 			_ref_counts[_domain] = ((int)_ref_counts[_domain]) - 1;
@@ -168,7 +185,7 @@ namespace NModule.Core.Loader {
 		protected void CallRoleHandlers (ModuleInfo _info) {
 			foreach (string _myRole in _info.Roles.Split(',')) {
 				foreach (ModuleRole _role in _roles) {
-					if (_role.Name == _myRole) {
+					if (_role.RoleName == _myRole) {
 						Assembly _asm = _info.Owner;
 						
 						Type _type = null;
@@ -201,7 +218,7 @@ namespace NModule.Core.Loader {
 		protected void CallRoleUnregisterHandlers (ModuleInfo _info) {
 			foreach (string _myRole in _info.Roles.Split(',')) {
 				foreach (ModuleRole _role in _roles) {
-					if (_role.Name == _myRole) {
+					if (_role.RoleName == _myRole) {
 						Assembly _asm = _info.Owner;
 						
 						Type _type = null;
@@ -224,7 +241,7 @@ namespace NModule.Core.Loader {
 							continue; // don't have a type for this role.
 						}
 						
-						_role.UnregistrationHandler (_asm, _type);
+						_role.UnregistrationHandler (_asm);
 					}
 				}
 			}
@@ -234,22 +251,22 @@ namespace NModule.Core.Loader {
 #region Entry/Exit Handlers
 		protected void CallEntryHandler (Assembly _asm) {
 			foreach (Type _type in _asm.GetTypes ()) {
-				if (_type.GetInterface (typeof (NModule.Core.Module.IModule)) != null) {
+				if (_type.GetInterface (typeof (NModule.Core.IModule).ToString()) != null) {
 					MethodInfo _method = _type.GetMethod ("ModuleEntry");
 		
 					if (_method != null)			
-						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, (new object[] { this }), null);
+						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, null, (new object[] { this }), null);
 				}
 			}
 		}
 		
-		protected void CallEntryHandler (Assembly _asm) {
+		protected void CallExitHandler (Assembly _asm) {
 			foreach (Type _type in _asm.GetTypes ()) {
-				if (_type.GetInterface (typeof (NModule.Core.Module.IModule)) != null) {
+				if (_type.GetInterface (typeof (NModule.Core.IModule).ToString()) != null) {
 					MethodInfo _method = _type.GetMethod ("ModuleExit");
 					
 					if (_method != null)
-						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, (new object[] { this }), null);
+						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, null, (new object[] { this }), null);
 				}
 			}
 		}

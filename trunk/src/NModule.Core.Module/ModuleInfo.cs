@@ -45,11 +45,14 @@ namespace NModule.Core.Module {
 		// roles
 		protected string _roles;
 		
+		// owner
+		protected Assembly _owner;
+		
 		public ModuleInfo (Assembly _asm) {
 			_name = _asm.GetName().Name;
-			_version = DepVersion.VersionParse (_asm.GetName().Version);
+			_version = DepVersion.VersionParse (_asm.GetName().Version.ToString ());
 			
-			ModuleDependencyAttribute _depAttr = ((ModuleDependencyAttribute)_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute)));
+			ModuleDependencyAttribute _depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
 			
 			if (_depAttr != null) {	
 				DepLexer _lexer = new DepLexer (new StringReader (_depAttr.DepString));
@@ -60,14 +63,16 @@ namespace NModule.Core.Module {
 				
 				_parser.expr (_dependencies);
 			} else
-				_depenencies = null;
+				_dependencies = null;
 				
-			ModuleRoleAttribute _roleAttr = ((ModuleRoleAttribute)_asm.GetCustomAttributes (typeof (ModuleRoleAttribute));
+			ModuleRoleAttribute _roleAttr = ((ModuleRoleAttribute)(_asm.GetCustomAttributes (typeof (ModuleRoleAttribute), false)[0]));
 			
 			if (_roleAttr != null) {
 				_roles = _roleAttr.Roles;
 			} else
-				_roles = null;
+				throw new ModuleInfoException (string.Format ("The module {0} has no defined roles, and is not a valid NModule module.", _asm.GetName ().Name));
+				
+			_owner = _asm;
 		}
 		
 		public string Name {
@@ -91,6 +96,12 @@ namespace NModule.Core.Module {
 		public string Roles {
 			get {
 				return _roles;
+			}
+		}
+		
+		public Assembly Owner {
+			get {
+				return _owner;
 			}
 		}
 	}		

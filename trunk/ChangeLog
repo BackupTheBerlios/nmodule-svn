@@ -1,5 +1,75 @@
 2005-06-23 Michael Tindal <urilith@gentoo.org>
 
+	*******************
+        ***** RELEASE *****
+        *******************
+	*
+        ***
+        * Tag 0.1 release.
+        ***
+	*
+	* lib/antlr-2.7.5/antlr/ANTLRLexer.java: Removed for a clean install.
+	* lib/antlr-2.7.5/antlr/ANTLRParser.java: Ditto.
+	* lib/antlr-2.7.5/antlr/ANTLRTokdefLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/ANTLRTokdefParser.java: Ditto.
+	* lib/antlr-2.7.5/antlr/ANTLRTokdefParserTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/ANTLRTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/Version.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/cpp/ActionLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/cpp/ActionLexerTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/csharp/ActionLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/csharp/ActionLexerTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/java/ActionLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/java/ActionLexerTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/python/ActionLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/python/ActionLexerTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/python/CodeLexer.java: Ditto.
+	* lib/antlr-2.7.5/antlr/actions/python/CodeLexerTokenTypes.java: Ditto.
+	* lib/antlr-2.7.5/antlr/antlr: Stuff.
+	* lib/antlr-2.7.5/config.log: Removed.
+	* lib/antlr-2.7.5/lib/antlr.astframe.dll: Removed.
+	* lib/antlr-2.7.5/lib/antlr.runtime.dll: Removed.
+	* lib/antlr-2.7.5/lib/csharp/ASTFrame/antlr.astframe.dll: Removed.
+	* lib/antlr-2.7.5/scripts/antlr.sh: Cleaned.
+	* lib/antlr-2.7.5/scripts/c.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/config.deps: Ditto. 
+	* lib/antlr-2.7.5/scripts/config.vars: Ditto.
+	* lib/antlr-2.7.5/scripts/cpp.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/csc.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/cxx.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/jar.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/java.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/javac.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/lib.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/link.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/pyantlr.sh: Ditto.
+	* lib/antlr-2.7.5/scripts/python.sh: Ditto.
+	* nmodule.mds: Removed doc project.
+	* src/NModule.Core/IModule.cs: Added.
+	* src/NModule.Core/ModuleRoleAttribute.cs: Added Owner.
+	* src/NModule.Core.Loader/ModuleController.cs: Added missing methods.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Fixed compilation errors.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mdp: Updated.
+	* src/NModule.Core.Loader/CircularDependencyException.cs: New exceptions.
+	* src/NModule.Core.Loader/DepResolver.cs: Moved here to avoid circular dependencies.
+	* src/NModule.Core.Loader/DomainStillReferencedException.cs: New exceptions.
+	* src/NModule.Core.Loader/UnresolvedDependencyException.cs: New exceptions.
+	* src/NModule.Core.Module/ModuleInfo.cs: Fixed.
+	* src/NModule.Core.Module/ModuleRole.cs: Fixed.
+	* src/NModule.Core.Module/NModule.Core.Module.mdp: Added exception.
+	* src/NModule.Core.Module/ModuleInfoException.cs: New exceptions.
+	* src/NModule.Dependency.Core/DepVersion.cs: Fixed.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp: Updated.
+	* src/NModule.Dependency.Resolver: Removed.
+	* src/NModule.Dependency.Resolver/AssemblyInfo.cs: Ditto.
+	* src/NModule.Dependency.Resolver/CircularDependencyException.cs: Ditto.
+	* src/NModule.Dependency.Resolver/DepResolver.cs: Ditto.
+	* src/NModule.Dependency.Resolver/NModule.Dependency.Resolver.mdp: Ditto.
+	* src/NModule.Dependency.Resolver/NModule.Dependency.Resolver.mds: Ditto.
+	* src/NModule.Dependency.Resolver/UnresolvedDependencyException.cs: Ditto.
+
+2005-06-23 Michael Tindal <urilith@gentoo.org>
+
 	* nmodule.mds: New projects.
 	* src/NModule.Core.Loader/ModuleController.cs: Finished implementing everything.  Woot.
 	* src/NModule.Core.Loader/ModuleLoader.cs: Dont remember.

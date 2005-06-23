@@ -14,8 +14,8 @@
     </Configuration>
   </Configurations>
   <References>
-    <ProjectReference type="Assembly" localcopy="True" refto="../../../../usr/lib/antlr.runtime.dll" />
     <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../../lib/antlr.runtime.dll" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
