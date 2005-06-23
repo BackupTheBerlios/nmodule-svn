@@ -28,25 +28,4 @@ using System.Reflection;
 using NModule.Dependency.Parser;
 
 namespace NModule.Core.Module {
-	public class Module {
-		protected struct ModuleInfo {
-			public string _name;
-			public DepVersion _version;
-			public Assembly _assembly;
-			public AppDomain _domain;
-			public DepNode _deptree;
-		}
-		
-		protected ModuleInfo _info;
-		
-		public Module (string name, Assembly asm, AppDomain domain, DepVersion version, DepNode deptree) {
-			_info = new ModuleInfo();
-			
-			_info._name = name;
-			_info._assembly = asm;
-			_info._domain = domain;
-			_info._version = version;
-			_info._deptree = deptree;
-		}
-		
-		
+}

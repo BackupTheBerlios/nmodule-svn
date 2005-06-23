@@ -1,3 +1,35 @@
+2005-06-22 Michael Tindal <urilith@gentoo.org>
+
+	* nmodule.mds: Updated.
+	* src/NModule.Core.Loader/ModuleController.cs: Added a lot of functionality to it, still not finished yet though.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Moved the basic loading code from the controller.
+	* src/NModule.Core.Loader/ModuleRole.cs: Added a deregister handling for when a module gets unloaded.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mdp: Updated.
+	* src/NModule.Core.Loader/NModule.Core.Loader.pidb: Updated.
+	* src/NModule.Core.Module/ModuleInfo.cs: Removed useless Module class.
+	* src/NModule.Core.Module/NModule.Core.Module.pidb: Updated.
+	* src/NModule.Core.Module/MyClass.cs: Removed.
+	* src/NModule.Dependency.Parser/DepLexer.cs: Updated to use new NModule.Dependency.Core namespace.
+	* src/NModule.Dependency.Parser/DepParser.cs: Updated to use new NModule.Dependency.Core namespace.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.cs: Updated to use new NModule.Dependency.Core namespace.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp: Updated.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.pidb: Updated.
+	* src/NModule.Dependency.Parser/nmodule-dep.g: Updated to use new NModule.Dependency.Core namespace.
+	* src/NModule.Dependency.Parser/DepConstraint.cs: Moved to NModule.Dependency.Core.
+	* src/NModule.Dependency.Parser/DepNode.cs: Moved to NModule.Dependency.Core.
+	* src/NModule.Dependency.Parser/DepOps.cs: Moved to NModule.Dependency.Core.
+	* src/NModule.Dependency.Parser/DepVersion.cs: Moved to NModule.Dependency.Core.
+	* src/NModule.Dependency.Parser/nmodule-dep.g.old: Removed.
+	* src/NModule.Dependency.Core: New namespace.
+	* src/NModule.Dependency.Core/AssemblyInfo.cs: New namespace.
+	* src/NModule.Dependency.Core/DepConstraint.cs: New namespace.
+	* src/NModule.Dependency.Core/DepNode.cs: Moved from the parser.
+	* src/NModule.Dependency.Core/DepOps.cs: Moved from the parser.
+	* src/NModule.Dependency.Core/DepVersion.cs: Moved from the parser.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.mdp: New MonoDevelop project.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.mds: New MonoDevelop solution.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.pidb: New MonoDevelop stuff.
+
 2005-06-21 Michael Tindal <urilith@gentoo.org>
 
 	* Documentation/DESIGN: Started redoing it, its not even remotely complete, but should give a better overview of my plans.

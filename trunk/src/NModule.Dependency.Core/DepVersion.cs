@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
 
-namespace NModule.Dependency.Parser {
+namespace NModule.Dependency.Core {
 	public class DepVersion {
 		private int _major;
 		private int _minor;

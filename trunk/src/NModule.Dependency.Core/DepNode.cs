@@ -1,5 +1,3 @@
-// $ANTLR 2.7.5 (20050516): "nmodule-dep.g" -> "DepParser.cs"$
-
 /**************************************************************************
  * Copyright (c) 2005 Michael Tindal and the individuals listed           *
  * on the ChangeLog entries.                                              *
@@ -23,37 +21,61 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  *
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
- 
-using NModule.Dependency.Core;
 
-namespace NModule.Dependency.Parser
-{
-	public class DepParserTokenTypes
-	{
-		public const int EOF = 1;
-		public const int NULL_TREE_LOOKAHEAD = 3;
-		public const int LPAREN = 4;
-		public const int NOTO = 5;
-		public const int RPAREN = 6;
-		public const int AND = 7;
-		public const int OR = 8;
-		public const int XOR = 9;
-		public const int OPT = 10;
-		public const int EQ = 11;
-		public const int NEQ = 12;
-		public const int LTE = 13;
-		public const int LS = 14;
-		public const int GTE = 15;
-		public const int GT = 16;
-		public const int LD = 17;
-		public const int CLASS = 18;
-		public const int VER = 19;
-		public const int INT = 20;
-		public const int DOT = 21;
-		public const int ID_START_LETTER = 22;
-		public const int ID_LETTER = 23;
-		public const int ID = 24;
-		public const int WS = 25;
-		
+using System;
+using System.Collections;
+
+namespace NModule.Dependency.Core {
+	public class DepNode {
+		private DepConstraint _constraint;
+		private DepOps _op;
+		private DepNode _parent;
+		private ArrayList _children;
+
+		public DepNode () {
+			_parent = null;
+			_children = new ArrayList ();
+		}
+
+		public DepNode (DepNode parent) {
+			_parent = parent;
+			_children = new ArrayList ();
+		}
+
+		public DepNode Parent {
+			get {
+				return _parent;
+			}
+		}
+
+		public ArrayList Children {
+			get {
+				return _children;
+			}
+		}
+
+		public DepNode CreateNewChild () {
+			DepNode child = new DepNode (this);
+			_children.Add (child);
+			return child;
+		}
+
+		public DepOps DepOp {
+			get {
+				return _op;
+			}
+			set {
+				_op = value;
+			}
+		}
+
+		public DepConstraint Constraint {
+			get {
+				return _constraint;
+			}
+			set {
+				_constraint = value;
+			}
+		}
 	}
 }

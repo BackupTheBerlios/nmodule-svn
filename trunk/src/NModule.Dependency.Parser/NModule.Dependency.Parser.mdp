@@ -15,6 +15,7 @@
   </Configurations>
   <References>
     <ProjectReference type="Assembly" localcopy="True" refto="../../../../usr/lib/antlr.runtime.dll" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
   </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
@@ -23,12 +24,8 @@
     <File name="./" subtype="Directory" buildaction="Compile" />
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./nmodule-dep.g" subtype="Code" buildaction="Nothing" />
-    <File name="./DepConstraint.cs" subtype="Code" buildaction="Compile" />
     <File name="./DepLexer.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepNode.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepOps.cs" subtype="Code" buildaction="Compile" />
     <File name="./DepParser.cs" subtype="Code" buildaction="Compile" />
     <File name="./DepParserTokenTypes.cs" subtype="Code" buildaction="Compile" />
-    <File name="./DepVersion.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

@@ -25,57 +25,51 @@
 using System;
 using System.Collections;
 
-namespace NModule.Dependency.Parser {
-	public class DepNode {
-		private DepConstraint _constraint;
-		private DepOps _op;
-		private DepNode _parent;
-		private ArrayList _children;
+namespace NModule.Dependency.Core {
+	public class DepConstraint {
+		private DepVersion _version;
+		private string _name;
 
-		public DepNode () {
-			_parent = null;
-			_children = new ArrayList ();
+		public DepConstraint () {
+			_name = "";
+			_version = null;
 		}
 
-		public DepNode (DepNode parent) {
-			_parent = parent;
-			_children = new ArrayList ();
-		}
-
-		public DepNode Parent {
+		public DepVersion Version {
 			get {
-				return _parent;
-			}
-		}
-
-		public ArrayList Children {
-			get {
-				return _children;
-			}
-		}
-
-		public DepNode CreateNewChild () {
-			DepNode child = new DepNode (this);
-			_children.Add (child);
-			return child;
-		}
-
-		public DepOps DepOp {
-			get {
-				return _op;
+				return _version;
 			}
 			set {
-				_op = value;
+				_version = value;
 			}
 		}
 
-		public DepConstraint Constraint {
+		public string Name {
 			get {
-				return _constraint;
+				return _name;
 			}
 			set {
-				_constraint = value;
+				_name = value;
 			}
+		}
+
+		public string VersionTmp {
+			set {
+				_version = VersionParse(value);
+			}
+		}
+
+		protected DepVersion VersionParse (string v) {
+			// Here we go :)
+			DepVersion ver = new DepVersion ();
+			string[] vparts = v.Split ('.');
+			ver.Major = Int32.Parse (vparts[0]);
+			ver.Minor = Int32.Parse (vparts[1]);
+			if (vparts.Length > 2)
+				ver.Build = Int32.Parse(vparts[2]);
+			if (vparts.Length > 3)
+				ver.Revision = Int32.Parse(vparts[3]);
+			return ver;
 		}
 	}
 }

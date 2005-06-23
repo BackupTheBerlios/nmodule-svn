@@ -27,9 +27,10 @@ using System.Collections;
 using System.Reflection;
 
 namespace NModule.Core.Loader {
-	public delegate ModuleRoleHandler (Assembly asm, Type basetype);
+	public delegate RoleRegisterHandler (Assembly asm, Type basetype);
 	
-	// FIXME:  Document this class using NDoc tags.
+	public delegate RoleUnregisterHandler (Assembly asm);
+	
 	/*
 	 * This class handles the roles used by the module loader.
 	 * It represents a role given its name, base type, and the
@@ -41,17 +42,15 @@ namespace NModule.Core.Loader {
 	public class ModuleRole {
 		private Type _baseType;
 		private string _roleName;
-		private ModuleRoleHandler _handler;
+		private RoleRegisterHandler _regHandler;
+		private RoleUnregisterHandle _unregHandler;
 		
 		// Lets get this baby setup :)
-		public ModuleRole (Type basetype, string name, ModuleRoleHandler handler) {
+		public ModuleRole (string name, Type basetype, RoleRegisterHandler regHandler, RoleUnregisterHandler unregHandler) {
 			_baseType = basetype;
 			_roleName = name;
-			_handler = handler;
-		}
-		
-		public InitiateRole (Assembly asm, Type type) {
-			handler (asm, type);
+			_regHandler = regHandler;
+			_unregHandler = unregHandler;
 		}
 		
 		// all properties are read-only for the moment except the handler (which could conceivably change as other modules are loaded which may take the load
@@ -68,13 +67,16 @@ namespace NModule.Core.Loader {
 			}
 		}
 		
-		public ModuleRoleHandler Handler {
+		public RoleRegisterHandler RegistrationHandler {
 			get {
-				return _handler;
-			}
-			set {
-				_handler = value;
+				return _regHandler;
 			}
 		}
+		
+		public RoleUnregisterHandler UnregistrationHandler {
+			get {
+				return _unregHandler;
+			}
+		} 
 	}
 }
