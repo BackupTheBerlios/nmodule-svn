@@ -27,6 +27,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using NModule.Dependency.Resolver;
+using NModule.Core.Module;
 
 namespace NModule.Core.Loader {
 	// This class is the heart and sole of the NModule architecture.
@@ -164,7 +165,7 @@ namespace NModule.Core.Loader {
 #endregion
 
 #region Role Handlers
-		public void CallRoleHandlers (ModuleInfo _info) {
+		protected void CallRoleHandlers (ModuleInfo _info) {
 			foreach (ModuleRoleAttribute _attr in _info.ModuleRoleAttributes) {
 				string _myRole = _attr.Role;
 				
@@ -175,9 +176,17 @@ namespace NModule.Core.Loader {
 						Type _type = null;
 						
 						foreach (Type __type in _asm.GetTypes ()) {
-							if (__type.IsSubclassOf (_role.BaseType)) {
-								_type = __type;
-								break;
+							
+							if (_role.BaseType.IsClass) {
+								if (__type.IsSubclassOf (_role.BaseType)) {
+									_type = __type;
+									break;
+								}
+							} else if (_role.BaseType.IsInterface) {
+								if (__type.GetInterface (_role.BaseType.ToString ()) != null) {
+									_type = __type;
+									break;
+								}
 							}
 						}
 						
@@ -191,7 +200,7 @@ namespace NModule.Core.Loader {
 			}
 		}
 		
-		public void CallRoleUnregisterHandlers (ModuleInfo _info) {
+		protected void CallRoleUnregisterHandlers (ModuleInfo _info) {
 			foreach (ModuleRoleAttribute _attr in _info.ModuleRoleAttributes) {
 				string _myRole = _attr.Role;
 				
@@ -202,9 +211,16 @@ namespace NModule.Core.Loader {
 						Type _type = null;
 						
 						foreach (Type __type in _asm.GetTypes ()) {
-							if (__type.IsSubclassOf (_role.BaseType)) {
-								_type = __type;
-								break;
+							if (_role.BaseType.IsClass) {
+								if (__type.IsSubclassOf (_role.BaseType)) {
+									_type = __type;
+									break;
+								}
+							} else if (_role.BaseType.IsInterface) {
+								if (__type.GetInterface (_role.BaseType.ToString ()) != null) {
+									_type = __type;
+									break;
+								}
 							}
 						}
 						
@@ -217,6 +233,30 @@ namespace NModule.Core.Loader {
 				}
 			}
 		}
-#endregion 
+#endregion
+
+#region Entry/Exit Handlers
+		protected void CallEntryHandler (Assembly _asm) {
+			foreach (Type _type in _asm.GetTypes ()) {
+				if (_type.GetInterface (typeof (NModule.Core.Module.IModule)) != null) {
+					MethodInfo _method = _type.GetMethod ("ModuleEntry");
+		
+					if (_method != null)			
+						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, (new object[] { this }), null);
+				}
+			}
+		}
+		
+		protected void CallEntryHandler (Assembly _asm) {
+			foreach (Type _type in _asm.GetTypes ()) {
+				if (_type.GetInterface (typeof (NModule.Core.Module.IModule)) != null) {
+					MethodInfo _method = _type.GetMethod ("ModuleExit");
+					
+					if (_method != null)
+						_method.Invoke (null, BindingFlags.Static | BindingFlags.Public, (new object[] { this }), null);
+				}
+			}
+		}
+#endregion
 	}
 }		

@@ -1,3 +1,41 @@
+2005-06-23 Michael Tindal <urilith@gentoo.org>
+
+	* nmodule.mds: New projects.
+	* src/NModule.Core.Loader/ModuleController.cs: Finished implementing everything.  Woot.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Dont remember.
+	* src/NModule.Core.Loader/NModule.Core.Loader.mdp: Moved ModuleRole.cs to NModule.Core.Module.
+	* src/NModule.Core.Loader/NModule.Core.Loader.pidb: This is getting deleted.
+	* src/NModule.Core.Loader/InvalidModuleException.cs: New empty placeholder file.
+	* src/NModule.Core.Loader/ModuleImageException.cs: New empty placeholder file.
+	* src/NModule.Core.Loader/ModuleNotFoundException.cs: New empty placeholder file.
+	* src/NModule.Core.Loader/ModuleRole.cs: Moved to NModule.Core.Module.
+	* src/NModule.Core.Module/ModuleInfo.cs: Implemented.
+	* src/NModule.Core.Module/NModule.Core.Module.mdp: Added ModuleRole.cs from NModule.Core.Loader.
+	* src/NModule.Core.Module/NModule.Core.Module.pidb: This is getting deleted.
+	* src/NModule.Core.Module/ModuleRole.cs: Moved from NModule.Core.Module.
+	* src/NModule.Dependency.Core/DepConstraint.cs: Moved the version parsing code to DepVersion.
+	* src/NModule.Dependency.Core/DepVersion.cs: Moved the version parsing code from DepConstraint.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.pidb: This is getting deleted.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.pidb: This is getting deleted.
+	* src/NModule.Core: New assembly.
+	* src/NModule.Core/AssemblyInfo.cs: New file.
+	* src/NModule.Core/IModule.cs: Empty placeholder file.
+	* src/NModule.Core/ModuleDependencyAttribute.cs: Empty placeholder file.
+	* src/NModule.Core/ModuleRoleAttribute.cs: Empty placeholder file.
+	* src/NModule.Core/NModule.Core.mdp: New project.
+	* src/NModule.Core/NModule.Core.mds: New solution.
+	* src/NModule.Dependency.Resolver: The resolver.  :)
+	* src/NModule.Dependency.Resolver/AssemblyInfo.cs: New assembly info.
+	* src/NModule.Dependency.Resolver/CircularDependencyException.cs: Empty placeholder file.
+	* src/NModule.Dependency.Resolver/DepResolver.cs: The resolver code.
+	* src/NModule.Dependency.Resolver/NModule.Dependency.Resolver.mdp: New project.
+	* src/NModule.Dependency.Resolver/NModule.Dependency.Resolver.mds: New solution.
+	* src/NModule.Dependency.Resolver/NModule.Dependency.Resolver.pidb: This is getting deleted.
+	* src/NModule.Dependency.Resolver/UnresolvedDependencyException.cs: Empty placeholder file.
+	* doc: Renamed Documentation to doc.
+	* misc: Renamed Misc to misc.
+	* test: Renamed Test to test.
+
 2005-06-22 Michael Tindal <urilith@gentoo.org>
 
 	* nmodule.mds: Updated.

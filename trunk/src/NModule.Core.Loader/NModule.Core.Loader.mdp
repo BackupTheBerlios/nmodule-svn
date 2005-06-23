@@ -13,14 +13,20 @@
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
-  <References />
+  <References>
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core.Module" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Resolver" />
+  </References>
   <DeploymentInformation strategy="File">
     <excludeFiles />
   </DeploymentInformation>
   <Contents>
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
-    <File name="./ModuleRole.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleLoader.cs" subtype="Code" buildaction="Compile" />
     <File name="./ModuleController.cs" subtype="Code" buildaction="Compile" />
+    <File name="./InvalidModuleException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleImageException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleNotFoundException.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

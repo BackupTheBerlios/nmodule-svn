@@ -1,28 +1,26 @@
-<Project name="NModule.Core.Module" fileversion="2.0" language="C#" ctype="DotNetProject">
+<Project name="NModule.Core" fileversion="2.0" language="C#" ctype="DotNetProject">
   <Configurations>
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assembly="NModule.Core.Module" />
+      <Output directory="./bin/Debug" assembly="NModule.Core" />
       <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Release" assembly="NModule.Core.Module" />
+      <Output directory="./bin/Release" assembly="NModule.Core" />
       <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
   </Configurations>
-  <References>
-    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
-    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Parser" />
-  </References>
+  <References />
   <DeploymentInformation strategy="File">
     <excludeFiles />
   </DeploymentInformation>
   <Contents>
+    <File name="./IModule.cs" subtype="Code" buildaction="Compile" />
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
-    <File name="./ModuleInfo.cs" subtype="Code" buildaction="Compile" />
-    <File name="./ModuleRole.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleDependencyAttribute.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleRoleAttribute.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

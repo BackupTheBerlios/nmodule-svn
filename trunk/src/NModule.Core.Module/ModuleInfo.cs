@@ -21,11 +21,62 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION  *
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.        *
  **************************************************************************/
- 
-using System;
-using System.Collections;
-using System.Reflection;
-using NModule.Dependency.Parser;
 
 namespace NModule.Core.Module {
+	using System;
+	using System.Collections;
+	using System.IO;
+	using System.Reflection;
+	
+	using NModule.Dependency.Core;
+	using NModule.Dependency.Parser;
+	
+	public class ModuleInfo {
+		// name
+		protected string _name;
+		
+		// version
+		protected DepVersion _version;
+		
+		// dependency stuff
+		protected DepNode _dependencies;
+		
+		public ModuleInfo (Assembly _asm) {
+			_name = _asm.GetName().Name;
+			_version = DepVersion.VersionParse (_asm.GetName().Version);
+			
+			ModuleDependencyAttribute _depAttr = ((ModuleDependencyAttribute)_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute)));
+			
+			if (_depAttr != null)
+			{	
+				DepLexer _lexer = new DepLexer (new StringReader (_depAttr.DepString));
+				DepParser _parser = new DepParser (_lexer);
+				
+				// woot...lets do this!
+				_dependencies = new DepNode ();
+				
+				_parser.expr (_dependencies);
+			}
+			else
+				_depenencies = null;
+		}
+		
+		public string Name {
+			get {
+				return _name;
+			}
+		}
+		
+		public DepVersion Version {
+			get {
+				return _version;
+			}
+		}
+		
+		public DepNode Dependencies {
+			get {
+				return _dependencies;
+			}
+		}
+	}		
 }

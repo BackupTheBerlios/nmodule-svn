@@ -26,6 +26,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 using NModule.Dependency.Resolver;
+using NModule.Core.Module;
 
 namespace NModule.Core.Loader {
 	// This class is simply the loader class, it just creates a new AppDomain,
@@ -76,7 +77,7 @@ namespace NModule.Core.Loader {
 			return LoadModule (null, _name, out _info);
 		}
 		
-		public AppDomain LoadModule (ArrayList<string> _parents, string _name, bool checking=false, out ModuleInfo _info) {
+		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking=false) {
 			// Okay, this is tricky.  First, we have to load the module into a temp domain
 			// to retrieve its module info.  Then, we have to attempt to resolve the dependencies.
 			// This is going to be fun.  Heh.
@@ -138,7 +139,7 @@ namespace NModule.Core.Loader {
 			_resolver.ResolveCheck (_parents, _info);
 		
 			if (checking)
-				return;
+				return null;
 							
 			// okay, they're good, lets load the suckers.
 			_resolver.Resolve (_parents, _info);

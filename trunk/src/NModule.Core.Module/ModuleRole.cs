@@ -26,7 +26,7 @@ using System;
 using System.Collections;
 using System.Reflection;
 
-namespace NModule.Core.Loader {
+namespace NModule.Core.Module {
 	public delegate RoleRegisterHandler (Assembly asm, Type basetype);
 	
 	public delegate RoleUnregisterHandler (Assembly asm);
