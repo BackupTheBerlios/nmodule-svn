@@ -1,0 +1,4 @@
+NModule.Dependency.Parser/AssemblyInfo.cs
+NModule.Dependency.Parser/DepParser.cs
+NModule.Dependency.Parser/DepLexer.cs
+NModule.Dependency.Parser/DepParserTokenTypes.cs

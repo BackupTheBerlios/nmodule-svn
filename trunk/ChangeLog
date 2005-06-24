@@ -1,5 +1,23 @@
 2005-06-23 Michael Tindal <urilith@gentoo.org>
 
+	* src/Buildfile: New build file for mbuild system.
+	* src/NModule.Core.Loader.dll.sources: Response file.
+	* src/NModule.Core.Module.dll.sources: Response file.
+	* src/NModule.Core.dll.sources: Response file.
+	* src/NModule.Dependency.Core.dll.sources: Response file. 
+	* src/NModule.Dependency.Parser.dll.sources: Response file. 
+	* src/antlr-runtime: Imported just the runtime stuff from antlr.
+	* src/antlr-runtime.dll.sources: Response file.
+	* src/nmodule.snk: New keyfile for signing.
+	* Buildfile: New build for mbuild system.
+	* Buildfile.config: Configuration file for mbuild.
+	* INSTALL: New file, nothing in here yet.
+	* NEWS: New file, nothing in here yet.
+	* TODO: New file, nothing in here yet.
+	* lib: Removed the lib stuff since its no longer needed.
+
+2005-06-23 Michael Tindal <urilith@gentoo.org>
+
 	*******************
         ***** RELEASE *****
         *******************

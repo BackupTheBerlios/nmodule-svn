@@ -1,0 +1,70 @@
+using [ Core
+	Core.Clr
+	Core.Install
+	Languages.CSharp
+	Tools.Bundlegen
+]
+
+# information about this project
+
+project [ 
+	name = nmodule
+	version = 0.1.0.0
+
+	# This is a 'compatibility code'; a standard piece
+	# of text that should be munged into names
+	# of installed files if you want to be able
+	# to do parallel installs. For instance, header files
+	# should be installed into ${includedir}/${name}-${compat-code}.
+	# More to the point, there should be infrastructure
+	# to make this easy. More useful is /config/env/compat_name,
+	# which is the string "${name}-${compat-code}". For instance,
+	# our assemblies are installed with a Mono gacutil 'package'
+	# of compat_name. Anyway, typically this should be the upper
+	# two pieces of the version number, but you can choose
+	# something else if you want.
+
+	compat-code = 0.1
+
+	# Versioned assembly references pulled
+	# from the GAC. No more aclocal hell!
+
+	ref [ 
+		Languages.CSharp = 0.0.4.0
+		Tools.Jay = 0.0.4.0
+		Tools.PkgConfig = 0.0.4.0
+		Tools.Bundlegen = 0.0.4.0
+		Tools.Monodoc = 0.0.4.0
+	]
+]
+
+# Load a separate file of configuration options
+# in a virtual prefix
+
+load Buildfile.config inside config/nmodule
+
+# There are also Buildfiles in these
+# subdirectories.
+
+subdirs [
+	src
+]
+
+# Back to regular compiles. Monkeywrench is the on-disk implementation
+# of mbuild logic: it has the parser for this file, code to cache results
+# in files, etc.
+ 
+# for now, this is how we do our version of EXTRA_DIST
+
+TODO = TextSource[] 
+	with [ install = /config/nmodule/doc_installer ]
+README = TextSource[] 
+	with [ install = /config/nmodule/doc_installer ]
+INSTALL = TextSource[] 
+	with [ install = /config/nmodule/doc_installer ]
+NEWS = TextSource[] 
+	with [ install = /config/nmodule/doc_installer ]
+COPYING = TextSource[]
+	with [ install = /config/nmodule/doc_installer ]
+AUTHORS = TextSource[]
+	with [ install = /config/nmodule/doc_installer ]

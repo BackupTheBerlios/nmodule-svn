@@ -1,0 +1,82 @@
+using [ Core
+        Core.Clr
+        Core.Install
+        Languages.CSharp
+        Tools.Bundlegen
+]
+
+# Instead of creating mostly-blank Buildfiles
+# in these directories, we can implicitly define
+# their contents.
+
+inside [ 
+	NModule.Core
+	NModule.Dependency.Core
+	antlr-runtime
+	antlr-runtime/antlr
+	antlr-runtime/antlr.collections
+	antlr-runtime/antlr.collections.impl
+	antlr-runtime/antlr.debug
+	NModule.Dependency.Parser
+	NModule.Core.Module
+	NModule.Core.Loader
+] [
+	using [ Core
+		Core.Clr
+		Languages.CSharp
+		Tools.Bundlegen # for Core
+	]
+]
+
+# Load a response file to get the list of sources
+# Use a custom installer that installs the DLL into
+# the GAC, not just libdir. Also use a set of compiler
+# options defined in Buildfile.config
+
+# Now we declare "bundles", sets of rules used by mbuild. They
+# are generated with a special tool called mb-bundlegen.exe.
+# Bundlegen makes it so you don't need to worry about writing a 
+# lot of boilerplate code to create new build rules.
+
+# Now, declare all the bundles. Again, install them into
+# the GAC, not into libdir
+
+NModule.Core.dll = [
+	@NModule.Core.dll.sources
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
+
+NModule.Dependency.Core.dll = [
+	@NModule.Dependency.Core.dll.sources
+	NModule.Core.dll
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
+
+antlr-runtime.dll = [
+	@antlr-runtime.dll.sources
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
+
+NModule.Dependency.Parser.dll = [
+	@NModule.Dependency.Parser.dll.sources
+	NModule.Core.dll
+	NModule.Dependency.Core.dll
+	antlr-runtime.dll
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
+
+NModule.Core.Module.dll = [
+	@NModule.Core.Module.dll.sources
+	NModule.Core.dll
+	NModule.Dependency.Core.dll
+	NModule.Dependency.Parser.dll
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
+
+NModule.Core.Loader.dll = [
+	@NModule.Core.Loader.dll.sources
+	NModule.Core.dll
+	NModule.Core.Module.dll
+	NModule.Dependency.Core.dll
+	nmodule.snk
+] with [ install = /config/nmodule/gac_installer ]
