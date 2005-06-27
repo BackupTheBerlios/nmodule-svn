@@ -1,5 +1,10 @@
 2005-06-27 Michael Tindal <urilith@gentoo.org>
 
+	* src/NModule.Core/ModuleDependencyAttribute.cs: Make assembly level attribute.
+	* src/NModule.Core/ModuleRoleAttribute.cs: Same.
+
+2005-06-27 Michael Tindal <urilith@gentoo.org>
+
 	* api-docs: New directory with monodoc generated docs.
 	* api-docs/en: English API docs.  Generated.
 

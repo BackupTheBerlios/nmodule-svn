@@ -31,6 +31,7 @@
 namespace NModule.Core {
 	using System;
 	
+	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleRoleAttribute : Attribute {
 		protected string _roles;
 		

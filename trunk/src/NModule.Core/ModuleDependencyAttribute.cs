@@ -31,6 +31,7 @@
 namespace NModule.Core {
 	using System;
 	
+	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleDependencyAttribute : Attribute {
 		protected string _dep_string;
 		
