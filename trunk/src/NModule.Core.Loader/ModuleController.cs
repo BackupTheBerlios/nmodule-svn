@@ -271,5 +271,16 @@ namespace NModule.Core.Loader {
 			}
 		}
 #endregion
+
+#region Properties
+		public ArrayList SearchPath {
+			get {
+				return _search_path;
+			}
+			set {
+				_search_path = value;
+			}
+		}
+#endregion
 	}
 }		

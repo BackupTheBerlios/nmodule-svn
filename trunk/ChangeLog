@@ -1,3 +1,8 @@
+2005-06-26 Michael Tindal <urilith@gentoo.org>
+
+	* TODO: Added.
+	* src/NModule.Core.Loader/ModuleController.cs: Updated.
+
 2005-06-23 Michael Tindal <urilith@gentoo.org>
 
 	* src/Buildfile: New build file for mbuild system.
