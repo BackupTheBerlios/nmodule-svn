@@ -1,5 +1,10 @@
 2005-06-27 Michael Tindal <urilith@gentoo.org>
 
+	* api-docs: New directory with monodoc generated docs.
+	* api-docs/en: English API docs.  Generated.
+
+2005-06-27 Michael Tindal <urilith@gentoo.org>
+
 	* Buildfile: Copyright.
 	* Buildfile.config: Copyright.
 	* misc/bash-copy.hdr: Copyright.

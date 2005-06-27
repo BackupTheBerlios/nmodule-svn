@@ -1,0 +1,52 @@
+<Type Name="ModuleDependencyAttribute" FullName="NModule.Core.ModuleDependencyAttribute">
+  <TypeSignature Language="C#" Value="public class ModuleDependencyAttribute : System.Attribute" />
+  <AssemblyInfo>
+    <AssemblyName>NModule.Core</AssemblyName>
+    <AssemblyVersion>1.0.2004.7700</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Attribute</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ModuleDependencyAttribute (string dep_string);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="dep_string" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="dep_string">The string representation of the dependency to be fed to the parser.</param>
+        <summary>Constructs a new ModuleDependencyAttribute object..</summary>
+        <remarks>No remarks.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="_dep_string">
+      <MemberSignature Language="C#" Value="protected string _dep_string;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Protected version of the dep string..</summary>
+        <remarks>No remarks..</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DepString">
+      <MemberSignature Language="C#" Value="public string DepString { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Accessing property for the dep string..</summary>
+        <value>String describing the modules dependencies.</value>
+        <remarks>No remarks..</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>The ModuleDependencyAttribute is used at the assembly level to specify the module's dependencies..</summary>
+    <remarks>No remarks.</remarks>
+  </Docs>
+</Type>
