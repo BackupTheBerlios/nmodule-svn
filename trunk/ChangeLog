@@ -1,3 +1,42 @@
+2005-06-27 Michael Tindal <urilith@gentoo.org>
+
+	* Buildfile: Copyright.
+	* Buildfile.config: Copyright.
+	* misc/bash-copy.hdr: Copyright.
+	* misc/cs-copy.hdr: Copyright.
+	* misc/svkchangelog: Copyright.
+	* misc/svkcommit: Copyright.
+	* misc/xml-copy.hdr: Copyright.
+	* src/Buildfile: Copyright.
+	* src/NModule.Core/AssemblyInfo.cs: Copyright.
+	* src/NModule.Core/IModule.cs: Copyright.
+	* src/NModule.Core/ModuleDependencyAttribute.cs: Copyright.
+	* src/NModule.Core/ModuleRoleAttribute.cs: Copyright.
+	* src/NModule.Core.Loader/AssemblyInfo.cs: Copyright.
+	* src/NModule.Core.Loader/CircularDependencyException.cs: Copyright.
+	* src/NModule.Core.Loader/DepResolver.cs: Copyright.
+	* src/NModule.Core.Loader/DomainStillReferencedException.cs: Copyright.
+	* src/NModule.Core.Loader/InvalidModuleException.cs: Copyright.
+	* src/NModule.Core.Loader/ModuleController.cs: Copyright.
+	* src/NModule.Core.Loader/ModuleImageException.cs: Copyright.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Copyright.
+	* src/NModule.Core.Loader/ModuleNotFoundException.cs: Copyright.
+	* src/NModule.Core.Loader/UnresolvedDependencyException.cs: Copyright.
+	* src/NModule.Core.Module/AssemblyInfo.cs: Copyright.
+	* src/NModule.Core.Module/ModuleInfo.cs: Copyright.
+	* src/NModule.Core.Module/ModuleInfoException.cs: Copyright.
+	* src/NModule.Core.Module/ModuleRole.cs: Copyright.
+	* src/NModule.Dependency.Core/AssemblyInfo.cs: Copyright.
+	* src/NModule.Dependency.Core/DepConstraint.cs: Copyright.
+	* src/NModule.Dependency.Core/DepNode.cs: Copyright.
+	* src/NModule.Dependency.Core/DepOps.cs: Copyright.
+	* src/NModule.Dependency.Core/DepVersion.cs: Copyright.
+	* src/NModule.Dependency.Parser/AssemblyInfo.cs: Copyright.
+	* src/NModule.Dependency.Parser/DepLexer.cs: Copyright.
+	* src/NModule.Dependency.Parser/DepParser.cs: Copyright.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.cs: Copyright.
+	* src/NModule.Dependency.Parser/nmodule-dep.g: Copyright.
+
 2005-06-26 Michael Tindal <urilith@gentoo.org>
 
 	* TODO: Added.
