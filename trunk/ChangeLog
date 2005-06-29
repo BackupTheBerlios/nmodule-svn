@@ -1,5 +1,9 @@
 2005-06-29 Michael Tindal <urilith@gentoo.org>
 
+	* Test cleanups.
+
+2005-06-29 Michael Tindal <urilith@gentoo.org>
+
 	* Random fixes to all of the below to fix some bugs, also added the first two components of the test suite.
 	* Further work is blocking on a Mono AppDomain bug.
 	* nmodule.mds: 
