@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="/home/urilith/development/nmodule/test/NModule.Core.Test/NModule.Core.Test.dll" total="8" failures="6" not-run="0" date="2005-06-29" time="06:44:34">
+  <test-suite name="/home/urilith/development/nmodule/test/NModule.Core.Test/NModule.Core.Test.dll" success="False" time="8.071" asserts="0">
+    <results>
+      <test-suite name="NModule" success="False" time="8.046" asserts="0">
+        <results>
+          <test-suite name="Core" success="False" time="8.026" asserts="0">
+            <results>
+              <test-suite name="Test" success="False" time="8.008" asserts="0">
+                <results>
+                  <test-suite name="NModuleTests" success="False" time="7.625" asserts="0">
+                    <results>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_01" executed="True" success="False" time="1.440" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.IO.FileNotFoundException : nm-ld-01, Version=1.0.2005.41104, Culture=neutral]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x00053> NModule.Core.Test.NModuleTests:nm_ld_01 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_02" executed="True" success="True" time="0.011" asserts="0" />
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_03" executed="True" success="False" time="0.937" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.IO.FileNotFoundException : nm-ld-03, Version=1.0.2005.41104, Culture=neutral]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x0008d> NModule.Core.Test.NModuleTests:nm_ld_03 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_04" executed="True" success="False" time="0.977" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.IO.FileNotFoundException : nm-ld-04, Version=1.0.2005.41104, Culture=neutral]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x0008d> NModule.Core.Test.NModuleTests:nm_ld_04 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_05" executed="True" success="False" time="0.983" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.IO.FileNotFoundException : nm-ld-05, Version=1.0.2005.41105, Culture=neutral]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x0008d> NModule.Core.Test.NModuleTests:nm_ld_05 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ld_06" executed="True" success="True" time="0.140" asserts="0" />
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ul_01" executed="True" success="False" time="1.054" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.IO.FileNotFoundException : nm-ul-01, Version=1.0.2005.41123, Culture=neutral]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x00053> NModule.Core.Test.NModuleTests:nm_ul_01 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="NModule.Core.Test.NModuleTests.nm_ul_02" executed="True" success="False" time="1.977" asserts="0">
+                        <failure>
+                          <message><![CDATA[Expected: DomainStillReferencedException but was FileNotFoundException]]></message>
+                          <stack-trace><![CDATA[in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.AppDomain:LoadAssembly (string,System.Security.Policy.Evidence,bool)
+in <0x00019> System.AppDomain:Load (System.String assemblyString)
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (string)
+in <0x0001b> System.Reflection.Assembly:Load (System.String assemblyString)
+in <0x00086> System.UnitySerializationHolder:GetRealObject (StreamingContext context)
+in <0x003c6> System.Runtime.Serialization.ObjectRecord:LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context)
+in <0x00100> System.Runtime.Serialization.ObjectManager:DoFixups ()
+in <0x0003f> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadNextObject (System.IO.BinaryReader reader)
+in <0x000ac> System.Runtime.Serialization.Formatters.Binary.ObjectReader:ReadObjectGraph (System.IO.BinaryReader reader, Boolean readHeaders, System.Object result, System.Runtime.Remoting.Messaging.Header[] headers)
+in <0x0011c> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler)
+in <0x00012> System.Runtime.Serialization.Formatters.Binary.BinaryFormatter:Deserialize (System.IO.Stream serializationStream)
+in <0x00051> System.Runtime.Remoting.RemotingServices:DeserializeCallData (System.Byte[] array)
+in (wrapper xdomain-invoke) System.AppDomain:Load (byte[])
+in (wrapper remoting-invoke-with-check) System.AppDomain:Load (byte[])
+in <0x00202> NModule.Core.Loader.ModuleLoader:LoadModule (System.Collections.ArrayList _parents, System.String _name, NModule.Core.Module.ModuleInfo _info, Boolean checking)
+in <0x000d0> NModule.Core.Loader.ModuleController:LoadModule (System.Collections.ArrayList _parents, System.String _name)
+in <0x0000f> NModule.Core.Loader.ModuleController:LoadModule (System.String _name)
+in <0x00053> NModule.Core.Test.NModuleTests:nm_ul_02 ()
+in <0x00000> <unknown method>
+in (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[])
+in <0x0006f> System.Reflection.MonoMethod:Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

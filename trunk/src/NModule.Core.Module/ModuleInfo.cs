@@ -57,7 +57,13 @@ namespace NModule.Core.Module {
 			_name = _asm.GetName().Name;
 			_version = DepVersion.VersionParse (_asm.GetName().Version.ToString ());
 			
-			ModuleDependencyAttribute _depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
+			ModuleDependencyAttribute _depAttr;
+			
+			try {
+				_depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
+			} catch (ArgumentOutOfRangeException e) {
+				_depAttr = null;
+			}
 			
 			if (_depAttr != null) {	
 				DepLexer _lexer = new DepLexer (new StringReader (_depAttr.DepString));

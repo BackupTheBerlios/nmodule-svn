@@ -7,6 +7,7 @@
       <Entry build="True" name="NModule.Dependency.Core" />
       <Entry build="True" name="NModule.Core" />
       <Entry build="True" name="NModule.Core.Loader" />
+      <Entry build="True" name="NModule.Core.Test" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="NModule.Dependency.Parser" />
@@ -15,6 +16,7 @@
       <Entry build="True" name="NModule.Dependency.Core" />
       <Entry build="True" name="NModule.Core" />
       <Entry build="True" name="NModule.Core.Loader" />
+      <Entry build="True" name="NModule.Core.Test" />
     </Configuration>
   </Configurations>
   <StartMode startupentry="NModule.Dependency.Parser" single="True">
@@ -24,6 +26,7 @@
     <Execute type="None" entry="NModule.Dependency.Core" />
     <Execute type="None" entry="NModule.Core" />
     <Execute type="None" entry="NModule.Core.Loader" />
+    <Execute type="None" entry="NModule.Core.Test" />
   </StartMode>
   <Entries>
     <Entry filename="./src/NModule.Dependency.Parser/NModule.Dependency.Parser.mdp" />
@@ -31,5 +34,6 @@
     <Entry filename="./src/NModule.Dependency.Core/NModule.Dependency.Core.mdp" />
     <Entry filename="./src/NModule.Core/NModule.Core.mdp" />
     <Entry filename="./src/NModule.Core.Loader/NModule.Core.Loader.mdp" />
+    <Entry filename="./test/NModule.Core.Test/NModule.Core.Test.mdp" />
   </Entries>
 </Combine>

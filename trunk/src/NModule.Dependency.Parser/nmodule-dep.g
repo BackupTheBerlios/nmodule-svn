@@ -176,6 +176,7 @@ NOTO: "!!" ;
 AND: "&&" ;
 OR: "||" ;
 XOR: "^^" ;
+OPT: "??" ;
 
 // Dependency Operators
 EQ: "==" ;
@@ -184,7 +185,6 @@ LTE: "<=" ;
 LS: "<<" ;
 GTE: ">=" ;
 GT: ">>" ;
-OPT: "??" ;
 LD: "##" ;
 
 // Version

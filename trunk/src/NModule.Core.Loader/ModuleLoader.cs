@@ -31,6 +31,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using NModule.Dependency.Resolver;
 using NModule.Core.Module;
 
@@ -64,8 +65,11 @@ namespace NModule.Core.Loader {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
 					foreach (string f in Directory.GetFiles (s, "*.dll")) {
-						if (f.Substring (0, f.Length - 4) == _name) {
-							return s + "/" + f;
+						string _f = f.Replace (s, "").Replace ("/", "");
+						Console.WriteLine ("Checking {0} against {1} ({2}) (Result: {3})", _name, _f, 
+							_f.Substring (0, _f.Length - 4), (_f.Substring (0, _f.Length - 4) == _name));
+						if (_f.Substring (0, _f.Length - 4) == _name) {
+							return s + "/" + _f;
 						}
 					}
 				}
@@ -73,7 +77,7 @@ namespace NModule.Core.Loader {
 			
 			return null;
 		}
-		 
+		
 		/*
 		 * We provide two method signatures for loading for convienence.  The first just takes the name of the module (minus the .dll extension),
 		 * and attempts to load it.  The second takes a list of parents and the name.  The first incidentally just calls the second with an empty
@@ -103,7 +107,13 @@ namespace NModule.Core.Loader {
 			// need to create the temporary AppDomain and load it to get the info from it.
 			AppDomain _tempDomain = AppDomain.CreateDomain ("_temp_" + _name);
 			
-			byte[] _raw_bytes = LoadRawFile (_filename);
+			// This is dirty.  I hate me.
+			byte[] _raw_bytes = LoadRawFile (_filename);	
+			
+			// set up the search path
+			foreach (string s in _search_path) {
+				_tempDomain.AppendPrivatePath (s);
+			}
 			
 			// The throw here is mostly used from dep resolver calls, although it should also be caught by the immediate caller
 			// (i.e. the application).
@@ -151,6 +161,7 @@ namespace NModule.Core.Loader {
 			AppDomain _domain = AppDomain.CreateDomain (_name);
 			
 			// let's load this assembly into the real app domain.
+			Console.WriteLine ("_domain.Load");
 			_domain.Load (_raw_bytes);
 			
 			// We can't do any more with this.

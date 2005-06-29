@@ -1,3 +1,38 @@
+2005-06-29 Michael Tindal <urilith@gentoo.org>
+
+	* Random fixes to all of the below to fix some bugs, also added the first two components of the test suite.
+	* Further work is blocking on a Mono AppDomain bug.
+	* nmodule.mds: 
+	* src/NModule.Core.Loader/ModuleLoader.cs: 
+	* src/NModule.Core.Module/ModuleInfo.cs: 
+	* src/NModule.Dependency.Parser/nmodule-dep.g: 
+	* test/Data: 
+	* test/NModuleTest.cs: 
+	* test/NModule.Core.Test: 
+	* test/NModule.Core.Test/AssemblyInfo.cs: 
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: 
+	* test/NModule.Core.Test/NModule.Core.Test.mds: 
+	* test/NModule.Core.Test/TESTS: 
+	* test/NModule.Core.Test/TestResult.xml: 
+	* test/NModule.Core.Test/data: 
+	* test/NModule.Core.Test/data/nm-ld: 
+	* test/NModule.Core.Test/data/nm-ld/refs: 
+	* test/NModule.Core.Test/data/nm-ld-2: 
+	* test/NModule.Core.Test/data/nm-ld-3: 
+	* test/NModule.Core.Test/data/nm-ul: 
+	* test/NModule.Core.Test/data/refs: 
+	* test/NModule.Core.Test/data/test: 
+	* test/NModule.Core.Test/data/test/nm-ld: 
+	* test/NModule.Core.Test/data/test/nm-ld/nm-ld-01.cs: 
+	* test/NModule.Core.Test/data/test/nm-ld/nm-ld-03.cs: 
+	* test/NModule.Core.Test/data/test/nm-ld/nm-ld-04.cs: 
+	* test/NModule.Core.Test/data/test/nm-ld/nm-ld-05.cs: 
+	* test/NModule.Core.Test/data/test/nm-ul: 
+	* test/NModule.Core.Test/data/test/nm-ul/nm-ul-01.cs: 
+	* test/NModule.Core.Test/data/test/nm-ul/nm-ul-02.cs: 
+	* test/NModule.Core.Test/nm-ld.cs: 
+	* test/NModule.Core.Test/refs: 
+
 2005-06-27 Michael Tindal <urilith@gentoo.org>
 
 	* src/NModule.Core/ModuleDependencyAttribute.cs: Make assembly level attribute.
