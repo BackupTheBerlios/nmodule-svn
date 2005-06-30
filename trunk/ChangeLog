@@ -1,3 +1,9 @@
+2005-06-30 Michael Tindal <urilith@gentoo.org>
+
+	* src/NModule.Core.Loader/ModuleController.cs:  Fixed wrong initial ref count in IncRef, fixed DecRefs for the no dependencies case.
+	* src/NModule.Core.Module/ModuleInfo.cs: Corrected the caught exception for dependencies.
+	* NModule.build: Added, this is not finished, and will not work, don't use it.
+
 2005-06-29 Michael Tindal <urilith@gentoo.org>
 
 	* Test cleanups.

@@ -110,6 +110,9 @@ namespace NModule.Core.Loader {
 		}
 		
 		protected void DecRefs (DepNode _x) {
+			if (_x == null)
+				return;
+
 			foreach (DepNode _d in _x.Children) {
 				DecRefs (_d);
 			}
@@ -129,6 +132,8 @@ namespace NModule.Core.Loader {
 			ModuleInfo _info = (ModuleInfo)_info_map[_name];
 			
 			AppDomain _domain = (AppDomain)_app_domain_map[_name];
+			Console.WriteLine ("UnloadModule (Domain: {0}, RefCount: {1})", _name, (int)_ref_counts[_domain]);
+
 			if (((int)_ref_counts[_domain]) > 1) {
 				throw new DomainStillReferencedException (string.Format ("The domain holding the module {0} cannot be unloaded because it is still being referenced.", _name));
 			}
@@ -160,7 +165,7 @@ namespace NModule.Core.Loader {
 #region Domain Reference Counts
 		protected void IncRef (AppDomain _domain) {
 			if (!_ref_counts.Contains (_domain)) {
-				_ref_counts.Add (_domain, 1);
+				_ref_counts.Add (_domain, 0);
 			}
 			
 			_ref_counts[_domain] = ((int)_ref_counts[_domain]) + 1;

@@ -61,7 +61,7 @@ namespace NModule.Core.Module {
 			
 			try {
 				_depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
-			} catch (ArgumentOutOfRangeException e) {
+			} catch (IndexOutOfRangeException) {
 				_depAttr = null;
 			}
 			
@@ -75,7 +75,7 @@ namespace NModule.Core.Module {
 				_parser.expr (_dependencies);
 			} else
 				_dependencies = null;
-				
+			
 			ModuleRoleAttribute _roleAttr = ((ModuleRoleAttribute)(_asm.GetCustomAttributes (typeof (ModuleRoleAttribute), false)[0]));
 			
 			if (_roleAttr != null) {
