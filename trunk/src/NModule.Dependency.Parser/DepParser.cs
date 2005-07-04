@@ -1,4 +1,4 @@
-// $ANTLR 2.7.5 (20050516): "nmodule-dep.g" -> "DepParser.cs"$
+// $ANTLR 2.7.5 (20050704): "nmodule-dep.g" -> "DepParser.cs"$
 
 //
 // ANTLR Generated Files.
@@ -172,6 +172,7 @@ namespace NModule.Dependency.Parser
 		try {      // for error handling
 			match(LPAREN);
 			match(NOTO);
+			parent.DepOp = DepOps.Not;
 			{ // ( ... )+
 				int _cnt6=0;
 				for (;;)
@@ -213,6 +214,7 @@ _loop6_breakloop:				;
 		try {      // for error handling
 			match(LPAREN);
 			match(AND);
+			parent.DepOp = DepOps.And;
 			{ // ( ... )+
 				int _cnt10=0;
 				for (;;)
@@ -254,6 +256,7 @@ _loop10_breakloop:				;
 		try {      // for error handling
 			match(LPAREN);
 			match(OR);
+			parent.DepOp = DepOps.Or;
 			{ // ( ... )+
 				int _cnt14=0;
 				for (;;)
@@ -295,6 +298,7 @@ _loop14_breakloop:				;
 		try {      // for error handling
 			match(LPAREN);
 			match(XOR);
+			parent.DepOp = DepOps.Xor;
 			{ // ( ... )+
 				int _cnt18=0;
 				for (;;)
@@ -336,6 +340,7 @@ _loop18_breakloop:				;
 		try {      // for error handling
 			match(LPAREN);
 			match(OPT);
+			parent.DepOp = DepOps.Opt;
 			{ // ( ... )+
 				int _cnt22=0;
 				for (;;)

@@ -1,5 +1,5 @@
 //
-// nm-ld.cs
+// NModuleTests.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -158,6 +158,123 @@ namespace NModule.Core.Test {
 			_mc.LoadModule ("nm-ul-02");
 			
 			_mc.UnloadModule ("nm-ul-02");
+		}
+		
+		// This is a huge section.
+		
+		/**
+		 * Combinations to be tested:
+		 *   Valid-combination operators: && || ^^ !! ??
+		 *   Valid-singleton operators: == != << <= >> >= ##
+		 *   (==)
+		 *   (!=)
+		 *   (<<)
+		 *   (>>)
+		 *   (<=)
+		 *   (>=)
+		 *   (##)
+		 *   (&& (==) (>=))
+		 *   (|| (>>) (<<))
+		 *   (^^ (>>) (!=))
+		 *   (!! (==))
+		 *   (?? (>=))
+		 *   (&& (|| (==) (!=)) (?? (##)))
+		 *   (|| (&& (##) (##)) (!! (!=)))
+		 **/
+		[Test]
+		public void nm_dr_01 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-01a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-01b"));
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-01d"));
+			Assert.IsFalse (_mc.IsLoaded ("nm-dr-01c"));
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-01e"));
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-01f"));
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-01g"));
+		}
+		
+		//[Test]
+		public void nm_dr_02 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-02a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-02b"));
+		}
+		
+		//[Test]
+		public void nm_dr_03 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-03a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-03b"));
+		}
+		
+		//[Test]
+		public void nm_dr_04 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-04a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-04b"));
+		}
+		
+		//[Test]
+		public void nm_dr_05 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-05a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-05b"));
+		}
+		
+		//[Test]
+		public void nm_dr_06 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-06a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-06b"));
+		}
+		
+		//[Test]
+		public void nm_dr_07 () {
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-dr");
+			
+			// This will look for a specific version of nm-dr-01b
+			_mc.LoadModule ("nm-dr-07a");
+			
+			// If it worked, we should have a domain for nm-dr-01b
+			Assert.IsTrue (_mc.IsLoaded ("nm-dr-07b"));
 		}
 	}
 }

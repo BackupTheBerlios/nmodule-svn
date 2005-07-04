@@ -27,33 +27,29 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<project name="NModule" default="compile-all" basedir=".">
-  <description>NModule build files.</description>
+<project name="NModule.Dependency.Parser" default="compile" basedir=".">
+  <description>NModule.Dependency.Parser build files.</description>
 
-  <include buildfile="NModule.build.include" />
-  <!-- properties -->
-  <property name="debug" value="true" overwrite="false" />
-  <property name="release" value="false" overwrite="false" />
-  <property name="strong" value="false" overwrite="false" />
+  <include buildfile="../../NModule.build.include"/>
+  
+  <property name="project.src.dir" value="../"
+    unless="${property::exists('project.src.dir')}"/>
 
-  <target name="compile-all" depends="compile-src,compile-tests" />
-
-  <target name="setup-build-dir">
-	<mkdir dir="${current.build.dir}" unless="${directory::exists(${current.build.dir})}" />
-  </target>
-
-  <target name="compile-src" depends="set-build-config,set-runtime-config,set-build-dir,make-build-dir">
-    <nant buildfile="src/NModule.Src.build" />
-  </target>
-
-  <target name="compile-tests">
-    <nant buildfile="test/NModule.Test.build" />
-  </target>
-
-  <target name="tests" depends="set-build-dir">
-    <nunit2>
-      <formatter type="Plain" />
-      <test assemblyname="${current.build.dir}/NModule.Core.Test.dll" />
-   </nunit2>
+  <target name="compile" depends="set-build-dir">
+    <exec program="antlr">
+      <arg value="nmodule-dep.g"/>
+    </exec>
+    <csc target="library"
+        output="${current.build.dir}/NModule.Dependency.Parser.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="*.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+      	<include name="NModule.Core.dll" />
+	      <include name="NModule.Dependency.Core.dll" />
+        <include name="antlr-runtime.dll" />
+      </references>
+    </csc>
   </target>
 </project>

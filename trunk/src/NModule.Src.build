@@ -27,33 +27,37 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<project name="NModule" default="compile-all" basedir=".">
-  <description>NModule build files.</description>
+<project name="NModule.Src" default="compile-all" basedir=".">
+  <description>NModule source build files.</description>
 
-  <include buildfile="NModule.build.include" />
   <!-- properties -->
   <property name="debug" value="true" overwrite="false" />
   <property name="release" value="false" overwrite="false" />
   <property name="strong" value="false" overwrite="false" />
 
-  <target name="compile-all" depends="compile-src,compile-tests" />
+  <target name="compile-all" depends="NModule.Core,NModule.Dependency.Core,antlr-runtime,NModule.Dependency.Parser,NModule.Core.Module,NModule.Core.Loader" />
 
-  <target name="setup-build-dir">
-	<mkdir dir="${current.build.dir}" unless="${directory::exists(${current.build.dir})}" />
+  <target name="NModule.Core">
+    <nant buildfile="NModule.Core/NModule.Core.build" />
   </target>
 
-  <target name="compile-src" depends="set-build-config,set-runtime-config,set-build-dir,make-build-dir">
-    <nant buildfile="src/NModule.Src.build" />
+  <target name="NModule.Dependency.Core" depends="NModule.Core">
+    <nant buildfile="NModule.Dependency.Core/NModule.Dependency.Core.build" />
   </target>
 
-  <target name="compile-tests">
-    <nant buildfile="test/NModule.Test.build" />
+  <target name="antlr-runtime">
+    <nant buildfile="antlr-runtime/antlr-runtime.build" />
   </target>
 
-  <target name="tests" depends="set-build-dir">
-    <nunit2>
-      <formatter type="Plain" />
-      <test assemblyname="${current.build.dir}/NModule.Core.Test.dll" />
-   </nunit2>
+  <target name="NModule.Dependency.Parser" depends="NModule.Core,NModule.Dependency.Core,antlr-runtime">
+    <nant buildfile="NModule.Dependency.Parser/NModule.Dependency.Parser.build" />
+  </target>
+
+  <target name="NModule.Core.Module" depends="NModule.Core,NModule.Dependency.Core,NModule.Dependency.Parser">
+    <nant buildfile="NModule.Core.Module/NModule.Core.Module.build" />
+  </target>
+
+  <target name="NModule.Core.Loader" depends="NModule.Core,NModule.Core.Module,NModule.Dependency.Core">
+    <nant buildfile="NModule.Core.Loader/NModule.Core.Loader.build" />
   </target>
 </project>

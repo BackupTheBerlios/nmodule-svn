@@ -56,9 +56,6 @@ namespace NModule.Core.Loader {
 		// Information Map
 		protected Hashtable _info_map;
 		
-		// Dependency Resolver
-		protected DepResolver _resolver;
-		
 		// Module Loader
 		protected ModuleLoader _loader;
 #endregion
@@ -68,8 +65,7 @@ namespace NModule.Core.Loader {
 			_ref_counts = new Hashtable ();
 			_search_path = new ArrayList ();
 			_roles = new ArrayList ();
-			_resolver = new DepResolver (this, _search_path);
-			_loader = new ModuleLoader (_search_path, _resolver);
+			_loader = new ModuleLoader (_search_path, this);
 			_info_map = new Hashtable ();
 		}
 
@@ -107,6 +103,15 @@ namespace NModule.Core.Loader {
 			
 			// Entry handlers
 			CallEntryHandler (_domain.GetAssemblies()[0]);
+		}
+		
+		public bool IsLoaded (string _name) {
+			foreach (string _key in _app_domain_map.Keys) {
+				Console.WriteLine ("Key {0} / Name {1}", _key, _name);
+				Console.WriteLine ("ContainsKey({0}) == {1}", _name, _app_domain_map.ContainsKey (_name));
+			}
+
+			return _app_domain_map.ContainsKey (_name);
 		}
 		
 		protected void DecRefs (DepNode _x) {

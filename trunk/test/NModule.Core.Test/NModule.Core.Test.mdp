@@ -27,6 +27,6 @@
   <Contents>
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./TESTS" subtype="Code" buildaction="Compile" />
-    <File name="./nm-ld.cs" subtype="Code" buildaction="Compile" />
+    <File name="./NModuleTests.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

@@ -1,3 +1,40 @@
+2005-07-04 Michael Tindal <urilith@gentoo.org>
+
+	* NModule.build: Actually wrote it.
+	* misc/svkchangelog: Ignore ! lines.
+	* src/NModule.Core/NModule.Core.build: NModule.Core build file.
+	* src/NModule.Core.Loader/DepResolver.cs: Lots of bug fixes.
+	* src/NModule.Core.Loader/ModuleController.cs: Lots of bug fixes.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Lots of bug fixes.
+	* src/NModule.Core.Loader/NModule.Core.Loader.build: NModule.Core.Loader build file.
+	* src/NModule.Core.Module/ModuleInfo.cs: Bug fixes.
+	* src/NModule.Core.Module/NModule.Core.Module.build: NModule.Core.Module build file.
+	* src/NModule.Dependency.Core/DepOps.cs: Added the Null operator so OpResolve operators can know their parent operator.  This is required for the optional operator.
+	* src/NModule.Dependency.Core/DepVersion.cs: Added the ToString method.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.build: NModule.Dependency.Core build file.
+	* src/NModule.Dependency.Parser/DepLexer.cs: Added '-' to the acceptable names for dependency IDs (not the first letter, but beyond that) so things like nm-dr-01b work.
+	* src/NModule.Dependency.Parser/DepParser.cs: Actually made "&&", "||", "!!", "??", and "^^" set the DepOp.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.cs: Updated ID_LETTER.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.txt: Updated ID_LETTER.
+	* src/NModule.Dependency.Parser/nmodule-dep.g: The above changes.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.build: NModule.Dependency.Parser.build.
+	* src/antlr-runtime/antlr-runtime.build: antlr-runtime build file.
+	* src/NModule.Src.build: NModule source build file.
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: Updated the monkey develop file.
+	* test/NModule.Core.Test/data/src/nm-dr: New sources for dependency resolver tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01a.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01b.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01c.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01d.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01e.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01f.cs: DR tests.
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01g.cs: DR tests.
+	* test/NModule.Core.Test/NModuleTests.cs: Added the dependency resolver test suite.
+	* test/NModule.Core.Test/nm-ld.cs: Renamed to NModuleTests.cs
+	* test/NModule.Test.build: NModule.Test build file.
+	* NModule.build.include: Include file borrowed from NUnit.
+	* RELEASE-NOTES-0.2: Release notes for this version.
+
 2005-06-30 Michael Tindal <urilith@gentoo.org>
 
 	* src/NModule.Core.Loader/ModuleController.cs:  Fixed wrong initial ref count in IncRef, fixed DecRefs for the no dependencies case.

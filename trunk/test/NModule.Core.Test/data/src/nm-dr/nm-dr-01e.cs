@@ -1,7 +1,5 @@
-// $ANTLR 2.7.5 (20050704): "nmodule-dep.g" -> "DepParser.cs"$
-
 //
-// ANTLR Generated Files.
+// nm-ld-01.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -28,37 +26,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
- 
-using NModule.Dependency.Core;
 
-namespace NModule.Dependency.Parser
-{
-	public class DepParserTokenTypes
-	{
-		public const int EOF = 1;
-		public const int NULL_TREE_LOOKAHEAD = 3;
-		public const int LPAREN = 4;
-		public const int NOTO = 5;
-		public const int RPAREN = 6;
-		public const int AND = 7;
-		public const int OR = 8;
-		public const int XOR = 9;
-		public const int OPT = 10;
-		public const int EQ = 11;
-		public const int NEQ = 12;
-		public const int LTE = 13;
-		public const int LS = 14;
-		public const int GTE = 15;
-		public const int GT = 16;
-		public const int LD = 17;
-		public const int CLASS = 18;
-		public const int VER = 19;
-		public const int INT = 20;
-		public const int DOT = 21;
-		public const int ID_START_LETTER = 22;
-		public const int ID_LETTER = 23;
-		public const int ID = 24;
-		public const int WS = 25;
-		
+using System;
+using System.Reflection;
+using System.Collections;
+	
+using NModule.Core.Loader;
+using NModule.Core;
+using NModule.Core.Module;
+using NModule.Dependency.Core;
+using NModule.Dependency.Parser;
+using NModule.Dependency.Resolver;
+
+[assembly: AssemblyVersion ("1.0.*")]
+[assembly: ModuleDependency ("(&& (## nm-dr-01f) (## nm-dr-01g))")]
+[assembly: ModuleRole ("")]
+
+namespace NModule.Core.Test.nm_dr {
+	public class nm_dr_01e_module {
+		public nm_dr_01e_module() {
+		}
 	}
 }

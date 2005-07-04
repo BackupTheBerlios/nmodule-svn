@@ -89,23 +89,23 @@ cexpr[DepNode parent]
 	;
 
 notexpr[DepNode parent]
-	: LPAREN! NOTO (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
+	: LPAREN! NOTO { parent.DepOp = DepOps.Not; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 andexpr[DepNode parent]
-	: LPAREN! AND (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
+	: LPAREN! AND { parent.DepOp = DepOps.And; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 orexpr[DepNode parent]
-	: LPAREN! OR (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
+	: LPAREN! OR { parent.DepOp = DepOps.Or; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 xorexpr[DepNode parent]
-	: LPAREN! XOR (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
+	: LPAREN! XOR { parent.DepOp = DepOps.Xor; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 optexpr[DepNode parent]
-	: LPAREN! OPT (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
+	: LPAREN! OPT { parent.DepOp = DepOps.Opt; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 // LPAREN! ((EQ^|NEQ^|LTE^|LS^|GTE^|GT^|LD^) iexpr) RPAREN!
@@ -209,6 +209,7 @@ protected
 ID_LETTER
 	: ID_START_LETTER
 	| ('0' .. '9')
+	| ('-')
 	;
 	
 protected

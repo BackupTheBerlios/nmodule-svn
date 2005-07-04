@@ -41,14 +41,16 @@ namespace NModule.Core.Loader {
 	// an existing app-domain (for example, grouped dependencies).  See the configuration
 	// options for an example.
 	public class ModuleLoader {
-	
+
+		protected static ArrayList loaded_modules;
+		
 		protected ArrayList _search_path;
 		
-		protected DepResolver _resolver;
+		protected ModuleController _controller;
 		
-		public ModuleLoader (ArrayList search_path, DepResolver resolver) {
+		public ModuleLoader (ArrayList search_path, ModuleController controller) {
 			_search_path = search_path;
-			_resolver = resolver;
+			_controller = controller;
 		}
 		
 		// Loads the content of a file to a byte array. 
@@ -68,7 +70,7 @@ namespace NModule.Core.Loader {
 						string _f = f.Replace (s, "").Replace ("/", "");
 						Console.WriteLine ("Checking {0} against {1} ({2}) (Result: {3})", _name, _f, 
 							_f.Substring (0, _f.Length - 4), (_f.Substring (0, _f.Length - 4) == _name));
-						if (_f.Substring (0, _f.Length - 4) == _name) {
+						if (_f.Substring (0, _f.Length - 4).IndexOf (_name) != -1) {
 							return s + "/" + _f;
 						}
 					}
@@ -88,14 +90,25 @@ namespace NModule.Core.Loader {
 		}
 		
 		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking) {
+			return LoadModule (_parents, _name, out _info, checking, true);
+		}
+		
+		public Assembly GetAssembly (AppDomain _domain, string _name) {
+			foreach (Assembly _asm in _domain.GetAssemblies ()) {
+				if (_asm.GetName ().Name == _name)
+					return _asm;
+			}
+			return null;
+		}
+
+		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking, bool depcheck) {
+			Console.WriteLine ("LoadModule:  Trying to load {0}", _name);
+
 			// Okay, this is tricky.  First, we have to load the module into a temp domain
 			// to retrieve its module info.  Then, we have to attempt to resolve the dependencies.
 			// This is going to be fun.  Heh.
 			if (_parents == null)
 				_parents = new ArrayList ();
-				
-			// This is technically a parent of any depending module.
-			_parents.Add (_name);
 			
 			// Try to find the module on the search path.
 			string _filename = SearchForModule (_name);
@@ -105,7 +118,7 @@ namespace NModule.Core.Loader {
 				
 			// Okay, well, now we know the module exists at least in the file (we hope its a proper dll, but we'll see :).  Now we
 			// need to create the temporary AppDomain and load it to get the info from it.
-			AppDomain _tempDomain = AppDomain.CreateDomain ("_temp_" + _name);
+			AppDomain _tempDomain = AppDomain.CreateDomain (_name);
 			
 			// This is dirty.  I hate me.
 			byte[] _raw_bytes = LoadRawFile (_filename);	
@@ -120,21 +133,19 @@ namespace NModule.Core.Loader {
 			try {
 				_tempDomain.Load (_raw_bytes);
 			} catch (BadImageFormatException e) {
+				AppDomain.Unload (_tempDomain);
 				throw new ModuleImageException (e.Message);
 			}
 			
 			// Okay, now lets grab the module info from the assembly attributes.
-			Assembly _asm = _tempDomain.GetAssemblies ()[0];
+			Assembly _asm = GetAssembly (_tempDomain, _name);
 			
 			try {
 				_info = new ModuleInfo (_asm);
 			} catch (ModuleInfoException e) {
+				AppDomain.Unload (_tempDomain);
 				throw new InvalidModuleException (e.Message);
 			}
-			
-			// unload the temp domain since its unneeded now.
-			
-			AppDomain.Unload (_tempDomain);
 			
 			// okay, now we've got the info, let's do some magic with the dependencies.
 			// this will recursively load all of the appropriate assemblies as per the parsed
@@ -142,30 +153,36 @@ namespace NModule.Core.Loader {
 			// OPT (optional).  Very intelligent stuff.  Of course, if there are no depends,
 			// this just simply returns.  This will of course continue updating the parents as needed
 			// since each time a new module is loaded, the resolver is recursively called until
-			// a module is found.  This is cool.  What this will do is call this method with
+			// a module with no dependencies is found.  This is cool.  What this will do is call this method with
 			// checking=true, which will cause it to just return if the module suceeds.  This way
 			// we can ensure we don't load unneeded module Z that is a dependency of X which depends
 			// on Y, because if Z suceeds but Y fails, we don't want X, Y, or Z to fail.  This way,
 			// we can ensure the entire tree can be loaded first (this does take into account already
 			// loaded assemblies).
-			_resolver.ResolveCheck (_parents, _info);
+			if (depcheck)
+			{
+				DepResolver _resolver = new DepResolver (_controller, _search_path);
+			
+				try {
+					_resolver.Resolve (_parents, _info);
+				} catch (Exception e) {
+					AppDomain.Unload (_tempDomain);
+					throw e;
+				}
+			}
 		
 			if (checking)
+			{
+				AppDomain.Unload (_tempDomain);
 				return null;
+			}
 							
 			// okay, they're good, lets load the suckers.
-			_resolver.Resolve (_parents, _info);
-			
 			// alright, we've got them all loaded, they exist in the assembly map.
 			// now we create the *real* app domain.
-			AppDomain _domain = AppDomain.CreateDomain (_name);
-			
-			// let's load this assembly into the real app domain.
-			Console.WriteLine ("_domain.Load");
-			_domain.Load (_raw_bytes);
-			
+						
 			// We can't do any more with this.
-			return _domain;
+			return _tempDomain;
 		}
 	}
 }

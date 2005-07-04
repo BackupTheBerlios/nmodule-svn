@@ -112,5 +112,9 @@ namespace NModule.Dependency.Core {
 				ver.Revision = Int32.Parse(vparts[3]);
 			return ver;
 		}
+		
+		public string ToString ( ) {
+			return string.Format ("{0}:{1}:{2}:{3}", Major, Minor, Build, Revision);
+		}
 	}
 }

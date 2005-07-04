@@ -1,4 +1,4 @@
-// $ANTLR 2.7.5 (20050516): nmodule-dep.g -> DepParserTokenTypes.txt$
+// $ANTLR 2.7.5 (20050704): nmodule-dep.g -> DepParserTokenTypes.txt$
 DepParser    // output token vocab name
 LPAREN=4
 NOTO=5

@@ -1,4 +1,4 @@
-// $ANTLR 2.7.5 (20050516): "nmodule-dep.g" -> "DepLexer.cs"$
+// $ANTLR 2.7.5 (20050704): "nmodule-dep.g" -> "DepLexer.cs"$
 
 //
 // ANTLR Generated Files.
@@ -156,15 +156,15 @@ tryAgain:
 							theRetToken = returnToken_;
 							break;
 						}
-						case '=':
-						{
-							mEQ(true);
-							theRetToken = returnToken_;
-							break;
-						}
 						case '?':
 						{
 							mOPT(true);
+							theRetToken = returnToken_;
+							break;
+						}
+						case '=':
+						{
+							mEQ(true);
 							theRetToken = returnToken_;
 							break;
 						}
@@ -344,6 +344,20 @@ tryAgain:
 		returnToken_ = _token;
 	}
 	
+	public void mOPT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+{
+		int _ttype; IToken _token=null; int _begin=text.Length;
+		_ttype = OPT;
+		
+		match("??");
+		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
+		{
+			_token = makeToken(_ttype);
+			_token.setText(text.ToString(_begin, text.Length-_begin));
+		}
+		returnToken_ = _token;
+	}
+	
 	public void mEQ(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
 {
 		int _ttype; IToken _token=null; int _begin=text.Length;
@@ -420,20 +434,6 @@ tryAgain:
 		_ttype = GT;
 		
 		match(">>");
-		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
-		{
-			_token = makeToken(_ttype);
-			_token.setText(text.ToString(_begin, text.Length-_begin));
-		}
-		returnToken_ = _token;
-	}
-	
-	public void mOPT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
-{
-		int _ttype; IToken _token=null; int _begin=text.Length;
-		_ttype = OPT;
-		
-		match("??");
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
 			_token = makeToken(_ttype);
@@ -631,6 +631,13 @@ _loop49_breakloop:			;
 			}
 			break;
 		}
+		case '-':
+		{
+			{
+				match('-');
+			}
+			break;
+		}
 		default:
 		{
 			throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());
@@ -659,11 +666,11 @@ _loop49_breakloop:			;
 				}
 				else
 				{
-					goto _loop63_breakloop;
+					goto _loop64_breakloop;
 				}
 				
 			}
-_loop63_breakloop:			;
+_loop64_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -689,11 +696,11 @@ _loop63_breakloop:			;
 				}
 				else
 				{
-					goto _loop66_breakloop;
+					goto _loop67_breakloop;
 				}
 				
 			}
-_loop66_breakloop:			;
+_loop67_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -750,7 +757,7 @@ _loop66_breakloop:			;
 	
 	private static long[] mk_tokenSet_0_()
 	{
-		long[] data = { 287948901175001088L, 576460745995190270L, 0L, 0L};
+		long[] data = { 287984085547089920L, 576460745995190270L, 0L, 0L};
 		return data;
 	}
 	public static readonly BitSet tokenSet_0_ = new BitSet(mk_tokenSet_0_());
