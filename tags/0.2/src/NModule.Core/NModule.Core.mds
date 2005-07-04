@@ -1,0 +1,16 @@
+<Combine name="NModule.Core" fileversion="2.0">
+  <Configurations>
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="NModule.Core" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="NModule.Core" />
+    </Configuration>
+  </Configurations>
+  <StartMode startupentry="NModule.Core" single="True">
+    <Execute type="None" entry="NModule.Core" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./NModule.Core.mdp" />
+  </Entries>
+</Combine>

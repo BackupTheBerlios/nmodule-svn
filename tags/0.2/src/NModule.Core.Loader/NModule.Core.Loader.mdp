@@ -1,0 +1,36 @@
+<Project name="NModule.Core.Loader" fileversion="2.0" language="C#" ctype="DotNetProject">
+  <Configurations>
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="./bin/Debug" assembly="NModule.Core.Loader" />
+      <Build debugmode="True" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="./bin/Release" assembly="NModule.Core.Loader" />
+      <Build debugmode="False" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <References>
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core.Module" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core" />
+  </References>
+  <DeploymentInformation strategy="File">
+    <excludeFiles />
+  </DeploymentInformation>
+  <Contents>
+    <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleLoader.cs" subtype="Code" buildaction="Compile" />
+    <File name="./InvalidModuleException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleImageException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleNotFoundException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleController.cs" subtype="Code" buildaction="Compile" />
+    <File name="./CircularDependencyException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./DepResolver.cs" subtype="Code" buildaction="Compile" />
+    <File name="./UnresolvedDependencyException.cs" subtype="Code" buildaction="Compile" />
+    <File name="./DomainStillReferencedException.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+</Project>

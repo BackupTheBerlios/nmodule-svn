@@ -1,0 +1,24 @@
+// $ANTLR 2.7.5 (20050704): nmodule-dep.g -> DepParserTokenTypes.txt$
+DepParser    // output token vocab name
+LPAREN=4
+NOTO=5
+RPAREN=6
+AND=7
+OR=8
+XOR=9
+OPT=10
+EQ=11
+NEQ=12
+LTE=13
+LS=14
+GTE=15
+GT=16
+LD=17
+CLASS=18
+VER=19
+INT=20
+DOT=21
+ID_START_LETTER=22
+ID_LETTER=23
+ID=24
+WS=25

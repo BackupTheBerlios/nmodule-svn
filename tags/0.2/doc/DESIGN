@@ -1,0 +1,30 @@
+NModule is a high level plugin framework for the .NET framework.
+
+The author (Michael Tindal) actively targets the mono framework, but it should
+run unmodified on the .NET framework as well.
+
+NModule takes plugin frameworks to a whole new level by providing interfaces and abstractions
+that make it suitable for any task.  NModule maintains several pieces of information about a "module":
+
+  -> The module info, including name, and version, plus dependency information.
+  -> A set of "roles" the module provides (see below).
+  
+NModule abstracts a lot of the plug-in API away from itself, instead, it defines a set of low-level interfaces
+for loading and managing plug-ins while allowing application writers the freedom to define their own set of APIs.
+What is unique about NModules approach to this is that even though NModule does not define the plug-in APIs, it
+can still interact with them!  This is done using NModule's role system.
+
+When an application defines an interface to be used by plug-ins, that interface has a purpose.  For example, I might
+define an interface called IAction that represented an action, and IController that represented a controller.  Different
+modules could fulfill different roles, this is where the role facility comes into play.  The application registers
+a "role" with the NModule master controller, using the RegisterRole() method.  When a module is loaded, its typed are
+searched for the [ModuleRole()] attribute.  If this is found, it checks the role to see if it is registered, and if it is,
+calls the appropriate handler with the assembly and type information.
+
+-->> Loading/Unloading Modules <<--
+
+Basic reflection in .NET uses the Assembly.Load and Assembly.LoadFrom methods.  However, this has the drawback that
+the loaded assemblies cannot be unloaded.  NModule gets around this by wrapping each load into an AppDomain.  (It is
+possible to reuse appdomains, or to disable them completely if necessary).  When NModule loads a module, it checks
+its dependencies, and attempts to load the dependencies.  NModule supports the detection of circular and unresolved
+dependencies, and supports several operators.  (See:  Dependencies for more information).

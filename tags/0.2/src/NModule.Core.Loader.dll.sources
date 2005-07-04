@@ -1,0 +1,10 @@
+NModule.Core.Loader/AssemblyInfo.cs
+NModule.Core.Loader/CircularDependencyException.cs
+NModule.Core.Loader/UnresolvedDependencyException.cs
+NModule.Core.Loader/ModuleController.cs
+NModule.Core.Loader/DepResolver.cs
+NModule.Core.Loader/ModuleImageException.cs
+NModule.Core.Loader/DomainStillReferencedException.cs
+NModule.Core.Loader/ModuleLoader.cs
+NModule.Core.Loader/ModuleNotFoundException.cs
+NModule.Core.Loader/InvalidModuleException.cs

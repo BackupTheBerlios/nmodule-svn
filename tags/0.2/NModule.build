@@ -1,0 +1,59 @@
+<!--
+NModule.build
+
+Author:
+    Michael Tindal <urilith@gentoo.org>
+
+Copyright (C) 2005 Michael Tindal and the individuals listed on
+the ChangeLog entries.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<project name="NModule" default="compile-all" basedir=".">
+  <description>NModule build files.</description>
+
+  <include buildfile="NModule.build.include" />
+  <!-- properties -->
+  <property name="debug" value="true" overwrite="false" />
+  <property name="release" value="false" overwrite="false" />
+  <property name="strong" value="false" overwrite="false" />
+
+  <target name="compile-all" depends="compile-src,compile-tests" />
+
+  <target name="setup-build-dir">
+	<mkdir dir="${current.build.dir}" unless="${directory::exists(${current.build.dir})}" />
+  </target>
+
+  <target name="compile-src" depends="set-build-config,set-runtime-config,set-build-dir,make-build-dir">
+    <nant buildfile="src/NModule.Src.build" />
+  </target>
+
+  <target name="compile-tests">
+    <nant buildfile="test/NModule.Test.build" />
+  </target>
+
+  <target name="tests" depends="set-build-dir">
+    <nunit2>
+      <formatter type="Plain" />
+      <test assemblyname="${current.build.dir}/NModule.Core.Test.dll" />
+   </nunit2>
+  </target>
+</project>

@@ -1,0 +1,5 @@
+NModule.Dependency.Core/DepConstraint.cs
+NModule.Dependency.Core/AssemblyInfo.cs
+NModule.Dependency.Core/DepNode.cs
+NModule.Dependency.Core/DepOps.cs
+NModule.Dependency.Core/DepVersion.cs
