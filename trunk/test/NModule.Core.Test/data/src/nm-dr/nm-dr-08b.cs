@@ -42,8 +42,8 @@ using NModule.Dependency.Resolver;
 [assembly: ModuleRole ("")]
 
 namespace NModule.Core.Test.nm_dr {
-	public class nm_dr_01b_module {
-		public nm_dr_01b_module() {
+	public class nm_dr_08b_module {
+		public nm_dr_08b_module() {
 		}
 	}
 }

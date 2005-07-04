@@ -39,11 +39,12 @@ using NModule.Dependency.Parser;
 using NModule.Dependency.Resolver;
 
 [assembly: AssemblyVersion ("1.0.*")]
+[assembly: ModuleDependency ("(<= nm-dr-05b 1.0)")]
 [assembly: ModuleRole ("")]
 
 namespace NModule.Core.Test.nm_dr {
-	public class nm_dr_01b_module {
-		public nm_dr_01b_module() {
+	public class nm_dr_05a_module {
+		public nm_dr_05a_module() {
 		}
 	}
 }

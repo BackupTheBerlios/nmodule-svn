@@ -75,6 +75,11 @@ namespace NModule.Core.Loader {
 		}
 		
 		public void LoadModule (ArrayList _parents, string _name) {
+			if (_name == null)
+			{
+				Console.WriteLine ("_name is NULL");
+			}
+			
 			if (_app_domain_map.ContainsKey (_name))
 			{
 				IncRef ((AppDomain)_app_domain_map[_name]);

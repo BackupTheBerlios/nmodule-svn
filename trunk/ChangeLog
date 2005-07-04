@@ -1,5 +1,53 @@
 2005-07-04 Michael Tindal <urilith@gentoo.org>
 
+	* More bug fixes, rest of the dependency resolution test suite.
+	* src/NModule.Core.Loader/DepResolver.cs: 
+	* src/NModule.Core.Loader/ModuleController.cs: 
+	* src/NModule.Core.Loader/ModuleLoader.cs: 
+	* src/NModule.Core.Module/ModuleInfo.cs: 
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: 
+	* test/NModule.Core.Test/NModuleTests.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-01b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-02a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-02b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-03a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-03b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-04a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-04b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-05a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-05b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-06a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-06b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-07a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-07b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-08a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-08b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-08c.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-09a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-09b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-09c.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-10a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-10b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-10c.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-11a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-11b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-12a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-12b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-13a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-13b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-13c.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-14a.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-14b.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-14c.cs: 
+	* test/NModule.Core.Test/data/src/nm-dr/nm-dr-14d.cs: 
+	* test/NModule.Core.Test/nm-dr.cs: 
+	* test/NModule.Core.Test/nm-ld.cs: 
+	* test/NModule.Core.Test/nm-ul.cs: 
+	* test/NModule.Test.build: 
+
+2005-07-04 Michael Tindal <urilith@gentoo.org>
+
         *******************
         ***** RELEASE *****
         *******************

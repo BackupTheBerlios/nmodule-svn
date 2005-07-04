@@ -107,7 +107,7 @@ namespace NModule.Core.Module {
 		}
 		
 		public ModuleInfo (Assembly _asm) {
-			_name = _asm.GetName().Name;
+			_name = _asm.GetName ().Name;
 			_version = DepVersion.VersionParse (_asm.GetName().Version.ToString ());
 			
 			ModuleDependencyAttribute _depAttr;
@@ -115,6 +115,9 @@ namespace NModule.Core.Module {
 			
 			try {
 				_depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
+				foreach (ModuleDependencyAttribute _attr in _asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)) {
+					Console.WriteLine (_attr.DepString);
+				}
 			} catch (IndexOutOfRangeException) {
 				_depAttr = null;
 			}

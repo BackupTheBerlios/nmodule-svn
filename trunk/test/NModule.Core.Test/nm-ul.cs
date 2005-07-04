@@ -1,5 +1,5 @@
 //
-// nm-ld-01.cs
+// nm-ul.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -27,23 +27,56 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Reflection;
-using System.Collections;
+namespace NModule.Core.Test {
+
+	using System;
+	using System.Reflection;
+	using System.Collections;
 	
-using NModule.Core.Loader;
-using NModule.Core;
-using NModule.Core.Module;
-using NModule.Dependency.Core;
-using NModule.Dependency.Parser;
-using NModule.Dependency.Resolver;
-
-[assembly: AssemblyVersion ("1.0.*")]
-[assembly: ModuleRole ("")]
-
-namespace NModule.Core.Test.nm_dr {
-	public class nm_dr_01b_module {
-		public nm_dr_01b_module() {
+	using NModule.Core.Loader;
+	using NModule.Core;
+	using NModule.Core.Module;
+	using NModule.Dependency.Core;
+	using NModule.Dependency.Parser;
+	using NModule.Dependency.Resolver;
+	
+	using NUnit.Framework;
+	
+	[TestFixture]
+	public class nm_ul {
+	
+		public nm_ul () {
+		}
+		
+		// nm-ul-01 - Unloading with no dependencies
+		[Test]
+		public void nm_ul_01 () {
+			Console.WriteLine ("nm_ul_01");
+			
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-ul");
+			
+			_mc.LoadModule ("nm-ul-01");
+			
+			_mc.UnloadModule ("nm-ul-01");
+		}
+		
+		// nm-ul-02 - Unloading with ref count > 1
+		[Test]
+		[ExpectedException (typeof (DomainStillReferencedException))]
+		public void nm_ul_02 () {
+			Console.WriteLine ("nm_ul_02");
+			
+			ModuleController _mc = new ModuleController ();
+			
+			_mc.SearchPath.Add ("data/nm-ul");
+			
+			_mc.LoadModule ("nm-ul-02");
+			
+			_mc.LoadModule ("nm-ul-02");
+			
+			_mc.UnloadModule ("nm-ul-02");
 		}
 	}
 }

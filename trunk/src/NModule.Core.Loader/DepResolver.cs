@@ -59,7 +59,7 @@ namespace NModule.Dependency.Resolver {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
 					foreach (string f in Directory.GetFiles (s, "*.dll")) {
-						if (f.Substring (0, f.Length - 4).IndexOf (_name) != -1) {
+						if (f.Substring (0, f.Length - 4) == _name) {
 							return s + "/" + f;
 						}
 					}
@@ -84,14 +84,14 @@ namespace NModule.Dependency.Resolver {
 				ArrayList _results = new ArrayList ();
 				ArrayList _c = new ArrayList ();
 				foreach (DepNode _child in _node.Children) {
-					//try {
+					try {
 						OpResolve (_child, _parents, _info, checking, _op);
 						_results.Add (true);
 						_c.Add (_child.Constraint);
-					//} catch (Exception e) {
-					//	_results.Add (false);
-					//	_c.Add (_child.Constraint);
-					//}
+					} catch (Exception e) {
+						_results.Add (false);
+						_c.Add (_child.Constraint);
+					}
 				}
 				
 				switch (_op) {
@@ -106,7 +106,7 @@ namespace NModule.Dependency.Resolver {
 								if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
 									throw new UnresolvedDependencyException (
 										string.Format("The following dependency for the module {0} could not be resolved: (AND operator)\n\t{1} ({2})",
-											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version)
+											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString())
 									);
 								}
 							}
@@ -114,12 +114,14 @@ namespace NModule.Dependency.Resolver {
 						}
 						break;
 					case DepOps.Not:
+						if (_results == null)
+							Console.WriteLine ("_results is NULL! (NOT)");
 						foreach (bool _result in _results) {
 							if (_result) {
 								if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
 									throw new UnresolvedDependencyException (
 										string.Format("The following dependency for the module {0} could not be resolved: (NOT operator)\n\t{1} ({2})",
-											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version)
+											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString())
 									);
 								}
 							}
@@ -135,7 +137,7 @@ namespace NModule.Dependency.Resolver {
 							if (_result)
 								_ret = true;
 							else {
-								_urexc.Add (string.Format("{1} ({2})", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
+								_urexc.Add (string.Format("{1} ({2})", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
 							}
 							r++;
 						}
@@ -162,11 +164,11 @@ namespace NModule.Dependency.Resolver {
 						foreach (bool _result in _results) {
 							if (_result) {
 								_xf = false;
-								_xexc.Add (string.Format("{1} ({2}) (True)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
+								_xexc.Add (string.Format("{1} ({2}) (True)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
 							}
 							if (!_result) {
 								_xt = false;
-								_xexc.Add (string.Format("{1} ({2}) (False)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version));
+								_xexc.Add (string.Format("{1} ({2}) (False)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
 							}
 							r++;
 						}
@@ -207,32 +209,45 @@ namespace NModule.Dependency.Resolver {
 				
 				Console.WriteLine ("Checking {0}'s version:  Empty {1}", _constraint.Name, IsEmptyVersion (_constraint.Version));
 				Console.WriteLine ("Checking ({0} {1} {2}) Result: {3}", OpToString (_op), _ninfo.Version.ToString(), _constraint.Version.ToString(), VersionMatch (_ninfo.Version, _constraint.Version, _op));
-					
+				
+				Console.WriteLine (">>>>> IsEmptyVersion [BEGIN]");
 				if (!IsEmptyVersion (_constraint.Version)) {
-					if (!VersionMatch (_ninfo.Version, _constraint.Version, _op)) {
+					bool vmatch = VersionMatch (_ninfo.Version, _constraint.Version, _op);
+					
+					if ((_parentop == DepOps.Not) && vmatch) {
+						result = false;
+					}
+					
+					if ((_parentop != DepOps.Not) && !vmatch) {
 						result = false;
 					}
 				}
-
+				Console.WriteLine (">>>>> IsEmptyVersion [ END ]");
+				
+				Console.WriteLine (">>>>> !result [BEGIN]");
 				if (!result) {
 					if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
 						throw new UnresolvedDependencyException (
 								string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
-									_info.Name, _constraint.Name, _constraint.Version, OpToString (_op))
+									_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
 							);
 					}
 					else
 						return;			
 				}
+				Console.WriteLine (">>>>> !result [ END ]");
 					
 				if (_controller == null)
 					Console.WriteLine ("_controller is NULL!");
+					
+				if (_info == null)
+					Console.WriteLine ("_info -s NULL!");
 					
 				if (!checking) {
 					_controller.LoadModule (_constraint.Name);
 				}
 					
-				Console.WriteLine ("Checking {0} for {1} (Result: {2})", OpToString (_op), _info.Name, result);
+				Console.WriteLine ("Checking {0} for {1} (Result: {2})", OpToString (_op), _constraint.Name, result);
 				// we got this far, so obviously it loaded okay
 			}		
 		}
@@ -307,6 +322,8 @@ namespace NModule.Dependency.Resolver {
 					return vres < 0 || vres == 0;
 				case DepOps.NotEqual:
 					return vres != 0;
+				case DepOps.Loaded:
+					return true;
 			}
 			
 			return false;				

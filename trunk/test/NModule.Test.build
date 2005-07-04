@@ -183,7 +183,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </csc>
   </target>
 
-  <target name="nm-dr" depends="nm-dr-01a,nm-dr-01b,nm-dr-01c,nm-dr-01d,nm-dr-01e,nm-dr-01f,nm-dr-01g" />
+  <target name="nm-dr" depends="nm-dr-01a,nm-dr-01b,nm-dr-02a,nm-dr-02b,nm-dr-03a,nm-dr-03b,nm-dr-04a,nm-dr-04b,nm-dr-05a,nm-dr-05b,nm-dr-06a,nm-dr-06b,nm-dr-07a,nm-dr-07b,nm-dr-08a,nm-dr-08b,nm-dr-08c,nm-dr-09a,nm-dr-09b,nm-dr-09c,nm-dr-10a,nm-dr-10b,nm-dr-10c,nm-dr-11a,nm-dr-11b,nm-dr-12a,nm-dr-12b,nm-dr-13a,nm-dr-13b,nm-dr-13c,nm-dr-14a,nm-dr-14b,nm-dr-14c,nm-dr-14d" />
 
   <target name="nm-dr-01a">
     <csc target="library"
@@ -222,89 +222,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </references>
     </csc>
   </target>
-  
-  <target name="nm-dr-01c">
+
+  <target name="nm-dr-02a">
     <csc target="library"
-        output="${nm-dr-dir}/nm-dr-01c.dll"
+        output="${nm-dr-dir}/nm-dr-02a.dll"
         debug="${build.debug}" define="${build.defines.csc}">
       <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
-        <include name="nm-dr-01c.cs"/>
-      </sources>
-      <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
-        <include name="NModule.Core.dll" />
-        <include name="NModule.Core.Loader.dll" />
-        <include name="NModule.Core.Module.dll" />
-        <include name="NModule.Dependency.Core.dll" />
-        <include name="NModule.Dependency.Parser.dll" />
-      </references>
-    </csc>
-  </target>
-  
-  <target name="nm-dr-01d">
-    <csc target="library"
-        output="${nm-dr-dir}/nm-dr-01d.dll"
-        debug="${build.debug}" define="${build.defines.csc}">
-      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
-        <include name="nm-dr-01d.cs"/>
-      </sources>
-      <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
-        <include name="NModule.Core.dll" />
-        <include name="NModule.Core.Loader.dll" />
-        <include name="NModule.Core.Module.dll" />
-        <include name="NModule.Dependency.Core.dll" />
-        <include name="NModule.Dependency.Parser.dll" />
-      </references>
-    </csc>
-  </target>
-  
-  <target name="nm-dr-01e">
-    <csc target="library"
-        output="${nm-dr-dir}/nm-dr-01e.dll"
-        debug="${build.debug}" define="${build.defines.csc}">
-      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
-        <include name="nm-dr-01e.cs"/>
-      </sources>
-      <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
-        <include name="NModule.Core.dll" />
-        <include name="NModule.Core.Loader.dll" />
-        <include name="NModule.Core.Module.dll" />
-        <include name="NModule.Dependency.Core.dll" />
-        <include name="NModule.Dependency.Parser.dll" />
-      </references>
-    </csc>
-  </target>
-  
-  <target name="nm-dr-01f">
-    <csc target="library"
-        output="${nm-dr-dir}/nm-dr-01f.dll"
-        debug="${build.debug}" define="${build.defines.csc}">
-      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
-        <include name="nm-dr-01f.cs"/>
-      </sources>
-      <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
-        <include name="NModule.Core.dll" />
-        <include name="NModule.Core.Loader.dll" />
-        <include name="NModule.Core.Module.dll" />
-        <include name="NModule.Dependency.Core.dll" />
-        <include name="NModule.Dependency.Parser.dll" />
-      </references>
-    </csc>
-  </target>
-  
-  <target name="nm-dr-01g">
-    <csc target="library"
-        output="${nm-dr-dir}/nm-dr-01g.dll"
-        debug="${build.debug}" define="${build.defines.csc}">
-      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
-        <include name="nm-dr-01g.cs"/>
+        <include name="nm-dr-02a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
@@ -318,9 +242,595 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </csc>
   </target>
 
-  <assemblyfileset id="nunit.framework">
-    <include name="nunit.framework.dll" />
-  </assemblyfileset>
+  <target name="nm-dr-02b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-02b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-02b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-03a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-03a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-03a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-03b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-03b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-03b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-04a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-04a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-04a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-04b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-04b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-04b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-05a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-05a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-05a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-05b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-05b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-05b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-06a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-06a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-06a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-06b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-06b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-06b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-07a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-07a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-07a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-07b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-07b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-07b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-08a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-08a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-08a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-08b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-08b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-08b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-08c">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-08c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-08c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-09a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-09a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-09a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-09b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-09b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-09b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-09c">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-09c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-09c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-10a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-10a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-10a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-10b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-10b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-10b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-10c">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-10c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-10c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-11a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-11a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-11a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-11b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-11b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-11b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-12a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-12a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-12a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-12b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-12b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-12b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-13a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-13a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-13a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-13b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-13b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-13b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-13c">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-13c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-13c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-dr-14a">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-14a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-14a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-14b">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-14b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-14b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-14c">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-14c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-14c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-dr-14d">
+    <csc target="library"
+        output="${nm-dr-dir}/nm-dr-14d.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir="${path::combine(project.test.data.src.dir,'nm-dr')}">
+        <include name="nm-dr-14d.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="antlr-runtime.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
   <target name="NModule.Core.Test" depends="set-build-dir">
     <csc target="library"
         output="${current.build.dir}/NModule.Core.Test.dll"

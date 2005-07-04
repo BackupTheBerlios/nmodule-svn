@@ -70,7 +70,7 @@ namespace NModule.Core.Loader {
 						string _f = f.Replace (s, "").Replace ("/", "");
 						Console.WriteLine ("Checking {0} against {1} ({2}) (Result: {3})", _name, _f, 
 							_f.Substring (0, _f.Length - 4), (_f.Substring (0, _f.Length - 4) == _name));
-						if (_f.Substring (0, _f.Length - 4).IndexOf (_name) != -1) {
+						if (_f.Substring (0, _f.Length - 4) == _name) {
 							return s + "/" + _f;
 						}
 					}
@@ -95,6 +95,7 @@ namespace NModule.Core.Loader {
 		
 		public Assembly GetAssembly (AppDomain _domain, string _name) {
 			foreach (Assembly _asm in _domain.GetAssemblies ()) {
+				Console.WriteLine ("_asm.GetName().Name {0} / _name {1}", _asm.GetName().Name, _name);
 				if (_asm.GetName ().Name == _name)
 					return _asm;
 			}
@@ -111,6 +112,7 @@ namespace NModule.Core.Loader {
 				_parents = new ArrayList ();
 			
 			// Try to find the module on the search path.
+			Console.WriteLine (">>>>> SearchForModule [BEGIN]");
 			string _filename = SearchForModule (_name);
 			
 			if (_filename == null)
@@ -118,18 +120,20 @@ namespace NModule.Core.Loader {
 				
 			// Okay, well, now we know the module exists at least in the file (we hope its a proper dll, but we'll see :).  Now we
 			// need to create the temporary AppDomain and load it to get the info from it.
-			AppDomain _tempDomain = AppDomain.CreateDomain (_name);
+			AppDomain _tempDomain = AppDomain.CreateDomain (string.Format("{0}{1}{2}", _name, "adlfjdsadgkljsg", "adlgjdfslghkeryt"));
 			
-			// This is dirty.  I hate me.
-			byte[] _raw_bytes = LoadRawFile (_filename);	
+			Console.WriteLine (">>>>> LoadRawFile [BEGIN]");
+			byte[] _raw_bytes = LoadRawFile (_filename);
 			
 			// set up the search path
+			Console.WriteLine (">>>>> SearchPath [BEGIN]");
 			foreach (string s in _search_path) {
 				_tempDomain.AppendPrivatePath (s);
 			}
 			
 			// The throw here is mostly used from dep resolver calls, although it should also be caught by the immediate caller
 			// (i.e. the application).
+			Console.WriteLine (">>>>> Load [BEGIN]");
 			try {
 				_tempDomain.Load (_raw_bytes);
 			} catch (BadImageFormatException e) {
@@ -138,8 +142,10 @@ namespace NModule.Core.Loader {
 			}
 			
 			// Okay, now lets grab the module info from the assembly attributes.
+			Console.WriteLine (">>>>> GetAssembly [BEGIN]");
 			Assembly _asm = GetAssembly (_tempDomain, _name);
 			
+			Console.WriteLine (">>>>> ModuleInfo [BEGIN]");
 			try {
 				_info = new ModuleInfo (_asm);
 			} catch (ModuleInfoException e) {
@@ -159,6 +165,7 @@ namespace NModule.Core.Loader {
 			// on Y, because if Z suceeds but Y fails, we don't want X, Y, or Z to fail.  This way,
 			// we can ensure the entire tree can be loaded first (this does take into account already
 			// loaded assemblies).
+			Console.WriteLine (">>>>> DepCheck [BEGIN]");
 			if (depcheck)
 			{
 				DepResolver _resolver = new DepResolver (_controller, _search_path);
@@ -170,7 +177,8 @@ namespace NModule.Core.Loader {
 					throw e;
 				}
 			}
-		
+
+			Console.WriteLine (">>>>> Checking [BEGIN]");		
 			if (checking)
 			{
 				AppDomain.Unload (_tempDomain);
@@ -182,6 +190,7 @@ namespace NModule.Core.Loader {
 			// now we create the *real* app domain.
 						
 			// We can't do any more with this.
+			Console.WriteLine (">>>>> Return [BEGIN]");
 			return _tempDomain;
 		}
 	}
