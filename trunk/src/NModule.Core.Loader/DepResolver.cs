@@ -69,17 +69,17 @@ namespace NModule.Dependency.Resolver {
 			return null;
 		}
 		
+		protected string ReportUnresolvedException (DepOps _op, DepConstraint _constraint) {
+			// message should look like << Elfblade.Core 1.0
+			// or ## Elfblade.Net.Base
+			return string.Format ("{0} {1} {2}", OpToString (_op), _constraint.Name, IsEmptyVersion (_constraint.Version) ? "" : _constraint.Version.ToString ());
+		}
+		
 		protected void OpResolve (DepNode _node, ArrayList _parents, ModuleInfo _info, bool checking, DepOps _parentop) {
-			Console.WriteLine ("-->> OpResolve called with:");
-			Console.WriteLine ("---->> _node = {0}", _node == null ? "null" : "not null");
-			Console.WriteLine ("---->> _node.DepOp = {0}", OpToString (_node.DepOp));
-			Console.WriteLine ("---->> _parents = {0}", _parents == null ? "null" : "not null");
-			Console.WriteLine ("---->> _info = {0}", _info == null ? "null" : "not null");
-			Console.WriteLine ("---->> checking = {0}", checking);
 			bool _ret;
 			DepOps _op = _node.DepOp;
 			
-			if ((_op == DepOps.And) || (_op == DepOps.Not) || (_op == DepOps.Opt) || (_op == DepOps.Or) || (_op == DepOps.Xor)) {
+			if ((_op == DepOps.And) || (_op == DepOps.Opt) || (_op == DepOps.Or) || (_op == DepOps.Xor)) {
 				// combo-operators
 				ArrayList _results = new ArrayList ();
 				ArrayList _c = new ArrayList ();
@@ -97,9 +97,6 @@ namespace NModule.Dependency.Resolver {
 				switch (_op) {
 					case DepOps.And:
 						int r = 0;
-						if (_results == null) {
-							Console.WriteLine ("_results is NULL!");
-						}
 						
 						foreach (bool _result in _results) {
 							if (!_result) {
@@ -111,20 +108,6 @@ namespace NModule.Dependency.Resolver {
 								}
 							}
 							r++;
-						}
-						break;
-					case DepOps.Not:
-						if (_results == null)
-							Console.WriteLine ("_results is NULL! (NOT)");
-						foreach (bool _result in _results) {
-							if (_result) {
-								if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
-									throw new UnresolvedDependencyException (
-										string.Format("The following dependency for the module {0} could not be resolved: (NOT operator)\n\t{1} ({2})",
-											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString())
-									);
-								}
-							}
 						}
 						break;
 					case DepOps.Opt: // This is optional so stuff is true regardless
@@ -143,6 +126,7 @@ namespace NModule.Dependency.Resolver {
 						}
 						
 						if (!_ret) {
+							
 							StringBuilder _sb = new StringBuilder (
 								string.Format("The following dependency for the module {0} could not be resolved: (OR operator)\n")
 							);
@@ -153,6 +137,7 @@ namespace NModule.Dependency.Resolver {
 								throw new UnresolvedDependencyException (_sb.ToString ());
 						}
 						break;
+						
 					case DepOps.Xor:
 						bool _xt = true;
 						bool _xf = true;
@@ -202,55 +187,64 @@ namespace NModule.Dependency.Resolver {
 				ModuleInfo _ninfo;
 						
 				ModuleLoader _loader = new ModuleLoader (_search_path, _controller);
-						
-				_loader.LoadModule (_parents, _constraint.Name, out _ninfo, true, true);
 				
-				bool result = true;
-				
-				Console.WriteLine ("Checking {0}'s version:  Empty {1}", _constraint.Name, IsEmptyVersion (_constraint.Version));
-				Console.WriteLine ("Checking ({0} {1} {2}) Result: {3}", OpToString (_op), _ninfo.Version.ToString(), _constraint.Version.ToString(), VersionMatch (_ninfo.Version, _constraint.Version, _op));
-				
-				Console.WriteLine (">>>>> IsEmptyVersion [BEGIN]");
-				if (!IsEmptyVersion (_constraint.Version)) {
-					bool vmatch = VersionMatch (_ninfo.Version, _constraint.Version, _op);
-					
-					if ((_parentop == DepOps.Not) && vmatch) {
-						result = false;
-					}
-					
-					if ((_parentop != DepOps.Not) && !vmatch) {
-						result = false;
-					}
-				}
-				Console.WriteLine (">>>>> IsEmptyVersion [ END ]");
-				
-				Console.WriteLine (">>>>> !result [BEGIN]");
-				if (!result) {
+				try {
+					_loader.LoadModule (_parents, _constraint.Name, out _ninfo, true, true);
+				} catch (ModuleNotFoundException) {
 					if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
-						throw new UnresolvedDependencyException (
-								string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
-									_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
-							);
+								throw new UnresolvedDependencyException (
+									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+								);
 					}
-					else
-						return;			
 				}
-				Console.WriteLine (">>>>> !result [ END ]");
-					
-				if (_controller == null)
-					Console.WriteLine ("_controller is NULL!");
-					
-				if (_info == null)
-					Console.WriteLine ("_info -s NULL!");
-					
-				if (!checking) {
-					_controller.LoadModule (_constraint.Name);
+				
+				if (_op == DepOps.Equal || _op == DepOps.GreaterThan || _op == DepOps.GreaterThanEqual || _op == DepOps.LessThan || _op == DepOps.LessThanEqual || _op == DepOps.NotEqual) {
+					if (!IsEmptyVersion (_constraint.Version)) {
+						if (!VersionMatch (_ninfo.Version, _constraint.Version, _op)) {
+							if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
+								throw new UnresolvedDependencyException (
+									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+								);
+							}		
+						}
+					}
+						
+					if (!checking) {
+						_controller.LoadModule (_constraint.Name);
+					}
 				}
 					
-				Console.WriteLine ("Checking {0} for {1} (Result: {2})", OpToString (_op), _constraint.Name, result);
-				// we got this far, so obviously it loaded okay
-			}		
-		}
+				if (_op == DepOps.Loaded) {
+					if (_controller.Loader.SearchForModule (_constraint.Name) == null)
+					{
+						throw new UnresolvedDependencyException (
+									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+								);
+					}
+					
+					if (!checking) {
+						_controller.LoadModule (_constraint.Name);
+					}
+				}
+				
+				if (_op == DepOps.NotLoaded) {
+					if (_controller.IsLoaded (_constraint.Name)) {
+						if (_controller.RefCount (_constraint.Name) > 1) {
+							throw new UnresolvedDependencyException (
+									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+								);
+						}
+						if (!checking) {
+							_controller.UnloadModule (_constraint.Name);
+						}
+					}
+				}
+			}
+		}		
 		
 		protected string OpToString (DepOps _op) {
 			switch (_op)
@@ -269,8 +263,8 @@ namespace NModule.Dependency.Resolver {
 					return "<=";
 				case DepOps.Loaded:
 					return "##";
-				case DepOps.Not:
-					return "!!";
+				case DepOps.NotLoaded:
+					return "!#";
 				case DepOps.NotEqual:
 					return "!=";
 				case DepOps.Opt:
@@ -342,7 +336,7 @@ namespace NModule.Dependency.Resolver {
 			
 			if (_x.Constraint != null) {
 				foreach (string _parent in _parents) {
-					Console.WriteLine ("CIRCULAR DEPENDENCY CHECK:  {0} {1}", _x.Constraint.Name, _parent);
+					
 					if (_x.Constraint.Name == _parent) {
 						throw new CircularDependencyException (string.Format ("{0} depends on {1}, but {1} is depending on {0}.", _x.Constraint.Name, _parent));
 					}
@@ -362,8 +356,6 @@ namespace NModule.Dependency.Resolver {
 					CheckCircularDeps (_c, _parents);
 				}
 			}
-			
-			Console.WriteLine (">>>>> Beginning OpResolve loop for {0}...", _info.Name);
 			
 			OpResolve (_info.Dependencies, _parents, _info, checking, DepOps.Null);		
 		}

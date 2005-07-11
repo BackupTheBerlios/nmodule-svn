@@ -77,7 +77,7 @@ namespace NModule.Core.Loader {
 		public void LoadModule (ArrayList _parents, string _name) {
 			if (_name == null)
 			{
-				Console.WriteLine ("_name is NULL");
+				
 			}
 			
 			if (_app_domain_map.ContainsKey (_name))
@@ -112,8 +112,8 @@ namespace NModule.Core.Loader {
 		
 		public bool IsLoaded (string _name) {
 			foreach (string _key in _app_domain_map.Keys) {
-				Console.WriteLine ("Key {0} / Name {1}", _key, _name);
-				Console.WriteLine ("ContainsKey({0}) == {1}", _name, _app_domain_map.ContainsKey (_name));
+				
+				
 			}
 
 			return _app_domain_map.ContainsKey (_name);
@@ -142,7 +142,7 @@ namespace NModule.Core.Loader {
 			ModuleInfo _info = (ModuleInfo)_info_map[_name];
 			
 			AppDomain _domain = (AppDomain)_app_domain_map[_name];
-			Console.WriteLine ("UnloadModule (Domain: {0}, RefCount: {1})", _name, (int)_ref_counts[_domain]);
+			
 
 			if (((int)_ref_counts[_domain]) > 1) {
 				throw new DomainStillReferencedException (string.Format ("The domain holding the module {0} cannot be unloaded because it is still being referenced.", _name));
@@ -300,6 +300,16 @@ namespace NModule.Core.Loader {
 			set {
 				_search_path = value;
 			}
+		}
+		
+		public ModuleLoader Loader {
+			get {
+				return _loader;
+			}
+		}
+		
+		public int RefCount (string _name) {
+			return ((int)_ref_counts[(AppDomain)_app_domain_map[_name]]);
 		}
 #endregion
 	}

@@ -131,7 +131,7 @@
 
   <target name="set-debug-build-config">
     <property name="build.config" value="debug"/>
-    <property name="build.debug" value="true"/>
+    <property name="build.debug" value="Full"/>
     <property name="build.defines.csc" 
       value="DEBUG,TRACE" readonly="false" />
     <property name="build.defines.jsc" 
@@ -148,7 +148,7 @@
 	
   <target name="set-release-build-config">
     <property name="build.config" value="release"/>
-    <property name="build.debug" value="false"/>
+    <property name="build.debug" value="None"/>
     <property name="build.defines.csc"
       value="TRACE,STRONG" readonly="false" />
     <property name="build.defines.jsc"
@@ -251,6 +251,41 @@
       value="${package.name}-src.zip"/>
     <property name="zipped.bin.file.name"
       value="${package.name}-bin.zip"/>
+  </target>
+
+  
+  
+  <!-- properties -->
+  <target name="set-test-dirs" depends="set-build-dir">
+    <property name="project.test.base.dir" value="${path::combine(project.base.dir,'test')}" />
+    <property name="project.test.data.dir" value="${path::combine(current.build.dir,'data')}" />
+    <property name="project.test.data.src.dir" value="${path::combine(project.test.base.dir,'src')}" />
+    <property name="nm-ld-dir" value="${path::combine(project.test.data.dir,'nm-ld')}" />
+    <property name="nm-ld-2-dir" value="${path::combine(project.test.data.dir,'nm-ld-2')}" />
+    <property name="nm-ld-3-dir" value="${path::combine(project.test.data.dir,'nm-ld-3')}" />
+    <property name="nm-ul-dir" value="${path::combine(project.test.data.dir,'nm-ul')}" />
+    <property name="nm-dr-dir" value="${path::combine(project.test.data.dir,'nm-dr')}" />
+    <property name="nm-ur-dir" value="${path::combine(project.test.data.dir,'nm-ur')}" />
+  </target>
+
+  <target name="make-test-dirs" depends="make-nm-ld-dir,make-nm-ul-dir,make-nm-dr-dir,make-nm-ur-dir" />
+
+  <target name="make-nm-ld-dir">
+    <mkdir dir="${nm-ld-dir}" unless="${directory::exists(nm-ld-dir)}" />
+    <mkdir dir="${nm-ld-2-dir}" unless="${directory::exists(nm-ld-2-dir)}" />
+    <mkdir dir="${nm-ld-3-dir}" unless="${directory::exists(nm-ld-3-dir)}" />
+  </target>
+
+  <target name="make-nm-ul-dir">
+    <mkdir dir="${nm-ul-dir}" unless="${directory::exists(nm-ul-dir)}" />
+  </target>
+
+  <target name="make-nm-dr-dir">
+    <mkdir dir="${nm-dr-dir}" unless="${directory::exists(nm-dr-dir)}" />
+  </target>
+
+  <target name="make-nm-ur-dir">
+    <mkdir dir="${nm-ur-dir}" unless="${directory::exists(nm-ur-dir)}" />
   </target>
 
   <!-- Dump configuration settings for debugging -->

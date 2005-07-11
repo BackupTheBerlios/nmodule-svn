@@ -51,7 +51,7 @@ namespace NModule.Core.Test {
 		// nm-ld-01 - Loading with no dependencies, single dir search path.
 		[Test]
 		public void nm_ld_01 () {
-			Console.WriteLine ("nm_ld_01");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			
@@ -64,7 +64,7 @@ namespace NModule.Core.Test {
 		[Test]
 		[ExpectedException (typeof (ModuleNotFoundException))]
 		public void nm_ld_02 () {
-			Console.WriteLine ("nm_ld_02");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			
@@ -76,7 +76,7 @@ namespace NModule.Core.Test {
 		// nm-ld-03 - Loading with no dependencies, multiple dir search path, first dir.
 		[Test]
 		public void nm_ld_03 () {
-			Console.WriteLine ("nm_ld_03");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			
@@ -90,7 +90,7 @@ namespace NModule.Core.Test {
 		// nm-ld-04 - Loading with no dependencies, multiple dir search path, middle dir.
 		[Test]
 		public void nm_ld_04 () {
-			Console.WriteLine ("nm_ld_04");
+			
 			ModuleController _mc = new ModuleController ();
 			
 			_mc.SearchPath.Add ("data/nm-ld-2");
@@ -103,7 +103,7 @@ namespace NModule.Core.Test {
 		// nm-ld-05 - Loading with no dependencies, multiple dir search path, last dir.
 		[Test]
 		public void nm_ld_05 () {
-			Console.WriteLine ("nm_ld_05");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			
@@ -118,7 +118,7 @@ namespace NModule.Core.Test {
 		[Test]
 		[ExpectedException (typeof (ModuleNotFoundException))]
 		public void nm_ld_06 () {
-			Console.WriteLine ("nm_ld_06");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			

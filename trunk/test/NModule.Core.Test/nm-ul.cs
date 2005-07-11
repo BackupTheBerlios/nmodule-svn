@@ -51,7 +51,7 @@ namespace NModule.Core.Test {
 		// nm-ul-01 - Unloading with no dependencies
 		[Test]
 		public void nm_ul_01 () {
-			Console.WriteLine ("nm_ul_01");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			
@@ -66,7 +66,7 @@ namespace NModule.Core.Test {
 		[Test]
 		[ExpectedException (typeof (DomainStillReferencedException))]
 		public void nm_ul_02 () {
-			Console.WriteLine ("nm_ul_02");
+			
 			
 			ModuleController _mc = new ModuleController ();
 			

@@ -50,61 +50,8 @@ namespace NModule.Core.Module {
 		// roles
 		protected string _roles;
 		
-		protected string _depstring;
-		
 		// owner
 		protected Assembly _owner;
-		
-		protected string OpToString (DepOps _op) {
-			switch (_op)
-			{
-				case DepOps.And:
-					return "&&";
-				case DepOps.Equal:
-					return "==";
-				case DepOps.GreaterThan:
-					return ">>";
-				case DepOps.GreaterThanEqual:
-					return ">=";
-				case DepOps.LessThan:
-					return "<<";
-				case DepOps.LessThanEqual:
-					return "<=";
-				case DepOps.Loaded:
-					return "##";
-				case DepOps.Not:
-					return "!!";
-				case DepOps.NotEqual:
-					return "!=";
-				case DepOps.Opt:
-					return "??";
-				case DepOps.Or:
-					return "||";
-				case DepOps.Xor:
-					return "^^";
-			}
-			
-			return "";
-		}
-		
-		protected void PrintDepTree (DepNode _x, int nest) {
-			if (_x == null)
-				return;
-
-			for (int i = 0; i < nest; i++)
-				Console.Write ("  ");
-				
-			Console.Write ("{0}", OpToString (_x.DepOp));
-			
-			if (_x.Constraint != null) {
-				Console.WriteLine (" {0}", _x.Constraint.Name);
-			}
-			else
-				Console.WriteLine (); // Make the tree pretty.
-			foreach (DepNode _d in _x.Children) {
-				PrintDepTree (_d, nest + 1);
-			}
-		}
 		
 		public ModuleInfo (Assembly _asm) {
 			_name = _asm.GetName ().Name;
@@ -116,7 +63,7 @@ namespace NModule.Core.Module {
 			try {
 				_depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
 				foreach (ModuleDependencyAttribute _attr in _asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)) {
-					Console.WriteLine (_attr.DepString);
+					
 				}
 			} catch (IndexOutOfRangeException) {
 				_depAttr = null;
@@ -130,13 +77,6 @@ namespace NModule.Core.Module {
 				_dependencies = new DepNode ();
 				
 				_parser.expr (_dependencies);
-				
-				Console.WriteLine ("Dependency tree for {0}", _name);
-				Console.WriteLine ("This should match {0}", _depAttr.DepString);
-				Console.WriteLine ("----------------------------------------------------");
-				PrintDepTree (_dependencies, 0);
-				Console.WriteLine ("----------------------------------------------------");
-				_depstring = _depAttr.DepString;
 			} else
 				_dependencies = null;
 			
@@ -182,11 +122,6 @@ namespace NModule.Core.Module {
 			get {
 				return _owner;
 			}
-		}
-		
-		public string ToString () {
-			return string.Format ("ModuleInfo (Name = {0}, Version = {1}, Dependencies = {2}, Roles = {3}, Owner = {4})",
-				Name, Version.ToString(), _depstring, Roles, Owner.GetName().Name);
 		}
 	}		
 }

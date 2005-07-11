@@ -28,5 +28,5 @@
 //
 
 namespace NModule.Dependency.Core {
-	public enum DepOps { Not, And, Or, Xor, Opt, Equal, NotEqual, LessThanEqual, LessThan, GreaterThanEqual, GreaterThan, Loaded, Null };
+	public enum DepOps { And, Or, Xor, Opt, Equal, NotEqual, LessThanEqual, LessThan, GreaterThanEqual, GreaterThan, Loaded, NotLoaded, Null };
 }

@@ -31,5 +31,6 @@
     <File name="./nm-ld.cs" subtype="Code" buildaction="Compile" />
     <File name="./nm-ul.cs" subtype="Code" buildaction="Compile" />
     <File name="./nm-dr.cs" subtype="Code" buildaction="Compile" />
+    <File name="./nm-ur.cs" subtype="Code" buildaction="Compile" />
   </Contents>
 </Project>

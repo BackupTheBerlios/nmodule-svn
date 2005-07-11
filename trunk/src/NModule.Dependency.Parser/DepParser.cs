@@ -56,19 +56,19 @@ namespace NModule.Dependency.Parser
 		public const int EOF = 1;
 		public const int NULL_TREE_LOOKAHEAD = 3;
 		public const int LPAREN = 4;
-		public const int NOTO = 5;
+		public const int AND = 5;
 		public const int RPAREN = 6;
-		public const int AND = 7;
-		public const int OR = 8;
-		public const int XOR = 9;
-		public const int OPT = 10;
-		public const int EQ = 11;
-		public const int NEQ = 12;
-		public const int LTE = 13;
-		public const int LS = 14;
-		public const int GTE = 15;
-		public const int GT = 16;
-		public const int LD = 17;
+		public const int OR = 7;
+		public const int XOR = 8;
+		public const int OPT = 9;
+		public const int EQ = 10;
+		public const int NEQ = 11;
+		public const int LTE = 12;
+		public const int LS = 13;
+		public const int GTE = 14;
+		public const int GT = 15;
+		public const int LD = 16;
+		public const int NL = 17;
 		public const int CLASS = 18;
 		public const int VER = 19;
 		public const int INT = 20;
@@ -131,11 +131,8 @@ namespace NModule.Dependency.Parser
 		
 		
 		try {      // for error handling
-			if ((LA(1)==LPAREN) && (LA(2)==NOTO))
+			if ((LA(1)==LPAREN) && (LA(2)==AND))
 			{
-				notexpr(parent);
-			}
-			else if ((LA(1)==LPAREN) && (LA(2)==AND)) {
 				andexpr(parent);
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==OR)) {
@@ -147,7 +144,7 @@ namespace NModule.Dependency.Parser
 			else if ((LA(1)==LPAREN) && (LA(2)==OPT)) {
 				optexpr(parent);
 			}
-			else if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD))) {
+			else if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= NL))) {
 				oexpr(parent, true);
 			}
 			else
@@ -163,7 +160,7 @@ namespace NModule.Dependency.Parser
 		}
 	}
 	
-	public void notexpr(
+	public void andexpr(
 		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
@@ -171,13 +168,13 @@ namespace NModule.Dependency.Parser
 		
 		try {      // for error handling
 			match(LPAREN);
-			match(NOTO);
-			parent.DepOp = DepOps.Not;
+			match(AND);
+			parent.DepOp = DepOps.And;
 			{ // ( ... )+
 				int _cnt6=0;
 				for (;;)
 				{
-					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
+					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= NL)) && (LA(3)==CLASS))
 					{
 						oexpr(parent, false);
 					}
@@ -205,7 +202,7 @@ _loop6_breakloop:				;
 		}
 	}
 	
-	public void andexpr(
+	public void orexpr(
 		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
@@ -213,13 +210,13 @@ _loop6_breakloop:				;
 		
 		try {      // for error handling
 			match(LPAREN);
-			match(AND);
-			parent.DepOp = DepOps.And;
+			match(OR);
+			parent.DepOp = DepOps.Or;
 			{ // ( ... )+
 				int _cnt10=0;
 				for (;;)
 				{
-					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
+					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= NL)) && (LA(3)==CLASS))
 					{
 						oexpr(parent, false);
 					}
@@ -247,7 +244,7 @@ _loop10_breakloop:				;
 		}
 	}
 	
-	public void orexpr(
+	public void xorexpr(
 		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
@@ -255,13 +252,13 @@ _loop10_breakloop:				;
 		
 		try {      // for error handling
 			match(LPAREN);
-			match(OR);
-			parent.DepOp = DepOps.Or;
+			match(XOR);
+			parent.DepOp = DepOps.Xor;
 			{ // ( ... )+
 				int _cnt14=0;
 				for (;;)
 				{
-					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
+					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= NL)) && (LA(3)==CLASS))
 					{
 						oexpr(parent, false);
 					}
@@ -289,7 +286,7 @@ _loop14_breakloop:				;
 		}
 	}
 	
-	public void xorexpr(
+	public void optexpr(
 		DepNode parent
 	) //throws RecognitionException, TokenStreamException
 {
@@ -297,13 +294,13 @@ _loop14_breakloop:				;
 		
 		try {      // for error handling
 			match(LPAREN);
-			match(XOR);
-			parent.DepOp = DepOps.Xor;
+			match(OPT);
+			parent.DepOp = DepOps.Opt;
 			{ // ( ... )+
 				int _cnt18=0;
 				for (;;)
 				{
-					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
+					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= NL)) && (LA(3)==CLASS))
 					{
 						oexpr(parent, false);
 					}
@@ -321,48 +318,6 @@ _loop14_breakloop:				;
 					_cnt18++;
 				}
 _loop18_breakloop:				;
-			}    // ( ... )+
-			match(RPAREN);
-		}
-		catch (RecognitionException ex)
-		{
-			reportError(ex);
-			recover(ex,tokenSet_1_);
-		}
-	}
-	
-	public void optexpr(
-		DepNode parent
-	) //throws RecognitionException, TokenStreamException
-{
-		
-		
-		try {      // for error handling
-			match(LPAREN);
-			match(OPT);
-			parent.DepOp = DepOps.Opt;
-			{ // ( ... )+
-				int _cnt22=0;
-				for (;;)
-				{
-					if ((LA(1)==LPAREN) && ((LA(2) >= EQ && LA(2) <= LD)) && (LA(3)==CLASS))
-					{
-						oexpr(parent, false);
-					}
-					else if ((LA(1)==LPAREN) && (tokenSet_2_.member(LA(2))) && (LA(3)==LPAREN||LA(3)==CLASS)) {
-						{
-							DepNode child = parent.CreateNewChild();
-							cexpr(child);
-						}
-					}
-					else
-					{
-						if (_cnt22 >= 1) { goto _loop22_breakloop; } else { throw new NoViableAltException(LT(1), getFilename());; }
-					}
-					
-					_cnt22++;
-				}
-_loop22_breakloop:				;
 			}    // ( ... )+
 			match(RPAREN);
 		}
@@ -401,6 +356,9 @@ _loop22_breakloop:				;
 			}
 			else if ((LA(1)==LPAREN) && (LA(2)==LD)) {
 				ldexpr(parent, root);
+			}
+			else if ((LA(1)==LPAREN) && (LA(2)==NL)) {
+				nlexpr(parent, root);
 			}
 			else
 			{
@@ -555,6 +513,26 @@ _loop22_breakloop:				;
 		}
 	}
 	
+	public void nlexpr(
+		DepNode parent, bool root
+	) //throws RecognitionException, TokenStreamException
+{
+		
+		DepNode child = (!root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.NotLoaded;
+		
+		try {      // for error handling
+			match(LPAREN);
+			match(NL);
+			iexpr(child);
+			match(RPAREN);
+		}
+		catch (RecognitionException ex)
+		{
+			reportError(ex);
+			recover(ex,tokenSet_1_);
+		}
+	}
+	
 	public void iexpr(
 		DepNode node
 	) //throws RecognitionException, TokenStreamException
@@ -606,9 +584,8 @@ _loop22_breakloop:				;
 		@"""<2>""",
 		@"""NULL_TREE_LOOKAHEAD""",
 		@"""LPAREN""",
-		@"""NOTO""",
-		@"""RPAREN""",
 		@"""AND""",
+		@"""RPAREN""",
 		@"""OR""",
 		@"""XOR""",
 		@"""OPT""",
@@ -619,6 +596,7 @@ _loop22_breakloop:				;
 		@"""GTE""",
 		@"""GT""",
 		@"""LD""",
+		@"""NL""",
 		@"""CLASS""",
 		@"""VER""",
 		@"""INT""",

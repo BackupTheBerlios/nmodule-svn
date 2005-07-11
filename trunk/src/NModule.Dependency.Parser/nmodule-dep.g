@@ -80,16 +80,11 @@ expr[DepNode root]
 
 // LPAREN! ((NOTO^|AND^|OR^|XOR^|OPT^) (oexpr|cexpr)+) RPAREN!
 cexpr[DepNode parent]
-	: notexpr[parent]
-	| andexpr[parent]
+	: andexpr[parent]
 	| orexpr[parent]
 	| xorexpr[parent]
 	| optexpr[parent]
 	| oexpr[parent, true]
-	;
-
-notexpr[DepNode parent]
-	: LPAREN! NOTO { parent.DepOp = DepOps.Not; } (oexpr[parent, false]|({DepNode child = parent.CreateNewChild(); } cexpr[child]))+ RPAREN!
 	;
 
 andexpr[DepNode parent]
@@ -117,6 +112,7 @@ oexpr[DepNode parent, bool root]
 	| gteexpr[parent, root]
 	| gtexpr[parent, root]
 	| ldexpr[parent, root]
+	| nlexpr[parent, root]
 	;
 	
 eqexpr[DepNode parent, bool root]
@@ -154,7 +150,11 @@ ldexpr[DepNode parent, bool root]
 	: LPAREN! LD iexpr[child] RPAREN!
 	;
 
-
+nlexpr[DepNode parent, bool root]
+{ DepNode child = (!root)? parent.CreateNewChild() : parent; child.DepOp = DepOps.NotLoaded; }
+	: LPAREN! NL iexpr[child] RPAREN!
+	;
+	
 iexpr[DepNode node]
 { node.Constraint = new DepConstraint(); }
 	: c:CLASS ( v:VER { node.Constraint.VersionTmp=v.getText(); } )? { node.Constraint.Name=c.getText(); };
@@ -172,7 +172,6 @@ LPAREN: '(' ;
 RPAREN: ')' ;
 
 // Combination Operators
-NOTO: "!!" ;
 AND: "&&" ;
 OR: "||" ;
 XOR: "^^" ;
@@ -186,6 +185,7 @@ LS: "<<" ;
 GTE: ">=" ;
 GT: ">>" ;
 LD: "##" ;
+NL: "!#" ;
 
 // Version
 protected

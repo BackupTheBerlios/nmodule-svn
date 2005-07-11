@@ -66,19 +66,19 @@ namespace NModule.Dependency.Parser
 		public const int EOF = 1;
 		public const int NULL_TREE_LOOKAHEAD = 3;
 		public const int LPAREN = 4;
-		public const int NOTO = 5;
+		public const int AND = 5;
 		public const int RPAREN = 6;
-		public const int AND = 7;
-		public const int OR = 8;
-		public const int XOR = 9;
-		public const int OPT = 10;
-		public const int EQ = 11;
-		public const int NEQ = 12;
-		public const int LTE = 13;
-		public const int LS = 14;
-		public const int GTE = 15;
-		public const int GT = 16;
-		public const int LD = 17;
+		public const int OR = 7;
+		public const int XOR = 8;
+		public const int OPT = 9;
+		public const int EQ = 10;
+		public const int NEQ = 11;
+		public const int LTE = 12;
+		public const int LS = 13;
+		public const int GTE = 14;
+		public const int GT = 15;
+		public const int LD = 16;
+		public const int NL = 17;
 		public const int CLASS = 18;
 		public const int VER = 19;
 		public const int INT = 20;
@@ -208,12 +208,8 @@ tryAgain:
 							break;
 						}
 						default:
-							if ((cached_LA1=='!') && (cached_LA2=='!'))
+							if ((cached_LA1=='!') && (cached_LA2=='='))
 							{
-								mNOTO(true);
-								theRetToken = returnToken_;
-							}
-							else if ((cached_LA1=='!') && (cached_LA2=='=')) {
 								mNEQ(true);
 								theRetToken = returnToken_;
 							}
@@ -231,6 +227,10 @@ tryAgain:
 							}
 							else if ((cached_LA1=='>') && (cached_LA2=='>')) {
 								mGT(true);
+								theRetToken = returnToken_;
+							}
+							else if ((cached_LA1=='!') && (cached_LA2=='#')) {
+								mNL(true);
 								theRetToken = returnToken_;
 							}
 						else
@@ -280,20 +280,6 @@ tryAgain:
 		_ttype = RPAREN;
 		
 		match(')');
-		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
-		{
-			_token = makeToken(_ttype);
-			_token.setText(text.ToString(_begin, text.Length-_begin));
-		}
-		returnToken_ = _token;
-	}
-	
-	public void mNOTO(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
-{
-		int _ttype; IToken _token=null; int _begin=text.Length;
-		_ttype = NOTO;
-		
-		match("!!");
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
 			_token = makeToken(_ttype);
@@ -456,13 +442,27 @@ tryAgain:
 		returnToken_ = _token;
 	}
 	
+	public void mNL(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
+{
+		int _ttype; IToken _token=null; int _begin=text.Length;
+		_ttype = NL;
+		
+		match("!#");
+		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
+		{
+			_token = makeToken(_ttype);
+			_token.setText(text.ToString(_begin, text.Length-_begin));
+		}
+		returnToken_ = _token;
+	}
+	
 	protected void mINT(bool _createToken) //throws RecognitionException, CharStreamException, TokenStreamException
 {
 		int _ttype; IToken _token=null; int _begin=text.Length;
 		_ttype = INT;
 		
 		{ // ( ... )+
-			int _cnt49=0;
+			int _cnt46=0;
 			for (;;)
 			{
 				if (((cached_LA1 >= '0' && cached_LA1 <= '9')))
@@ -471,12 +471,12 @@ tryAgain:
 				}
 				else
 				{
-					if (_cnt49 >= 1) { goto _loop49_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
+					if (_cnt46 >= 1) { goto _loop46_breakloop; } else { throw new NoViableAltForCharException(cached_LA1, getFilename(), getLine(), getColumn());; }
 				}
 				
-				_cnt49++;
+				_cnt46++;
 			}
-_loop49_breakloop:			;
+_loop46_breakloop:			;
 		}    // ( ... )+
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -666,11 +666,11 @@ _loop49_breakloop:			;
 				}
 				else
 				{
-					goto _loop64_breakloop;
+					goto _loop61_breakloop;
 				}
 				
 			}
-_loop64_breakloop:			;
+_loop61_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{
@@ -696,11 +696,11 @@ _loop64_breakloop:			;
 				}
 				else
 				{
-					goto _loop67_breakloop;
+					goto _loop64_breakloop;
 				}
 				
 			}
-_loop67_breakloop:			;
+_loop64_breakloop:			;
 		}    // ( ... )*
 		if (_createToken && (null == _token) && (_ttype != Token.SKIP))
 		{

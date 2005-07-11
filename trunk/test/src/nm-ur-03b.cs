@@ -41,9 +41,9 @@ using NModule.Dependency.Resolver;
 [assembly: AssemblyVersion ("1.0.*")]
 [assembly: ModuleRole ("")]
 
-namespace NModule.Core.Test.nm_dr {
-	public class nm_dr_11b_module {
-		public nm_dr_11b_module() {
+namespace NModule.Core.Test.nm_ur {
+	public class nm_ur_03b_module {
+		public nm_ur_03b_module() {
 		}
 	}
 }

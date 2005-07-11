@@ -1,1 +1,0 @@
-(&& (>> Elfblade.Core.Net 2.0) (!= Elfblade.Core 1.0) (!! (<= Elfblade.Core.Net.Extensions 2.0)) (?? (## Elfblade.Core.Net.Extensions)))

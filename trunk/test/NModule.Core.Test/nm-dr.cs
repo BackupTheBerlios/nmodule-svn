@@ -197,7 +197,7 @@ namespace NModule.Core.Test {
 			Assert.IsFalse (_mc.IsLoaded ("nm-dr-10c"));
 		}
 		
-		// (!! (==))
+		// (!#))
 		[Test]
 		public void nm_dr_11() {
 			ModuleController _mc = new ModuleController ();
@@ -207,7 +207,7 @@ namespace NModule.Core.Test {
 			_mc.LoadModule ("nm-dr-11a");
 			
 			Assert.IsTrue (_mc.IsLoaded ("nm-dr-11a"));
-			Assert.IsTrue (_mc.IsLoaded ("nm-dr-11b"));
+			Assert.IsFalse (_mc.IsLoaded ("nm-dr-11b"));
 		}
 		
 		// (?? (>=))
@@ -238,7 +238,7 @@ namespace NModule.Core.Test {
 			Assert.IsFalse (_mc.IsLoaded ("nm-dr-13d"));
 		}
 		
-		// (|| (&& (##) (##)) (!! (!=)))
+		// (|| (&& (##) (##)) (==)))
 		[Test]
 		public void nm_dr_14() {
 			ModuleController _mc = new ModuleController ();

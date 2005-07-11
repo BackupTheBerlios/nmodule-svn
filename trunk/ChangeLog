@@ -1,3 +1,24 @@
+2005-07-06 Michael Tindal <urilith@gentoo.org>
+
+	* NModule.build: Make run-tests run by default now.
+	* NModule.build.include: Set up the test dirs here now, so that we can compile the tests in their own build files.
+	* src/NModule.Core.Loader/DepResolver.cs: A ModuleNotFoundException is still technically an UnresolvedDependencyException.  Removed handling of DepOps.Not and added handler for DepOps.NotLoaded.
+	* src/NModule.Core.Loader/ModuleController.cs: Removed Console.WriteLines.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Removed Console.WriteLines.
+	* src/NModule.Core.Module/ModuleInfo.cs: Removed Console.WriteLines.
+	* src/NModule.Dependency.Core/DepOps.cs: Added NotLoaded operator, removed the Not operator.
+	* src/NModule.Dependency.Parser/DepLexer.cs,
+	* src/NModule.Dependency.Parser/DepParser.cs,
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.cs,
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.txt: Regenerated.
+	* src/NModule.Dependency.Parser/nmodule-dep.g: Removed NOTO from the lexer, and added NL ("!#"), also removed notexpr from cexpr, and added nlexpr to oexpr.
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: Updated with new test file.
+	* test/NModule.Core.Test/nm-dr.cs: Re-added 0.2's nm-dr-01 test.
+	* test/NModule.Core.Test/nm-ld.cs: Removed Console.WriteLines.
+	* test/NModule.Core.Test/nm-ul.cs: Removed Console.WriteLines.
+	* test/NModule.Core.Test/NModule.Core.Test.build: Split into seperate build files.
+	* test/NModule.Core.Test/nm-ur.cs: New unresolved dependency test suite.
+
 2005-07-04 Michael Tindal <urilith@gentoo.org>
 
 	* More bug fixes, rest of the dependency resolution test suite.

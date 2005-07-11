@@ -39,12 +39,12 @@ using NModule.Dependency.Parser;
 using NModule.Dependency.Resolver;
 
 [assembly: AssemblyVersion ("1.0.*")]
-[assembly: ModuleDependency ("(|| (&& (## nm-dr-14b) (## nm-dr-14c)) (!! (!= nm-dr-14d 1.0)))")]
+[assembly: ModuleDependency ("(&& (|| (== nm-ur-13b 1.0) (!= nm-ur-13c 2.0)) (## nm-ur-13d))")]
 [assembly: ModuleRole ("")]
 
-namespace NModule.Core.Test.nm_dr {
-	public class nm_dr_14a_module {
-		public nm_dr_14a_module() {
+namespace NModule.Core.Test.nm_ur {
+	public class nm_ur_13a_module {
+		public nm_ur_13a_module() {
 		}
 	}
 }
