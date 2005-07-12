@@ -42,8 +42,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-ld-01.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -61,8 +60,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-ld-03.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -80,8 +78,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-ld-04.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -99,8 +96,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-ld-05.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />

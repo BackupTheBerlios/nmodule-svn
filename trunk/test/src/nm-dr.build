@@ -42,8 +42,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -61,8 +60,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -80,8 +78,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -99,8 +96,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01d.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -118,8 +114,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01e.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -137,8 +132,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01f.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -156,8 +150,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-01g.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -175,8 +168,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-02a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -194,8 +186,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-02b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -213,8 +204,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-03a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -232,8 +222,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-03b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -251,8 +240,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-04a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -270,8 +258,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-04b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -289,8 +276,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-05a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -308,8 +294,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-05b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -327,8 +312,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-06a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -346,8 +330,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-06b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -365,8 +348,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-07a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -384,8 +366,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-07b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -403,8 +384,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-08a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -422,8 +402,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-08b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -441,8 +420,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-08c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -460,8 +438,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-09a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -479,8 +456,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-09b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -498,8 +474,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-09c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -517,8 +492,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-10a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -536,8 +510,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-10b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -555,8 +528,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-10c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -593,8 +565,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-11b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -612,8 +583,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-12a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -631,8 +601,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-12b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -650,8 +619,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-13a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -669,8 +637,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-13b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -688,8 +655,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-13c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -707,8 +673,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-14a.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -726,8 +691,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-14b.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -745,8 +709,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-14c.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -764,8 +727,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="nm-dr-14d.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
-        <include name="NModule.Dependency.Parser.dll" />
-        
+        <include name="NModule.Dependency.Parser.dll" />        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
