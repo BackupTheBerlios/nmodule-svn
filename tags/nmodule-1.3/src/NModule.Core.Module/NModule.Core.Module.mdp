@@ -1,0 +1,30 @@
+<Project name="NModule.Core.Module" fileversion="2.0" language="C#" ctype="DotNetProject">
+  <Configurations>
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="./bin/Debug" assembly="NModule.Core.Module" />
+      <Build debugmode="True" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="./bin/Release" assembly="NModule.Core.Module" />
+      <Build debugmode="False" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" />
+      <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <References>
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Core" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Dependency.Parser" />
+    <ProjectReference type="Project" localcopy="True" refto="NModule.Core" />
+  </References>
+  <DeploymentInformation strategy="File">
+    <excludeFiles />
+  </DeploymentInformation>
+  <Contents>
+    <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleRole.cs" subtype="Code" buildaction="Compile" />
+    <File name="./ModuleInfoException.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+</Project>

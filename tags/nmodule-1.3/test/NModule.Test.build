@@ -1,0 +1,68 @@
+<!--
+NModule.build
+
+Author:
+    Michael Tindal <urilith@gentoo.org>
+
+Copyright (C) 2005 Michael Tindal and the individuals listed on
+the ChangeLog entries.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<project name="NModule.Test" default="compile-all" basedir=".">
+  <description>NModule test build files.</description>
+
+  <include buildfile="../NModule.build.include" />
+  
+  <target name="compile-all" depends="set-test-dirs,make-test-dirs,nm-ld,nm-ul,nm-dr,nm-ur,nm-cr,nm-rc,nm-rr,NModule.Core.Test" />
+  
+  <target name="nm-ld">
+    <nant buildfile="src/nm-ld.build" />
+  </target>
+    
+  <target name="nm-ul">
+    <nant buildfile="src/nm-ul.build" />
+  </target>
+
+  <target name="nm-dr">
+    <nant buildfile="src/nm-dr.build" />
+  </target>
+
+  <target name="nm-ur">
+    <nant buildfile="src/nm-ur.build" />
+  </target>
+
+  <target name="nm-cr">
+    <nant buildfile="src/nm-cr.build" />
+  </target>
+
+  <target name="nm-rc">
+    <nant buildfile="src/nm-rc.build" />
+  </target>
+
+  <target name="nm-rr">
+    <nant buildfile="src/nm-rr.build" />
+  </target>
+
+  <target name="NModule.Core.Test">
+    <nant buildfile="NModule.Core.Test/NModule.Core.Test.build" />
+  </target>
+</project>

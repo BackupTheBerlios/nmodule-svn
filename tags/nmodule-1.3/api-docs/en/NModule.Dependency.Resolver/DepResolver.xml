@@ -1,0 +1,195 @@
+<Type Name="DepResolver" FullName="NModule.Dependency.Resolver.DepResolver">
+  <TypeSignature Language="C#" Value="public class DepResolver" />
+  <AssemblyInfo>
+    <AssemblyName>NModule.Core.Loader</AssemblyName>
+    <AssemblyVersion>0.1.2004.7742</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DepResolver (NModule.Core.Loader.ModuleController controller, System.Collections.ArrayList search_path);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="controller" Type="NModule.Core.Loader.ModuleController" />
+        <Parameter Name="search_path" Type="System.Collections.ArrayList" />
+      </Parameters>
+      <Docs>
+        <param name="controller">To be added.</param>
+        <param name="search_path">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="_controller">
+      <MemberSignature Language="C#" Value="protected NModule.Core.Loader.ModuleController _controller;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>NModule.Core.Loader.ModuleController</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="_search_path">
+      <MemberSignature Language="C#" Value="protected System.Collections.ArrayList _search_path;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.ArrayList</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SearchForModule">
+      <MemberSignature Language="C#" Value="protected string SearchForModule (string _name);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_name" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="_name">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OpResolve">
+      <MemberSignature Language="C#" Value="protected void OpResolve (NModule.Dependency.Core.DepNode _node, System.Collections.ArrayList _parents, NModule.Core.Module.ModuleInfo _info, bool checking);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_node" Type="NModule.Dependency.Core.DepNode" />
+        <Parameter Name="_parents" Type="System.Collections.ArrayList" />
+        <Parameter Name="_info" Type="NModule.Core.Module.ModuleInfo" />
+        <Parameter Name="checking" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="_node">To be added.</param>
+        <param name="_parents">To be added.</param>
+        <param name="_info">To be added.</param>
+        <param name="checking">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OpToString">
+      <MemberSignature Language="C#" Value="protected string OpToString (NModule.Dependency.Core.DepOps _op);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_op" Type="NModule.Dependency.Core.DepOps" />
+      </Parameters>
+      <Docs>
+        <param name="_op">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsEmptyVersion">
+      <MemberSignature Language="C#" Value="protected bool IsEmptyVersion (NModule.Dependency.Core.DepVersion _ver);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_ver" Type="NModule.Dependency.Core.DepVersion" />
+      </Parameters>
+      <Docs>
+        <param name="_ver">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VersionMatch">
+      <MemberSignature Language="C#" Value="protected bool VersionMatch (NModule.Dependency.Core.DepVersion _dver, NModule.Dependency.Core.DepVersion _ver, NModule.Dependency.Core.DepOps _op);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_dver" Type="NModule.Dependency.Core.DepVersion" />
+        <Parameter Name="_ver" Type="NModule.Dependency.Core.DepVersion" />
+        <Parameter Name="_op" Type="NModule.Dependency.Core.DepOps" />
+      </Parameters>
+      <Docs>
+        <param name="_dver">To be added.</param>
+        <param name="_ver">To be added.</param>
+        <param name="_op">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InternalResolve">
+      <MemberSignature Language="C#" Value="protected void InternalResolve (System.Collections.ArrayList _parents, NModule.Core.Module.ModuleInfo _info, bool checking);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_parents" Type="System.Collections.ArrayList" />
+        <Parameter Name="_info" Type="NModule.Core.Module.ModuleInfo" />
+        <Parameter Name="checking" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="_parents">To be added.</param>
+        <param name="_info">To be added.</param>
+        <param name="checking">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ResolveCheck">
+      <MemberSignature Language="C#" Value="public void ResolveCheck (System.Collections.ArrayList _parents, NModule.Core.Module.ModuleInfo _info);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_parents" Type="System.Collections.ArrayList" />
+        <Parameter Name="_info" Type="NModule.Core.Module.ModuleInfo" />
+      </Parameters>
+      <Docs>
+        <param name="_parents">To be added.</param>
+        <param name="_info">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Resolve">
+      <MemberSignature Language="C#" Value="public void Resolve (System.Collections.ArrayList _parents, NModule.Core.Module.ModuleInfo _info);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="_parents" Type="System.Collections.ArrayList" />
+        <Parameter Name="_info" Type="NModule.Core.Module.ModuleInfo" />
+      </Parameters>
+      <Docs>
+        <param name="_parents">To be added.</param>
+        <param name="_info">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

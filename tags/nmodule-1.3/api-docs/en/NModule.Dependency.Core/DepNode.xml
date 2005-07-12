@@ -1,0 +1,99 @@
+<Type Name="DepNode" FullName="NModule.Dependency.Core.DepNode">
+  <TypeSignature Language="C#" Value="public class DepNode" />
+  <AssemblyInfo>
+    <AssemblyName>NModule.Dependency.Core</AssemblyName>
+    <AssemblyVersion>0.1.2004.7706</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DepNode ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public DepNode (NModule.Dependency.Core.DepNode parent);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="parent" Type="NModule.Dependency.Core.DepNode" />
+      </Parameters>
+      <Docs>
+        <param name="parent">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CreateNewChild">
+      <MemberSignature Language="C#" Value="public NModule.Dependency.Core.DepNode CreateNewChild ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>NModule.Dependency.Core.DepNode</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Parent">
+      <MemberSignature Language="C#" Value="public NModule.Dependency.Core.DepNode Parent { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>NModule.Dependency.Core.DepNode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Children">
+      <MemberSignature Language="C#" Value="public System.Collections.ArrayList Children { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Collections.ArrayList</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DepOp">
+      <MemberSignature Language="C#" Value="public NModule.Dependency.Core.DepOps DepOp { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>NModule.Dependency.Core.DepOps</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Constraint">
+      <MemberSignature Language="C#" Value="public NModule.Dependency.Core.DepConstraint Constraint { set; get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>NModule.Dependency.Core.DepConstraint</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
