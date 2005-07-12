@@ -1,5 +1,9 @@
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
+	* RELEASE-NOTES-0.3: Release notes for 0.3
+
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
 	* NModule.build.include: Added rc and rr test dirs.
 	* src/NModule.Core/INmRr1.cs: Role test file.  This needs to be moved out of here.
 	* src/NModule.Core.Loader/DepResolver.cs: Fixed ref count handling.
