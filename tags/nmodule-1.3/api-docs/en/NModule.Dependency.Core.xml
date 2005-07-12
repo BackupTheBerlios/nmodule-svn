@@ -1,6 +1,0 @@
-<Namespace Name="NModule.Dependency.Core">
-  <Docs>
-    <summary>Dependency classes not directly related to the parser.</summary>
-    <remarks>This assembly contains classes describing a dependency node, version, and constraint.</remarks>
-  </Docs>
-</Namespace>
