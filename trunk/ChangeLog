@@ -1,5 +1,18 @@
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
+	* Removed old mbuild build system.  Nant is working great now, and mbuild is no longer needed.
+	* src/Buildfile: 
+	* src/NModule.Core.Loader.dll.sources: 
+	* src/NModule.Core.Module.dll.sources: 
+	* src/NModule.Core.dll.sources: 
+	* src/NModule.Dependency.Core.dll.sources: 
+	* src/NModule.Dependency.Parser.dll.sources: 
+	* src/antlr-runtime.dll.sources: 
+	* Buildfile: 
+	* Buildfile.config: 
+
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
 	* Merged antlr-runtime into NModule.Dependency.Parser.  This is the only place its used,
 	  and the merge will allow us to install to the GAC without interferring with other antlr-runtime
 	  installations.
