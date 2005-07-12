@@ -35,7 +35,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <property name="release" value="false" overwrite="false" />
   <property name="strong" value="false" overwrite="false" />
 
-  <target name="compile-all" depends="NModule.Core,NModule.Dependency.Core,antlr-runtime,NModule.Dependency.Parser,NModule.Core.Module,NModule.Core.Loader" />
+  <target name="compile-all" depends="NModule.Core,NModule.Dependency.Core,NModule.Dependency.Parser,NModule.Core.Module,NModule.Core.Loader" />
 
   <target name="NModule.Core">
     <nant buildfile="NModule.Core/NModule.Core.build" />
@@ -45,11 +45,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <nant buildfile="NModule.Dependency.Core/NModule.Dependency.Core.build" />
   </target>
 
-  <target name="antlr-runtime">
-    <nant buildfile="antlr-runtime/antlr-runtime.build" />
-  </target>
-
-  <target name="NModule.Dependency.Parser" depends="NModule.Core,NModule.Dependency.Core,antlr-runtime">
+  <target name="NModule.Dependency.Parser" depends="NModule.Core,NModule.Dependency.Core">
     <nant buildfile="NModule.Dependency.Parser/NModule.Dependency.Parser.build" />
   </target>
 

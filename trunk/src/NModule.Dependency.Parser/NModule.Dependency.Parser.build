@@ -43,12 +43,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         output="${current.build.dir}/NModule.Dependency.Parser.dll"
         debug="${build.debug}" define="${build.defines.csc}">
       <sources basedir=".">
-        <include name="*.cs"/>
+        <include name="**/*.cs"/>
       </sources>
       <references basedir="${current.build.dir}">
       	<include name="NModule.Core.dll" />
-	      <include name="NModule.Dependency.Core.dll" />
-        <include name="antlr-runtime.dll" />
+        <include name="NModule.Dependency.Core.dll" />  
       </references>
     </csc>
   </target>

@@ -43,7 +43,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -62,7 +62,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -81,7 +81,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -100,7 +100,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -119,7 +119,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -138,7 +138,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -157,7 +157,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -176,7 +176,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -195,7 +195,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -214,7 +214,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -233,7 +233,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -252,7 +252,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -271,7 +271,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -290,7 +290,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -309,7 +309,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -328,7 +328,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -347,7 +347,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -366,7 +366,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -385,7 +385,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -404,7 +404,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -423,7 +423,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -442,7 +442,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -461,7 +461,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -480,7 +480,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -499,7 +499,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -518,7 +518,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -537,7 +537,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -556,7 +556,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -575,7 +575,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -594,7 +594,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -613,7 +613,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -632,7 +632,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -651,7 +651,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -670,7 +670,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -689,7 +689,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -708,7 +708,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -727,7 +727,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -746,7 +746,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />
@@ -765,7 +765,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </sources>
       <references basedir="${current.build.dir}">
         <include name="NModule.Dependency.Parser.dll" />
-        <include name="antlr-runtime.dll" />
+        
         <include name="NModule.Core.dll" />
         <include name="NModule.Core.Loader.dll" />
         <include name="NModule.Core.Module.dll" />

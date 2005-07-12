@@ -1,5 +1,11 @@
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
+	* Merged antlr-runtime into NModule.Dependency.Parser.  This is the only place its used,
+	  and the merge will allow us to install to the GAC without interferring with other antlr-runtime
+	  installations.
+
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
 	* NModule.build.include: Added nm-cr directory.
 	* src/NModule.Core.Loader/DepResolver.cs: Fixed lots of bugs.  NullReferenceException finally tracked down.  Circular dependency detection is correct now.
 	* src/NModule.Core.Loader/ModuleController.cs: Don't remember.
