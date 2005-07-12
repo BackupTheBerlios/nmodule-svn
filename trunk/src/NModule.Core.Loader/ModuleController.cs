@@ -47,6 +47,8 @@ namespace NModule.Core.Loader {
 		// Reference Counts
 		protected Hashtable _ref_counts;
 
+		protected Hashtable _ref_count_inc_table;
+		
 		// Module Search Path
 		protected ArrayList _search_path;
 
@@ -63,6 +65,7 @@ namespace NModule.Core.Loader {
 		public ModuleController () {
 			_app_domain_map = new Hashtable ();
 			_ref_counts = new Hashtable ();
+			_ref_count_inc_table = new Hashtable ();
 			_search_path = new ArrayList ();
 			_roles = new ArrayList ();
 			_loader = new ModuleLoader (_search_path, this);
@@ -111,11 +114,6 @@ namespace NModule.Core.Loader {
 		}
 		
 		public bool IsLoaded (string _name) {
-			foreach (string _key in _app_domain_map.Keys) {
-				
-				
-			}
-
 			return _app_domain_map.ContainsKey (_name);
 		}
 		
@@ -173,6 +171,10 @@ namespace NModule.Core.Loader {
 #endregion
 
 #region Domain Reference Counts
+		public void IncRef (string _name) {			
+			IncRef ((AppDomain)_app_domain_map[_name]);
+		}
+		
 		protected void IncRef (AppDomain _domain) {
 			if (!_ref_counts.Contains (_domain)) {
 				_ref_counts.Add (_domain, 0);
@@ -311,6 +313,6 @@ namespace NModule.Core.Loader {
 		public int RefCount (string _name) {
 			return ((int)_ref_counts[(AppDomain)_app_domain_map[_name]]);
 		}
-#endregion
+#endregion				
 	}
 }		

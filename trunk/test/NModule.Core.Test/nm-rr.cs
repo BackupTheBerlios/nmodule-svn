@@ -1,5 +1,5 @@
 //
-// nm-cr.cs
+// nm-rr.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -43,39 +43,35 @@ namespace NModule.Core.Test {
 	using NUnit.Framework;
 	
 	[TestFixture]
-	public class nm_cr {
-	
-		public nm_cr () {
+	public class nm_rr {
+		protected INmRr1 i;
+		
+		public void RegisterINmRr1 (Assembly asm, Type type) {
+			i = (INmRr1)asm.CreateInstance (type.ToString ());
+		}
+		
+		public string CallINmRr1 () {
+			return i.WriteMyself ();
+		}
+		
+		public void UnregisterINmRr1 (Assembly asm) {
+			return;
+		}
+		
+		public nm_rr () {
 		}
 		
 		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_01 () {
+		public void nm_rr_01 () {
 			ModuleController _mc = new ModuleController ();
 			
-			_mc.SearchPath.Add ("data/nm-cr");
+			_mc.SearchPath.Add ("data/nm-rr");
 			
-			_mc.LoadModule ("nm-cr-01a");
-		}
-		
-		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_02 () {
-			ModuleController _mc = new ModuleController ();
+			_mc.RegisterNewRole ("INmRr1", typeof (INmRr1), RegisterINmRr1, UnregisterINmRr1);
 			
-			_mc.SearchPath.Add ("data/nm-cr");
+			_mc.LoadModule ("nm-rr-01a");
 			
-			_mc.LoadModule ("nm-cr-02a");
-		}
-		
-		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_03 () {
-			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-03a");
+			Assert.IsTrue (CallINmRr1 () == "I am an instantiated nm_rr_01a, go me!");
 		}
 	}
 }

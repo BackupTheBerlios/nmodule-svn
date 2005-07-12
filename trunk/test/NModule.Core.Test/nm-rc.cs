@@ -1,5 +1,5 @@
 //
-// nm-cr.cs
+// nm-rc.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -43,39 +43,56 @@ namespace NModule.Core.Test {
 	using NUnit.Framework;
 	
 	[TestFixture]
-	public class nm_cr {
+	public class nm_rc {
 	
-		public nm_cr () {
+		public nm_rc () {
 		}
 		
 		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_01 () {
+		public void nm_rc_01 () {
 			ModuleController _mc = new ModuleController ();
 			
-			_mc.SearchPath.Add ("data/nm-cr");
+			_mc.SearchPath.Add ("data/nm-rc");
 			
-			_mc.LoadModule ("nm-cr-01a");
+			_mc.LoadModule ("nm-rc-01");
+			
+			Assert.IsTrue (_mc.RefCount ("nm-rc-01") == 1);
 		}
 		
 		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_02 () {
+		public void nm_rc_02 () {
 			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-02a");
+
+			_mc.SearchPath.Add ("data/nm-rc");
+
+			_mc.LoadModule ("nm-rc-02");
+			_mc.LoadModule ("nm-rc-02");
+
+			Assert.IsTrue (_mc.RefCount ("nm-rc-02") == 2);
 		}
-		
+
 		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_03 () {
+		public void nm_rc_03 () {
 			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-03a");
+
+			_mc.SearchPath.Add ("data/nm-rc");
+
+			_mc.LoadModule ("nm-rc-03a");
+
+			Assert.IsTrue (_mc.RefCount ("nm-rc-03c") == 3);
+		}
+
+		[Test]
+		public void nm_rc_04 () {
+			ModuleController _mc = new ModuleController ();
+
+			_mc.SearchPath.Add ("data/nm-rc");
+
+			_mc.LoadModule ("nm-rc-04a");
+			_mc.LoadModule ("nm-rc-04b");
+
+			Assert.IsTrue (_mc.RefCount ("nm-rc-04a") == 2);
+			Assert.IsTrue (_mc.RefCount ("nm-rc-04b") == 1);
 		}
 	}
 }

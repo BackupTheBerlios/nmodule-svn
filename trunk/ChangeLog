@@ -1,5 +1,30 @@
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
+	* NModule.build.include: Added rc and rr test dirs.
+	* src/NModule.Core/INmRr1.cs: Role test file.  This needs to be moved out of here.
+	* src/NModule.Core.Loader/DepResolver.cs: Fixed ref count handling.
+	* src/NModule.Core.Loader/ModuleController.cs: Added a public version of IncRef to fix ref counts.
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: 
+	* test/NModule.Core.Test/nm-cr.cs: Fixed stuff.
+	* test/NModule.Core.Test/nm-rc.cs: Ref count tests.
+	* test/NModule.Core.Test/nm-rr.cs: Role tests.
+	* test/NModule.Test.build: Added rc/rr tests.
+	* test/src/INmRr2.cs: 
+	* test/src/nm-rc-01.cs: 
+	* test/src/nm-rc-02.cs: 
+	* test/src/nm-rc-03a.cs: 
+	* test/src/nm-rc-03b.cs: 
+	* test/src/nm-rc-03c.cs: 
+	* test/src/nm-rc-04a.cs: 
+	* test/src/nm-rc-04b.cs: 
+	* test/src/nm-rc.build: 
+	* test/src/nm-rr-01a.cs: 
+	* test/src/nm-rr-02a.cs: 
+	* test/src/nm-rr-02b.cs: 
+	* test/src/nm-rr.build: 
+
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
 	* Removed old mbuild build system.  Nant is working great now, and mbuild is no longer needed.
 	* src/Buildfile: 
 	* src/NModule.Core.Loader.dll.sources: 

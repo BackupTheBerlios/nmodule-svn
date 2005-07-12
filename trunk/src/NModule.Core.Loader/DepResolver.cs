@@ -231,6 +231,18 @@ namespace NModule.Dependency.Resolver {
 						
 					if (!checking) {
 						_controller.LoadModule (_constraint.Name);
+						
+						_parents.Sort ();
+						
+						ArrayList _seen = new ArrayList ();
+						_seen.Add (_info.Name);
+						_seen.Add (_constraint.Name);
+						foreach (string _p in _parents) {
+							if (!_seen.Contains (_p)) {
+								_controller.IncRef (_constraint.Name);
+								_seen.Add (_p);
+							}
+						}
 					}
 				}
 					
@@ -247,6 +259,18 @@ namespace NModule.Dependency.Resolver {
 					
 					if (!checking) {
 						_controller.LoadModule (_constraint.Name);
+						
+						_parents.Sort ();
+						
+						ArrayList _seen = new ArrayList ();
+						_seen.Add (_info.Name);
+						_seen.Add (_constraint.Name);
+						foreach (string _p in _parents) {
+							if (!_seen.Contains (_p)) {
+								_controller.IncRef (_constraint.Name);
+								_seen.Add (_p);
+							}
+						}
 					}
 				}
 				

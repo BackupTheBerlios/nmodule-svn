@@ -1,5 +1,5 @@
 //
-// nm-cr.cs
+// nm-ld-01.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -27,55 +27,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-namespace NModule.Core.Test {
+using System;
+using System.Reflection;
+using System.Collections;
+	
+using NModule.Core.Loader;
+using NModule.Core;
+using NModule.Core.Module;
+using NModule.Dependency.Core;
+using NModule.Dependency.Parser;
+using NModule.Dependency.Resolver;
 
-	using System;
-	using System.Reflection;
-	using System.Collections;
-	
-	using NModule.Core.Loader;
-	using NModule.Core;
-	using NModule.Core.Module;
-	using NModule.Dependency.Core;
-	using NModule.Dependency.Parser;
-	using NModule.Dependency.Resolver;
-	
-	using NUnit.Framework;
-	
-	[TestFixture]
-	public class nm_cr {
-	
-		public nm_cr () {
-		}
-		
-		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_01 () {
-			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-01a");
-		}
-		
-		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_02 () {
-			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-02a");
-		}
-		
-		[Test]
-		[ExpectedException (typeof (CircularDependencyException))]
-		public void nm_cr_03 () {
-			ModuleController _mc = new ModuleController ();
-			
-			_mc.SearchPath.Add ("data/nm-cr");
-			
-			_mc.LoadModule ("nm-cr-03a");
+[assembly: AssemblyVersion ("1.0.*")]
+[assembly: ModuleRole ("")]
+
+namespace NModule.Core.Test.nm_ld {
+	public class nm_ld_01_module {
+		public nm_ld_01_module() {
 		}
 	}
 }

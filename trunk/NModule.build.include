@@ -267,9 +267,11 @@
     <property name="nm-dr-dir" value="${path::combine(project.test.data.dir,'nm-dr')}" />
     <property name="nm-ur-dir" value="${path::combine(project.test.data.dir,'nm-ur')}" />
     <property name="nm-cr-dir" value="${path::combine(project.test.data.dir,'nm-cr')}" />
+    <property name="nm-rc-dir" value="${path::combine(project.test.data.dir,'nm-rc')}" />
+    <property name="nm-rr-dir" value="${path::combine(project.test.data.dir,'nm-rr')}" />
   </target>
 
-  <target name="make-test-dirs" depends="make-nm-ld-dir,make-nm-ul-dir,make-nm-dr-dir,make-nm-ur-dir,make-nm-cr-dir" />
+  <target name="make-test-dirs" depends="make-nm-ld-dir,make-nm-ul-dir,make-nm-dr-dir,make-nm-ur-dir,make-nm-cr-dir,make-nm-rc-dir,make-nm-rr-dir" />
 
   <target name="make-nm-ld-dir">
     <mkdir dir="${nm-ld-dir}" unless="${directory::exists(nm-ld-dir)}" />
@@ -291,6 +293,14 @@
 
   <target name="make-nm-cr-dir">
     <mkdir dir="${nm-cr-dir}" unless="${directory::exists(nm-cr-dir)}" />
+  </target>
+
+  <target name="make-nm-rc-dir">
+    <mkdir dir="${nm-rc-dir}" unless="${directory::exists(nm-rc-dir)}" />
+  </target>
+
+  <target name="make-nm-rr-dir">
+    <mkdir dir="${nm-rr-dir}" unless="${directory::exists(nm-rr-dir)}" />
   </target>
 
   <!-- Dump configuration settings for debugging -->

@@ -1,5 +1,5 @@
 <!--
-NModule.build
+nm-rr.build
 
 Author:
     Michael Tindal <urilith@gentoo.org>
@@ -27,42 +27,29 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<project name="NModule.Test" default="compile-all" basedir=".">
-  <description>NModule test build files.</description>
+<project name="nm-rr" default="compile-all" basedir=".">
+  <description>NModule unloading test build file.</description>
 
-  <include buildfile="../NModule.build.include" />
+  <include buildfile="../../NModule.build.include" />
+
+  <target name="compile-all" depends="nm-rr-01a" />
   
-  <target name="compile-all" depends="set-test-dirs,make-test-dirs,nm-ld,nm-ul,nm-dr,nm-ur,nm-cr,nm-rc,nm-rr,NModule.Core.Test" />
-  
-  <target name="nm-ld">
-    <nant buildfile="src/nm-ld.build" />
-  </target>
-    
-  <target name="nm-ul">
-    <nant buildfile="src/nm-ul.build" />
-  </target>
-
-  <target name="nm-dr">
-    <nant buildfile="src/nm-dr.build" />
-  </target>
-
-  <target name="nm-ur">
-    <nant buildfile="src/nm-ur.build" />
-  </target>
-
-  <target name="nm-cr">
-    <nant buildfile="src/nm-cr.build" />
-  </target>
-
-  <target name="nm-rc">
-    <nant buildfile="src/nm-rc.build" />
-  </target>
-
-  <target name="nm-rr">
-    <nant buildfile="src/nm-rr.build" />
-  </target>
-
-  <target name="NModule.Core.Test">
-    <nant buildfile="NModule.Core.Test/NModule.Core.Test.build" />
+  <target name="nm-rr-01a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rr-dir}/nm-rr-01a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rr-01a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
   </target>
 </project>
+
