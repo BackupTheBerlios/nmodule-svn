@@ -36,7 +36,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     unless="${property::exists('project.src.dir')}"/>
 
   <target name="compile" depends="set-build-dir">
-    <exec program="antlr">
+    <exec program="antlr" if="${property::exists('regenerate.parser')}">
       <arg value="nmodule-dep.g"/>
     </exec>
     <csc target="library"

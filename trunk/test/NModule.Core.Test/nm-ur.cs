@@ -66,13 +66,13 @@ namespace NModule.Core.Test {
 				e = exc;
 			}
 			
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01a"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01b"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01c"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01d"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01e"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01f"));
-			Assert.IsFalse (_mc.IsLoaded("nm-ur-01g"));
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01a"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01b"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01c"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01d"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01e"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01f"), "nm-ur-01a is loaded, it should not be.");
+			Assert.IsFalse (_mc.IsLoaded ("nm-ur-01g"), "nm-ur-01a is loaded, it should not be.");
 			
 			if (e != null)
 				throw e;

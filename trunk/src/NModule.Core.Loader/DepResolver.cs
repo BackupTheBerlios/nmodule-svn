@@ -100,11 +100,18 @@ namespace NModule.Dependency.Resolver {
 						
 						foreach (bool _result in _results) {
 							if (!_result) {
-								if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
-									throw new UnresolvedDependencyException (
-										string.Format("The following dependency for the module {0} could not be resolved: (AND operator)\n\t{1} ({2})",
-											_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString())
-									);
+								if (_parentop != DepOps.Opt) {
+									if (_c[r] != null) {
+										throw new UnresolvedDependencyException (
+											string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+												_info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString(), OpToString (DepOps.And))
+										);
+									} else {
+										throw new UnresolvedDependencyException (
+											string.Format("The following dependency for the module {0} could not be resolved: ({1} operator)",
+												_info.Name, OpToString (DepOps.And))
+										);
+									}
 								}
 							}
 							r++;
@@ -120,20 +127,20 @@ namespace NModule.Dependency.Resolver {
 							if (_result)
 								_ret = true;
 							else {
-								_urexc.Add (string.Format("{1} ({2})", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
+								if (_c[r] != null)
+									_urexc.Add (string.Format("{0} ({1})", ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
 							}
 							r++;
 						}
 						
 						if (!_ret) {
-							
 							StringBuilder _sb = new StringBuilder (
-								string.Format("The following dependency for the module {0} could not be resolved: (OR operator)\n")
+								string.Format("The following dependency for the module {0} could not be resolved: (OR operator)\n", _info.Name)
 							);
 							foreach (string _exc in _urexc) {
 								_sb.Append(string.Format("\t{0}\n", _exc));
 							}
-							if (_parentop != DepOps.Null && _parentop != DepOps.Opt)
+							if (_parentop != DepOps.Opt)
 								throw new UnresolvedDependencyException (_sb.ToString ());
 						}
 						break;
@@ -149,29 +156,29 @@ namespace NModule.Dependency.Resolver {
 						foreach (bool _result in _results) {
 							if (_result) {
 								_xf = false;
-								_xexc.Add (string.Format("{1} ({2}) (True)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
+								if (_c[r] != null)
+									_xexc.Add (string.Format("{0} ({1}) (True)", ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));				
 							}
 							if (!_result) {
 								_xt = false;
-								_xexc.Add (string.Format("{1} ({2}) (False)", _info.Name, ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
+								if (_c[r] != null)
+									_xexc.Add (string.Format("{0} ({1}) (False)", ((DepConstraint)_c[r]).Name, ((DepConstraint)_c[r]).Version.ToString()));
 							}
 							r++;
 						}
 						
-						if (_xt && _xf)
-							_ret = false;
-						
-						if (!_xt && _xf)
-							_ret = false;
+						// If one of these is still true, that means all of the other results are true or false.
+						if (_xt || _xf)
+							_ret = false;;
 							
 						if (!_ret) {
 							StringBuilder _sb = new StringBuilder (
-								string.Format ("The following dependency for the module {0} could not be resolved: (XOR operator)\n")
+								string.Format ("The following dependency for the module {0} could not be resolved: (XOR operator)\n", _info.Name)
 							);
 							foreach (string _exc in _xexc) {
 								_sb.Append (string.Format("\t{0}\n", _exc));
 							}
-							if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
+							if (_parentop != DepOps.Opt) {
 								throw new UnresolvedDependencyException (_sb.ToString ());
 							}
 						}
@@ -180,18 +187,29 @@ namespace NModule.Dependency.Resolver {
 			} else {
 				DepConstraint _constraint = _node.Constraint;
 				
+				foreach (string _parent in _parents) {
+					if (_parent == _constraint.Name) {
+						throw new CircularDependencyException (string.Format ("{0} and {1} have a circular dependency on each other", _parent, _info.Name));
+					}
+				}
+				
 				// single operators
 				if (SearchForModule (_constraint.Name) == null)
 					_ret = false;
 		
-				ModuleInfo _ninfo;
+				ModuleInfo _ninfo = null;
 						
 				ModuleLoader _loader = new ModuleLoader (_search_path, _controller);
 				
 				try {
+					if (!_parents.Contains (_info.Name))
+						_parents.Add (_info.Name);
+						
 					_loader.LoadModule (_parents, _constraint.Name, out _ninfo, true, true);
-				} catch (ModuleNotFoundException) {
-					if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
+				} catch (CircularDependencyException ce) {
+					throw ce;
+				} catch (Exception) {
+					if (_parentop != DepOps.Opt) {
 								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -202,7 +220,7 @@ namespace NModule.Dependency.Resolver {
 				if (_op == DepOps.Equal || _op == DepOps.GreaterThan || _op == DepOps.GreaterThanEqual || _op == DepOps.LessThan || _op == DepOps.LessThanEqual || _op == DepOps.NotEqual) {
 					if (!IsEmptyVersion (_constraint.Version)) {
 						if (!VersionMatch (_ninfo.Version, _constraint.Version, _op)) {
-							if (_parentop != DepOps.Null && _parentop != DepOps.Opt) {
+							if (_parentop != DepOps.Opt) {
 								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -216,13 +234,15 @@ namespace NModule.Dependency.Resolver {
 					}
 				}
 					
-				if (_op == DepOps.Loaded) {
+				if (_op == DepOps.Loaded) {					
 					if (_controller.Loader.SearchForModule (_constraint.Name) == null)
 					{
-						throw new UnresolvedDependencyException (
-									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
-										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
-								);
+						if (_parentop != DepOps.Opt) {
+							throw new UnresolvedDependencyException (
+										string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+											_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+									);
+						}
 					}
 					
 					if (!checking) {
@@ -233,10 +253,12 @@ namespace NModule.Dependency.Resolver {
 				if (_op == DepOps.NotLoaded) {
 					if (_controller.IsLoaded (_constraint.Name)) {
 						if (_controller.RefCount (_constraint.Name) > 1) {
-							throw new UnresolvedDependencyException (
-									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
-										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
-								);
+							if (_parentop != DepOps.Opt) {
+								throw new UnresolvedDependencyException (
+										string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
+											_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
+									);
+							}
 						}
 						if (!checking) {
 							_controller.UnloadModule (_constraint.Name);
@@ -322,27 +344,6 @@ namespace NModule.Dependency.Resolver {
 			
 			return false;				
 		}
-			
-		protected void CheckCircularDeps (DepNode _x, ArrayList _parents) {
-			if (_parents == null)
-				return;
-				
-			if (_x == null)
-				return;
-				
-			foreach (DepNode _d in _x.Children) {
-				CheckCircularDeps (_d, _parents);
-			}
-			
-			if (_x.Constraint != null) {
-				foreach (string _parent in _parents) {
-					
-					if (_x.Constraint.Name == _parent) {
-						throw new CircularDependencyException (string.Format ("{0} depends on {1}, but {1} is depending on {0}.", _x.Constraint.Name, _parent));
-					}
-				}
-			}
-		}
 		
 		protected void InternalResolve (ArrayList _parents, ModuleInfo _info, bool checking) {
 			if (_info.Dependencies == null)
@@ -350,12 +351,6 @@ namespace NModule.Dependency.Resolver {
 			
 			if (_parents == null)
 				_parents = new ArrayList ();
-			
-			if (checking) {
-				foreach (DepNode _c in _info.Dependencies.Children) {
-					CheckCircularDeps (_c, _parents);
-				}
-			}
 			
 			OpResolve (_info.Dependencies, _parents, _info, checking, DepOps.Null);		
 		}

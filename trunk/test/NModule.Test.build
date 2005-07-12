@@ -32,7 +32,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   <include buildfile="../NModule.build.include" />
   
-  <target name="compile-all" depends="set-test-dirs,make-test-dirs,nm-ld,nm-ul,nm-dr,nm-ur,NModule.Core.Test" />
+  <target name="compile-all" depends="set-test-dirs,make-test-dirs,nm-ld,nm-ul,nm-dr,nm-ur,nm-cr,NModule.Core.Test" />
   
   <target name="nm-ld">
     <nant buildfile="src/nm-ld.build" />
@@ -48,6 +48,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   <target name="nm-ur">
     <nant buildfile="src/nm-ur.build" />
+  </target>
+
+  <target name="nm-cr">
+    <nant buildfile="src/nm-cr.build" />
   </target>
 
   <target name="NModule.Core.Test">

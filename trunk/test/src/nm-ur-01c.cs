@@ -38,7 +38,7 @@ using NModule.Dependency.Core;
 using NModule.Dependency.Parser;
 using NModule.Dependency.Resolver;
 
-[assembly: AssemblyVersion ("1.0.*")]
+[assembly: AssemblyVersion ("1.3.*")]
 [assembly: ModuleRole ("")]
 
 namespace NModule.Core.Test.nm_ur {

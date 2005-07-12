@@ -39,7 +39,7 @@ using NModule.Dependency.Parser;
 using NModule.Dependency.Resolver;
 
 [assembly: AssemblyVersion ("1.0.*")]
-[assembly: ModuleDependency ("(&& (&& (== nm-ur-01b 1.0) (>> nm-ur-01d 1.2)) (?? (<< nm-ur-01c 1.0)))")]
+[assembly: ModuleDependency ("(&& (&& (== nm-ur-01b 1.0) (>> nm-ur-01d 1.2)) (<< nm-ur-01c 1.0))")]
 [assembly: ModuleRole ("")]
 
 namespace NModule.Core.Test.nm_ur {

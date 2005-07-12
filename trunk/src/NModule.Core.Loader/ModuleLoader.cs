@@ -175,6 +175,8 @@ namespace NModule.Core.Loader {
 			{
 				DepResolver _resolver = new DepResolver (_controller, _search_path);
 			
+				_parents.Add (_name);
+				
 				try {
 					_resolver.Resolve (_parents, _info);
 				} catch (Exception e) {
@@ -182,8 +184,7 @@ namespace NModule.Core.Loader {
 					throw e;
 				}
 			}
-
-					
+			
 			if (checking)
 			{
 				AppDomain.Unload (_tempDomain);

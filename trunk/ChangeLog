@@ -1,3 +1,29 @@
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
+	* NModule.build.include: Added nm-cr directory.
+	* src/NModule.Core.Loader/DepResolver.cs: Fixed lots of bugs.  NullReferenceException finally tracked down.  Circular dependency detection is correct now.
+	* src/NModule.Core.Loader/ModuleController.cs: Don't remember.
+	* src/NModule.Core.Loader/ModuleLoader.cs: Re-added the parent addition so circular dependency detection works.
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.build: Made the parser build conditional.  Requires a property defined to regen.
+	* test/NModule.Core.Test/NModule.Core.Test.mdp: Updated.
+	* test/NModule.Core.Test/nm-ur.cs: No changes as far as I know, mostly some edits to test specific cases. 
+	* test/NModule.Core.Test/nm-cr.cs: New test fixture for circular dependency detection.
+	* test/NModule.Test.build: Added cr tests.
+	* test/src/nm-ur-01a.cs: Fixed dep string.
+	* test/src/nm-ur-01c.cs: Fixed dep string.
+	* test/src/nm-ur-01d.cs: Fixed dep string.
+	* test/src/nm-ur-05b.cs: Fixed dep string.
+	* test/src/nm-ur-10c.cs: Fixed dep string.
+	* test/src/nm-ur.build: Removed nm-ur-01e and nm-ur-01f.
+	* test/src/nm-cr-01a.cs: New cr tests.
+	* test/src/nm-cr-01b.cs: New cr tests.
+	* test/src/nm-cr-02a.cs: New cr tests.
+	* test/src/nm-cr-02b.cs: New cr tests.
+	* test/src/nm-cr-02c.cs: New cr tests.
+	* test/src/nm-cr-03a.cs: New cr tests.
+	* test/src/nm-cr.build: New cr tests.
+	* nmodule.mdp: Added.
+
 2005-07-06 Michael Tindal <urilith@gentoo.org>
 
 	* NModule.build: Make run-tests run by default now.

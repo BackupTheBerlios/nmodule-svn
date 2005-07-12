@@ -88,7 +88,7 @@ namespace NModule.Core.Loader {
 			
 			ModuleInfo _info;
 			
-			AppDomain _domain = _loader.LoadModule (_parents, _name, out _info, false);
+			AppDomain _domain = _loader.LoadModule (_parents, _name, out _info, false, true);
 			
 			// set up the map
 			_app_domain_map.Add (_name, _domain);

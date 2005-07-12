@@ -39,11 +39,12 @@ using NModule.Dependency.Parser;
 using NModule.Dependency.Resolver;
 
 [assembly: AssemblyVersion ("1.0.*")]
+[assembly: ModuleDependency ("(## nm-cr-02b)")]
 [assembly: ModuleRole ("")]
 
 namespace NModule.Core.Test.nm_ur {
-	public class nm_ur_10c_module {
-		public nm_ur_10c_module() {
+	public class nm_cr_02a_module {
+		public nm_cr_02a_module() {
 		}
 	}
 }
