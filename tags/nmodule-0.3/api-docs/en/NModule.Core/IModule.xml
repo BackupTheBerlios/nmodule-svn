@@ -1,0 +1,44 @@
+<Type Name="IModule" FullName="NModule.Core.IModule">
+  <TypeSignature Language="C#" Value="public interface IModule" />
+  <AssemblyInfo>
+    <AssemblyName>NModule.Core</AssemblyName>
+    <AssemblyVersion>1.0.2004.7700</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Members>
+    <Member MemberName="ModuleEntry">
+      <MemberSignature Language="C#" Value="public void ModuleEntry (object controller);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="controller" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="controller">An object of type ModuleController the module can use to register new roles.</param>
+        <summary>The ModuleEntry method is called upon loading the module, so the module can perform initialization tasks, such as registering new roles.</summary>
+        <remarks>This method also marks the main entry point of the module.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ModuleExit">
+      <MemberSignature Language="C#" Value="public void ModuleExit (object controller);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="controller" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="controller">An object of type ModuleController the module can use to unregister any roles it has registered..</param>
+        <summary>The ModuleExit method is called before a module is unloaded.  This can be used to do any finalization, such as unregistering roles previously registered using the ModuleEntry method..</summary>
+        <remarks>This method is also part of the main entry point class of the module..</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>The IModule interface is used to mark the main class of a module, and contains methods for entry/exit handlers.</summary>
+    <remarks>A Module should only contain one type that implements the IModule interface.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,41 @@
+0.3
+---
+
+This release fixes a lot of bugs with regard to unresolved/circular dependency detection
+and ref counts.  The only missing pieces of the test suite now are entry/exit handlers,
+and module role registration (which is part of the entry point tests).  I urge everyone
+to upgrade from 0.2 to 0.3, as this contains criticil bug fixes that weren't uncovered
+with the test suite contained in 0.2.
+
+The following bugs still remain in this release, not all of which are within my control:
+
+  - Mono does not honor the PrivatePath, so even though nmodule adds the search path to the
+    appdomain's resolving path, it doesnt work.  The work around until Mono fixes this bug is
+    to set MONO_PATH="$MONO_PATH:my_search_dir_1:mysearch_dir_2:...:my_search_dir_n".  This is
+    unnecessary on Microsoft's implementation.
+
+    - UPDATE:  I have provided a patch to the Mono folks to fix this issue, however, they have
+      not added this yet to the distribution, in the meantime, you can apply the patch found at
+      http://bugzilla.ximian.com/show_bug.cgi?id=57612 to make the search path work as expected.
+      The patch was created against svn HEAD, but it also applies cleanly to 1.1.8.2.
+
+  - This release contains monodoc generated documentation in api-docs.  This release does not
+    contain build instructions for the documentation, so you're on your own with it.  The next
+    release will contain build instructions for the monodoc documentation and ndoc documentation.
+
+  - This release contains several components of the new NUnit based test suite.  However, currently it
+    is not automated.
+
+  - This releases nant build files do not contain an install target.  I will add that for the 0.4 release.
+    Sorry I keep pushing this back, but I want to make sure the library works right before adding stuff.  0.4
+    won't take long to release, I promise.
+
+  - The test suite is built during the compile-all stage of the build.  There is a run-tests target, but this
+    is not run by default, due to the above Mono bug.  If you would like to run it as part of your build
+    process on Windows, do nant net-1.1 compile-all run-tests.
+
+  - The test suite contained in this release is pretty compreshensive.  It contains a total of 44 tests,
+    all of which pass.
+
+  - This release is ready for use, unfortunately documentation is scarce.  I'll write up some documentation
+    for 0.4, but until then you can reach me at mtindal@paradoxpoint.com   Enjoy!

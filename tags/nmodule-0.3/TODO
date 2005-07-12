@@ -1,0 +1,46 @@
+0.2 release:
+
+  - Write nant build scripts.  mbuild works, but its only available from mono's svn, and I'm not sure it runs on
+    other runtimes.  So 0.2 will distribute a nant build file.
+  - Write Unit Tests.  The following areas need to be checked:
+
+    - Loading
+    - Unloading
+    - Loading w/ Dependency Resolution
+    - Unresolved Dependencies
+    - Circular Dependencies
+    - RefCount Unloading
+    - Role registration
+    - Role instantiation
+
+  - Generate monodoc documentation.
+    
+0.3 release:
+  
+  - Write up a MasterModuleController class.  This is what apps will use to handle modules.
+    ModuleController will become a child class of the MasterModuleController, and is set up this way
+    so modules can register new controllers for different roles.
+  - Fix Resolve{,Check} and LoadRawFile so they can load a module of the form [_name]-*.dll.  This will allow
+    versions in names, and multiple concurrent versions (so long as they do not overlay).
+  - Add unit tests for the following:
+
+    - Loading w/ Dependency Resolution on multiple versions
+    - Multiple version blocking
+    - Sub-module controller registration
+    - Sub-module controller delegation
+    - Sub-module controller role registration
+    - Sub-module controller role instantiation
+
+0.4 release:
+
+   - Write entries for monodoc documentation.
+   - Write XML comment stubs.
+
+0.5 release:
+
+   - Provide a ndoc project file.
+   - Document all public/protected classes/members.
+
+0.6+:
+
+   Bug fixes as necessary.

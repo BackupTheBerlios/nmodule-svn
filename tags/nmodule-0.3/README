@@ -1,0 +1,41 @@
+NModule is a modular architecture for writing applications which are based on loadable-modules 
+as their support platform rather than a monolithic platform, or as a base for adding plugin
+support to an existing application.  NModule differs from other plugin systems in its extensible
+architecture.  Where most plug-in systems use a predefined entry method to initialize the plugin
+and retrieve necessary information, we use .NET's reflection capabilities to determine the
+facilities a module offers, and retrieve the types needed.
+
+NModule uses assembly-level attributes to define and resolve dependencies, declare what "roles"
+a module fulfills, and determine a modules name and version.  Type introspection determines
+the types needed to fulfill each role.
+
+NModule is also free to use, and is licensed under the Lesser General Public License (LGPL).
+
+To begin using NModule, look at the properties file in the top-level directory to define
+how you want the build to look.  You can also look at nmodule.build to determine what targets
+you may need to run.  Afterwards, merely run nant with any of the targets you want to run (the
+default just runs the "build" target), and then you can install using nant install
+-D:install.prefix="/path/i/want/to/install/to".
+
+A complete API documentation tree can be generated using the nant docs target, note however
+that generating the documentation requires ndoc.
+
+Requirements:
+
+  - antlr 2.7.5 or higher is required to generate the parser.  If you don't want to generate
+    the parser during the build stages, comment out the <exec> rule in NModule.Dependency.Parser.build.
+    We keep up-to-date sources in the release, so the only reason you'd need that is if you were
+    hacking on the grammar.
+  - NUnit 2.2 or greater is required for the test suite.
+  - NAnt 0.85 or greater is required for building.
+
+Installation instructions:
+
+  See the nant file for instructions.
+
+  For mono, do nant mono-1.0 compile-all
+  For net-1.1 do nant net-1.1 compile-all
+
+  And so on.
+
+Better instructions will come with later releases.

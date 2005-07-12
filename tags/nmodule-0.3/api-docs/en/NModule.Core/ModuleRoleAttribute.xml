@@ -1,0 +1,52 @@
+<Type Name="ModuleRoleAttribute" FullName="NModule.Core.ModuleRoleAttribute">
+  <TypeSignature Language="C#" Value="public class ModuleRoleAttribute : System.Attribute" />
+  <AssemblyInfo>
+    <AssemblyName>NModule.Core</AssemblyName>
+    <AssemblyVersion>1.0.2004.7700</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Attribute</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ModuleRoleAttribute (string role);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="role" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="role">A comma-seperated list of roles.</param>
+        <summary>Creates a new ModuleRoleAttribute object.</summary>
+        <remarks>No remarks.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="_roles">
+      <MemberSignature Language="C#" Value="protected string _roles;" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Internal representation of the role string passed ot the constructor.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Roles">
+      <MemberSignature Language="C#" Value="public string Roles { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Public accessor to get the role string.</summary>
+        <value>A comma-seperated list of roles.</value>
+        <remarks>No remarks..</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>Attribute used to tell the controller what roles this module fulfills.</summary>
+    <remarks>No remarks.</remarks>
+  </Docs>
+</Type>
