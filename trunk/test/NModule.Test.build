@@ -58,11 +58,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <nant buildfile="src/nm-rc.build" />
   </target>
 
-  <target name="nm-rr">
-    <nant buildfile="src/nm-rr.build" />
-  </target>
-
   <target name="NModule.Core.Test">
     <nant buildfile="NModule.Core.Test/NModule.Core.Test.build" />
+  </target>
+
+  <target name="nm-rr" depends="NModule.Core.Test">
+    <nant buildfile="src/nm-rr.build" />
   </target>
 </project>

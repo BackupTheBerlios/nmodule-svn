@@ -1,5 +1,25 @@
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
+	* NModule.build: Moved documentation and test build files into seperate build files that get copied to the build dir at runtime.
+	* src/NModule.Core/IModule.cs: Documentation.
+	* src/NModule.Core/ModuleDependencyAttribute.cs: Documentation.
+	* src/NModule.Core/ModuleRoleAttribute.cs: Documentation.
+	* src/NModule.Core/NModule.Core.build: Documentation.
+	* src/NModule.Core/INmRr1.cs: Moved to NModule.Core.Test where it belongs.
+	* src/NModule.Core.Loader/NModule.Core.Loader.build: Documentation.
+	* src/NModule.Core.Module/NModule.Core.Module.build: Documentation.
+	* src/NModule.Dependency.Core/DepVersion.cs: Added override keyword to ToString.
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.build: Documentation.
+	* test/NModule.Core.Test/INmRr1.cs: Moved from NModule.Core.
+	* test/NModule.Test.build: Made nm-rr depend on NModule.Core.Test.
+	* test/src/nm-rr.build: Link to NModule.Core.Test for INmRr1 interface.
+	* templates: New directory.
+	* templates/NamespaceSummary.xml: Namespace summaries.
+	* templates/nmodule-doc.build: Documentation build file.
+	* templates/nmodule-test.build: Test build file.
+
+2005-07-12 Michael Tindal <urilith@gentoo.org>
+
         *******************
         ***** RELEASE *****
         *******************

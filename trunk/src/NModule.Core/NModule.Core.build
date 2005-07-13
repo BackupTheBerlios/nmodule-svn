@@ -38,6 +38,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <target name="compile" depends="set-build-dir">
     <csc target="library"
         output="${current.build.dir}/NModule.Core.dll"
+        doc="${current.build.dir}/NModule.Core.xml"
         debug="${build.debug}" define="${build.defines.csc}">
 	<sources basedir=".">
 		<include name="*.cs"/>

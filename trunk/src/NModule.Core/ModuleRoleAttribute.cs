@@ -31,14 +31,29 @@
 namespace NModule.Core {
 	using System;
 	
+	/// <summary>
+	/// Holds a string representation of a modules roles.
+	/// </summary>
+	/// <remarks>
+	/// This attribute is only valid on assembly targets.
+	/// The roles should be a comma-seperated list of roles that
+	/// the module provides facilities for.
+	/// </remarks>
 	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleRoleAttribute : Attribute {
 		protected string _roles;
 		
+		/// <summary>
+		/// Creates a new <code>ModuleRoleAttribute</code> with the given roles.
+		/// </summary>
+		/// <param name="role">Comma-seperate list of roles the module provides facilities for.</param>
 		public ModuleRoleAttribute (string role) {
 			_roles = role;
 		}
 		
+		/// <summary>
+		/// Retrieves the list of roles from a <code>ModuleRoleAttribute</code> object.
+		/// </summary>
 		public string Roles {
 			get {
 				return _roles;

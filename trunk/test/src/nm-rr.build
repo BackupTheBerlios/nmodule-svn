@@ -48,6 +48,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <include name="NModule.Core.Module.dll" />
         <include name="NModule.Dependency.Core.dll" />
         <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.Test.dll" />
       </references>
     </csc>
   </target>

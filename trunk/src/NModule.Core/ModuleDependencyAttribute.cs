@@ -30,15 +30,30 @@
  
 namespace NModule.Core {
 	using System;
-	
+
+	/// <summary>
+	/// Holds a string representation of a modules dependency's.
+	/// </summary>
+	/// <remarks>
+	/// This attribute is only valid on assembly targets.
+	/// See <see href="depstring.html" /> for information on the format of
+	/// dependency strings and a description of the dependency operators.
+	/// </remarks>
 	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleDependencyAttribute : Attribute {
 		protected string _dep_string;
 		
+		/// <summary>
+		/// Creates a new <code>ModuleDependencyAttribute</code> object using the given dep string.
+		/// </summary>
+		/// <param name="dep_string">A string representing the module's dependencies.</param>
 		public ModuleDependencyAttribute (string dep_string) {
 			_dep_string = dep_string;
 		}
 		
+		/// <summary>
+		/// Returns the dependency string of a <code>ModuleDependencyAttribute</code> object.
+		/// </summary>
 		public string DepString {
 			get {
 				return _dep_string;

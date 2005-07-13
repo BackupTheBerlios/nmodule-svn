@@ -1,5 +1,5 @@
 <!--
-NModule.build
+nmodule-test.build
 
 Author:
     Michael Tindal <urilith@gentoo.org>
@@ -27,27 +27,15 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<project name="NModule.Core.Loader" default="compile" basedir=".">
-  <description>NModule.Core.Loader build files.</description>
+<project name="nmodule-test" default="run-tests" basedir=".">
+  <description>NModule test runner.</description>
 
-  <include buildfile="../../NModule.build.include"/>
-  
-  <property name="project.src.dir" value="../"
-    unless="${property::exists('project.src.dir')}"/>
+  <include buildfile="../../../../NModule.build.include" />
 
-  <target name="compile" depends="set-build-dir">
-    <csc target="library"
-        output="${current.build.dir}/NModule.Core.Loader.dll"
-        doc="${current.build.dir}/NModule.Core.Loader.xml"
-        debug="${build.debug}" define="${build.defines.csc}">
-      <sources basedir=".">
-        <include name="*.cs"/>
-      </sources>
-    <references basedir="${current.build.dir}">
-      <include name="NModule.Core.dll" />
-      <include name="NModule.Core.Module.dll" />
-      <include name="NModule.Dependency.Core.dll" />
-    </references>
-    </csc>
+  <target name="run-tests" depends="set-build-dir">
+    <nunit2>
+      <formatter type="Plain" />
+      <test assemblyname="${current.build.dir}/NModule.Core.Test.dll" />
+   </nunit2>
   </target>
 </project>
