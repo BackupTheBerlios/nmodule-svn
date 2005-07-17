@@ -39,6 +39,7 @@ namespace NModule.Core {
 	/// the controller, such as registering a new role, or retrieving a type
 	/// from a module which it depends on.
 	/// </remarks>
+	/// <preliminary />
 	public interface IModule {
 		/// <summary>
 		/// The entry point of the module.

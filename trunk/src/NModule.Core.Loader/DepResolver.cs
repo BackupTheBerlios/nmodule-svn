@@ -38,16 +38,36 @@ namespace NModule.Dependency.Resolver {
 	using NModule.Core.Loader;
 	using NModule.Core.Module;
 	
+	/// <summary>
+	/// The DepResolver class handles resolving
+	/// dependencies given a dependency tree, and loads needed
+	/// modules or throws exceptions.  For a description of
+	/// search paths see <see href="searching.html">this</see>.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary/>
 	public class DepResolver {
 #region Members
-		// ModuleController used for loading modules to sastify dependencies.
+		/// <summary>
+		/// A <see cref="ModuleController"/> object that is used for loading dependencies.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected ModuleController _controller;
 		
-		// Search Path for modules
+		/// <summary>
+		/// A list of directories to search for modules.
+		/// </summary>
 		protected ArrayList _search_path;
 #endregion
 
 #region Constructor
+		/// <summary>
+		/// Creates a new DepResolver class with the the given
+		/// <see cref="ModuleController" /> object and search path.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="controller">The <see cref="ModuleController"/> object used to load modules.</param>
+		/// <param name="search_path">The initial search path.</param>
 		public DepResolver (ModuleController controller, ArrayList search_path) {
 			_controller = controller;
 			_search_path = search_path;
@@ -55,6 +75,12 @@ namespace NModule.Dependency.Resolver {
 #endregion
 
 #region Internal Helper Functions
+		/// <summary>
+		/// Searches for a given module along the search path.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_name">The name of the module to search for, without the .dll extension.</param>
+		/// <returns>Returns a string giving the full path to the module or null if the module was not found.</returns>
 		protected string SearchForModule (string _name) {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
@@ -69,23 +95,42 @@ namespace NModule.Dependency.Resolver {
 			return null;
 		}
 		
-		protected string ReportUnresolvedException (DepOps _op, DepConstraint _constraint) {
-			// message should look like << Elfblade.Core 1.0
-			// or ## Elfblade.Net.Base
-			return string.Format ("{0} {1} {2}", OpToString (_op), _constraint.Name, IsEmptyVersion (_constraint.Version) ? "" : _constraint.Version.ToString ());
-		}
-		
-		protected void OpResolve (DepNode _node, ArrayList _parents, ModuleInfo _info, bool checking, DepOps _parentop) {
+		/// <summary>
+		/// Recursively resolves dependencies given a dependency tree.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_node">The root node of the tree to resolve.</param>
+		/// <param name="_parents">The parent modules to use when checking for circular dependencies.</param>
+		/// <param name="_info">The <see cref="ModuleInfo" /> object representing the module to resolve dependencies for.</param>
+		/// <param name="opt">Set to true if this pass is optional, otherwise set to false.</param>
+		/// <exception cref="UnresolvedDependencyException">Thrown if the given dependency cannot be resolved and is not optional.</exception>
+		/// <exception cref="CircularDependencyException">Thrown if two modules depend on each other.</exception>
+		protected void OpResolve (DepNode _node, ArrayList _parents, ModuleInfo _info, bool checking, bool opt) {
 			bool _ret;
 			DepOps _op = _node.DepOp;
 			
+			// This is a large process.  I've chosen to use recursion here because it makes sense from a tree
+			// point of view.  Our first step is to check our operator to see if its one of the "combination"
+			// operators.  If it is, we simply recurse through its children and record their results in a
+			// table (true if they suceeded, false if they failed).  Since we're not sure what kind of logic
+			// we need (and, or, xor) we can't really make a decision at this point.  When we go through
+			// the children, they simply go through this process to until we reach a bottom node, which would
+			// be one of the "single" operators.  They are dealt with in the second part of this function.
 			if ((_op == DepOps.And) || (_op == DepOps.Opt) || (_op == DepOps.Or) || (_op == DepOps.Xor)) {
-				// combo-operators
+				// This is our list of results for the children nodes.
 				ArrayList _results = new ArrayList ();
+				
+				// This is a list of constraints for the children nodes so we can output sensible information.
 				ArrayList _c = new ArrayList ();
+				
 				foreach (DepNode _child in _node.Children) {
+					// Try to resolve the child node, if it suceeds, store
+					// true into the results table, if an exception is thrown
+					// store false into the results table.  Store the constraints
+					// into the constraints table regardless of result so the indexes
+					// will be identical.
 					try {
-						OpResolve (_child, _parents, _info, checking, _op);
+						OpResolve (_child, _parents, _info, checking, _op == DepOps.Opt ? true : false);
 						_results.Add (true);
 						_c.Add (_child.Constraint);
 					} catch (Exception e) {
@@ -94,13 +139,16 @@ namespace NModule.Dependency.Resolver {
 					}
 				}
 				
+				// This switch statement is where we go through the results table and apply
+				// the operator logic to the table to figure out if the results sastify
+				// the given operator.
 				switch (_op) {
 					case DepOps.And:
 						int r = 0;
 						
 						foreach (bool _result in _results) {
 							if (!_result) {
-								if (_parentop != DepOps.Opt) {
+								if (!opt) {
 									if (_c[r] != null) {
 										throw new UnresolvedDependencyException (
 											string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
@@ -140,7 +188,7 @@ namespace NModule.Dependency.Resolver {
 							foreach (string _exc in _urexc) {
 								_sb.Append(string.Format("\t{0}\n", _exc));
 							}
-							if (_parentop != DepOps.Opt)
+							if (!opt)
 								throw new UnresolvedDependencyException (_sb.ToString ());
 						}
 						break;
@@ -178,7 +226,7 @@ namespace NModule.Dependency.Resolver {
 							foreach (string _exc in _xexc) {
 								_sb.Append (string.Format("\t{0}\n", _exc));
 							}
-							if (_parentop != DepOps.Opt) {
+							if (!opt) {
 								throw new UnresolvedDependencyException (_sb.ToString ());
 							}
 						}
@@ -209,7 +257,7 @@ namespace NModule.Dependency.Resolver {
 				} catch (CircularDependencyException ce) {
 					throw ce;
 				} catch (Exception) {
-					if (_parentop != DepOps.Opt) {
+					if (!opt) {
 								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -220,7 +268,7 @@ namespace NModule.Dependency.Resolver {
 				if (_op == DepOps.Equal || _op == DepOps.GreaterThan || _op == DepOps.GreaterThanEqual || _op == DepOps.LessThan || _op == DepOps.LessThanEqual || _op == DepOps.NotEqual) {
 					if (!IsEmptyVersion (_constraint.Version)) {
 						if (!VersionMatch (_ninfo.Version, _constraint.Version, _op)) {
-							if (_parentop != DepOps.Opt) {
+							if (!opt) {
 								throw new UnresolvedDependencyException (
 									string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 										_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -249,7 +297,7 @@ namespace NModule.Dependency.Resolver {
 				if (_op == DepOps.Loaded) {					
 					if (_controller.Loader.SearchForModule (_constraint.Name) == null)
 					{
-						if (_parentop != DepOps.Opt) {
+						if (!opt) {
 							throw new UnresolvedDependencyException (
 										string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 											_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -277,7 +325,7 @@ namespace NModule.Dependency.Resolver {
 				if (_op == DepOps.NotLoaded) {
 					if (_controller.IsLoaded (_constraint.Name)) {
 						if (_controller.RefCount (_constraint.Name) > 1) {
-							if (_parentop != DepOps.Opt) {
+							if (!opt) {
 								throw new UnresolvedDependencyException (
 										string.Format("The following dependency for the module {0} could not be resolved: ({3} operator)\n\t{1} ({2})",
 											_info.Name, _constraint.Name, _constraint.Version.ToString(), OpToString (_op))
@@ -292,6 +340,12 @@ namespace NModule.Dependency.Resolver {
 			}
 		}		
 		
+		/// <summary>
+		/// Converts a given <see cref="DepOps" /> object into a string.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_op">The operator to convert to a string.</param>
+		/// <returns>A string value that matches the operator in the <see href="depstring.html">dependency operator table</see>.</returns>
 		protected string OpToString (DepOps _op) {
 			switch (_op)
 			{
@@ -324,6 +378,12 @@ namespace NModule.Dependency.Resolver {
 			return "";
 		}
 		
+		/// <summary>
+		/// Determines if a given version is empty or not.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_ver">A <see cref="DepVersion" /> object to check.</param>
+		/// <returns>Returns true if the version given is empty (ie -1:-1:-1:-1) or false otherwise.</returns>
 		protected bool IsEmptyVersion (DepVersion _ver) {
 			if (_ver == null)
 				return true;
@@ -331,6 +391,15 @@ namespace NModule.Dependency.Resolver {
 			return ((_ver.Major == -1) && (_ver.Minor == -1) && (_ver.Build == -1) && (_ver.Revision == -1));
 		}
 		
+		/// <summary>
+		/// Checks if the version given matches the constraint
+		/// based on the given operator.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_ver">The version to compare to the constraint.</param>
+		/// <param name="_dver">The constraint version.</param>
+		/// <param name="_op">The operator to use to determine if the match is sucessful.</param>
+		/// <returns>Returns true is the version matches the constraint version with the given operator, otherwise returns false.</returns>
 		protected bool VersionMatch (DepVersion _ver, DepVersion _dver, DepOps _op) {
 			Version _mver, _drver;
 
@@ -369,6 +438,15 @@ namespace NModule.Dependency.Resolver {
 			return false;				
 		}
 		
+		/// <summary>
+		/// Helper function that is the actual resolving function.
+		/// See <see cref="ResolveCheck" /> and <see cref="Resolve" /> for
+		/// the API to call this method.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_parents">The list of parent modules to use for checking for circular dependencies.</param>
+		/// <param name="_info">The <see cref="ModuleInfo" /> object representing the current module.</param>
+		/// <param name="checking">A bool to determine whether or not we are just checking, or actually loading.</param>
 		protected void InternalResolve (ArrayList _parents, ModuleInfo _info, bool checking) {
 			if (_info.Dependencies == null)
 				return;
@@ -376,15 +454,30 @@ namespace NModule.Dependency.Resolver {
 			if (_parents == null)
 				_parents = new ArrayList ();
 			
-			OpResolve (_info.Dependencies, _parents, _info, checking, DepOps.Null);		
+			OpResolve (_info.Dependencies, _parents, _info, checking, false);		
 		}
 #endregion
 
 #region Resolvers
+		/// <summary>
+		/// Performs a resolution check without actually loading anything.
+		/// This is useful to determine if the dependencies can be resolved
+		/// before actually loading anything.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_parents">The list of parent modules to use for checking for circular dependencies.</param>
+		/// <param name="_info">A <see cref="ModuleInfo" /> object representing the current module.</param>
 		public void ResolveCheck (ArrayList _parents, ModuleInfo _info) {
 			InternalResolve (_parents, _info, true);
 		}
 		
+		/// <summary>
+		/// Performs a resolution check and loads the modules needed
+		/// to sastify the dependencies.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_parents">The list of parent modules to use for checking for circular dependencies.</param>
+		/// <param name="_info">A <see cref="ModuleInfo" /> object representing the current module.</param>
 		public void Resolve (ArrayList _parents, ModuleInfo _info) {
 			InternalResolve (_parents, _info, false);
 		}

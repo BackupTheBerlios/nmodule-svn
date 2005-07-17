@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
-<project name="NUnit" default="build" basedir=".">
+<project name="NModule" default="build" basedir=".">
+
+  <!-- this is first because i want it to be easy to update -->
+  <target name="set-package-version">
+    <property name="release.version" value="0.4" />
+    <property name="package.version" value="nmodule-${release.version}" />
+  </target>
 
   <!-- Init global settings if not already done. -->
   <call target="init-global-settings"
@@ -35,8 +41,12 @@
     <call target="set-mono-1.0-runtime-config"/>
   </target>
 
-  <target name="mono-1.0" description="Set runtime to Mono">
+  <target name="mono-1.0" description="Set runtime to Mono 1.0">
     <call target="set-mono-1.0-runtime-config"/>
+  </target>
+
+  <target name="mono-2.0" description="Set runtime to Mono 2.0">
+    <call target="set-mono-2.0-runtime-config" />
   </target>
 
   <!-- Init global settings -->
@@ -80,6 +90,8 @@
       value="${framework::exists('net-2.0')}"/>
     <property name="framework.available.mono-1.0" 
       value="${framework::exists('mono-1.0')}"/>
+    <property name="framework.available.mono-2.0"
+      value="${framework::exists('mono-2.0')}" />
   
     <!-- Visual Studio locations -->
     <if test="${platform::is-win32()}">
@@ -113,9 +125,31 @@
     <!-- Default build and runtime configurations -->
     <property name="build.config" value="debug"/>
     <property name="build.clean" value="false"/>
-    <property name="runtime.platform" value="net"/>
-    <property name="runtime.version" value="1.1"/>
-    <property name="runtime.config" value="net-1.1"/>
+    <if test="${framework::get-target-framework()=='net-1.0'}">
+      <property name="runtime.platform" value="net" />
+      <property name="runtime.version" value="1.0"/>
+      <property name="runtime.config" value="net-1.0"/>
+    </if>
+    <if test="${framework::get-target-framework()=='net-1.1'}">
+      <property name="runtime.platform" value="net" />
+      <property name="runtime.version" value="1.1"/>
+      <property name="runtime.config" value="net-1.1"/>
+    </if>
+    <if test="${framework::get-target-framework()=='net-2.0'}">
+      <property name="runtime.platform" value="net" />
+      <property name="runtime.version" value="2.0"/>
+      <property name="runtime.config" value="net-2.0"/>
+    </if>
+    <if test="${framework::get-target-framework()=='mono-1.0'}">
+      <property name="runtime.platform" value="mono" />
+      <property name="runtime.version" value="1.0"/>
+      <property name="runtime.config" value="mono-1.0"/>
+    </if>
+    <if test="${framework::get-target-framework()=='mono-2.0'}">
+      <property name="runtime.platform" value="mono" />
+      <property name="runtime.version" value="2.0"/>
+      <property name="runtime.config" value="mono-2.0"/>
+    </if>
     <property name="build.dir.set" value="false"/>
 
     <!-- Indicate that we initialized global settings -->
@@ -215,8 +249,20 @@
     <property name="build.win32" value="false"/>
     <property name="nant.settings.currentframework" 
       value="mono-1.0"/>
-    <property name="zip.runtime.suffix" value="-mono"/>
-    <property name="msi.runtime.suffix" value="-mono"/>
+    <property name="zip.runtime.suffix" value="-mono-1.0"/>
+    <property name="msi.runtime.suffix" value="-mono-1.0"/>
+  </target>
+
+  <target name="set-mono-2.0-runtime-config">
+    <property name="runtime.platform" value="mono" />
+    <property name="runtime.version" value="2.0" />
+    <property name="runtime.config" value="mono-2.0" />
+    <property name="build.mono" value="true" />
+    <property name="build.win32" value="false" />
+    <property name="nant.settings.currentframework"
+      value="mono-2.0" />
+    <property name="zip.runtime.suffix" value="-mono-2.0" />
+    <property name="msi.runtime.suffix" value="-mono-2.0" />
   </target>
 
   <!-- Set up the build directory -->
@@ -229,6 +275,10 @@
     <property name="current.build.dir" 
       value="${path::combine(runtime.version.dir,build.config)}"/>
     <property name="build.dir.set" value="true"/>
+  </target>
+
+  <target name="set-doc-dir" depends="set-build-dir">
+    <property name="current.doc.dir" value="${path::combine(current.build.dir,'doc')}" />
   </target>
   
   <target name="set-build-dir-if-needed">
@@ -252,8 +302,6 @@
     <property name="zipped.bin.file.name"
       value="${package.name}-bin.zip"/>
   </target>
-
-  
   
   <!-- properties -->
   <target name="set-test-dirs" depends="set-build-dir">
@@ -303,8 +351,43 @@
     <mkdir dir="${nm-rr-dir}" unless="${directory::exists(nm-rr-dir)}" />
   </target>
 
+  <target name="set-install-dirs" depends="set-package-version">
+    <if test="${platform::is-unix()}">
+      <property name="install.prefix" value="/usr/local" overwrite="false" />
+      <property name="install.destdir" value="/" overwrite="false" />
+      <property name="install.libdir" value="lib" overwrite="false" />
+      <property name="install.plibdir" value="${path::combine(install.prefix,install.libdir)}" overwrite="false" />
+      <property name="install.root" value="${install.destdir}/${install.plibdir}" overwrite="false" />
+      <property name="install.gacdir" value="${path::combine(install.prefix,install.libdir)}" overwrite="false" />
+      <property name="install.datadir" value="share" overwrite="false" />
+      <property name="install.pdatadir" value="${path::combine(install.prefix,install.datadir)}" overwrite="false" />
+      <property name="install.fpkgdir" value="${path::combine(install.pdatadir,'nmodule')}" overwrite="false" />
+      <property name="current.docdir" value="${path::combine(install.pdatadir,'doc')}" overwrite="false" />
+      <property name="install.fdocdir" value="${path::combine(current.docdir,package.version)}" overwrite="false" />
+      <property name="install.pkgdir" value="${install.destdir}/${install.fpkgdir}" overwrite="false" />
+      <property name="install.docdir" value="${install.destdir}/${install.fdocdir}" overwrite="false" />
+    </if>
+  </target>
+
+  <target name="make-install-dirs" depends="set-install-dirs">
+    <if test="${platform::is-unix()}">
+      <!-- BAH.  We need to make ${destdir}, ${destdir}/${prefix}, ${destdir}/${plibdir} ${destdir}/${pdatadir} ${destdir}/${pkgdir} ${destdir}/${docdir} -->
+      <mkdir dir="${install.destdir}" unless="${directory::exists(install.destdir)}" />
+      <property name="install.pddir" value="${path::combine(install.destdir,install.prefix)}" />
+      <mkdir dir="${install.pddir}" unless="${directory::exists(install.pddir)}" />
+      <property name="install.pdldir" value="${path::combine(install.destdir,install.plibdir)}" />
+      <mkdir dir="${install.pdldir}" unless="${directory::exists(install.pdldir)}" />
+      <property name="install.pddadir" value="${path::combine(install.destdir,install.pdatadir)}" />
+      <mkdir dir="${install.pddadir}" unless="${directory::exists(install.pddadir)}" />
+      <!-- <property name="install.pdpkdir" value="${path::combine(install.destdir,install.pkgdir)}" />
+      <mkdir dir="${install.pdpkdir}" unless="${directory::exists(install.pdpkdir)}" /> -->
+      <property name="install.pddcdir" value="${path::combine(install.destdir,install.docdir)}" />
+      <mkdir dir="${install.pddcdir}" unless="${directory::exists(install.pddcdir)}" />
+    </if>
+  </target>
+
   <!-- Dump configuration settings for debugging -->
-  <target name="dump-settings" depends="set-build-dir,set-package-config">
+  <target name="dump-settings" depends="set-build-dir,set-package-config,set-package-version,set-test-dirs,set-install-dirs">
     <echo>Configuration</echo>
     <echo>  Config:       ${build.config}</echo>
     <echo>  Runtime:      ${runtime.config}</echo>
@@ -335,8 +418,23 @@
     <echo>System Directories</echo>
     <echo>  Framework:    ${nant.settings.currentframework.frameworkdirectory}</echo>
     <echo>  SDK:          ${nant.settings.currentframework.sdkdirectory}</echo>
-    <echo>  VS 2002:      ${vs.2002.path}</echo>
-    <echo>  VS 2003:      ${vs.2003.path}</echo>
+    <if test="${platform::is-win32()}">
+      <echo>  VS 2002:      ${vs.2002.path}</echo>
+      <echo>  VS 2003:      ${vs.2003.path}</echo>
+    </if>
+    <if test="${platform::is-unix()}">
+      <echo>Install Directories</echo>
+      <echo>  Prefix:       ${install.prefix}</echo>
+      <echo>  Destdir:      ${install.destdir}</echo>
+      <echo>  Libdir:       ${install.libdir}</echo>
+      <echo>  Plibdir:      ${install.plibdir}</echo>
+      <echo>  Exp. Root:    ${path::combine(install.destdir,install.plibdir)}</echo>
+      <echo>  Root:         ${install.root}</echo>
+      <echo>  Gacdir:       ${install.gacdir}</echo>
+      <echo>  Datadir:      ${install.datadir}</echo>
+      <echo>  Pkgdir:       ${install.pkgdir}</echo>
+      <echo>  Docdir:       ${install.docdir}</echo>
+    </if>
   </target>
 
 </project>

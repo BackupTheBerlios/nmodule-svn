@@ -39,21 +39,24 @@ namespace NModule.Core {
 	/// See <see href="depstring.html" /> for information on the format of
 	/// dependency strings and a description of the dependency operators.
 	/// </remarks>
+	/// <preliminary />
 	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleDependencyAttribute : Attribute {
 		protected string _dep_string;
 		
 		/// <summary>
-		/// Creates a new <code>ModuleDependencyAttribute</code> object using the given dep string.
+		/// Creates a new ModuleDependencyAttribute object using the given dep string.
 		/// </summary>
+		/// <remarks>None.</remarks>
 		/// <param name="dep_string">A string representing the module's dependencies.</param>
 		public ModuleDependencyAttribute (string dep_string) {
 			_dep_string = dep_string;
 		}
 		
 		/// <summary>
-		/// Returns the dependency string of a <code>ModuleDependencyAttribute</code> object.
+		/// Returns the dependency string of a ModuleDependencyAttribute object.
 		/// </summary>
+		/// <remarks>None.</remarks>
 		public string DepString {
 			get {
 				return _dep_string;

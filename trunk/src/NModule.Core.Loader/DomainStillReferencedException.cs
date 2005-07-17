@@ -30,11 +30,32 @@
 namespace NModule.Core.Module {
 	using System;
 	
+	/// <summary>
+	/// Exception thrown when an attempt is made to unload
+	/// a domain that is still referenced.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary />
 	public class DomainStillReferencedException : Exception {
+		/// <summary>
+		/// Creates a new DomainStillReferencedException object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DomainStillReferencedException ( ) : base ( ) { }
 		
+		/// <summary>
+		/// Creates a new DomainStillReferencedException object with the given message.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the execption is thrown.</param>
 		public DomainStillReferencedException (string _msg) : base (_msg) { }
 		
-		public DomainStillReferencedException (string _msg, Exception _exc) : base (_msg) { }
+		/// <summary>
+		/// Creates a new DomainStillReferencedException object with the given message and inner exception.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the exception is thrown.</param>
+		/// <param name="_exc">The inner exception of this exception.</param>
+		public DomainStillReferencedException (string _msg, Exception _exc) : base (_msg, _exc) { }
 	}
 }

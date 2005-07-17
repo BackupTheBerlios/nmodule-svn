@@ -30,11 +30,32 @@
 namespace NModule.Core.Loader {
 	using System;
 	
+	/// <summary>
+	/// Exception thrown when an assembly is loaded that does
+	/// match the definition of a valid module.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary />
 	public class InvalidModuleException : Exception {
+		/// <summary>
+		/// Creates a new InvalidModuleException object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public InvalidModuleException ( ) : base ( ) { }
 		
+		/// <summary>
+		/// Creates a new InvalidModuleException object with the given message.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the execption is thrown.</param>
 		public InvalidModuleException (string _msg) : base (_msg) { }
 		
-		public InvalidModuleException (string _msg, Exception _exc) : base (_msg) { }
+		/// <summary>
+		/// Creates a new InvalidModuleException object with the given message and inner exception.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the exception is thrown.</param>
+		/// <param name="_exc">The inner exception of this exception.</param>
+		public InvalidModuleException (string _msg, Exception _exc) : base (_msg, _exc) { }
 	}
 }

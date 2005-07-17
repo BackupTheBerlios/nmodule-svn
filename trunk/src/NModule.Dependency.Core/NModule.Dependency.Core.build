@@ -35,7 +35,22 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <property name="project.src.dir" value="../"
     unless="${property::exists('project.src.dir')}"/>
 
-  <target name="compile" depends="set-build-dir">
+  <target name="compile" depends="set-build-dir,set-package-version">
+	  <asminfo output="AssemblyInfo.cs" language="CSharp">
+		  <imports>
+        <import namespace="System" />
+				<import namespace="System.Reflection" />
+        <import namespace="System.Runtime.CompilerServices" />
+      </imports>
+		  <attributes>
+	      <attribute type="AssemblyVersionAttribute" value="${release.version}.0.0" />
+	      <attribute type="AssemblyTitleAttribute" value="NModule.Dependency.Core" />
+	      <attribute type="AssemblyDescriptionAttribute" value="NModule Dependency Core." />
+	      <attribute type="AssemblyCopyrightAttribute" value="Copyright (c) 2005 Michael Tindal and the individuals listed in the ChangeLog." />
+	      <attribute type="AssemblyDelaySignAttribute" value="false" />
+				<attribute type="AssemblyKeyFileAttribute" value="../../templates/nmodule.snk" if="${build.config == 'release'}" />
+	    </attributes>
+ 	  </asminfo>
     <csc target="library"
         output="${current.build.dir}/NModule.Dependency.Core.dll"
         doc="${current.build.dir}/NModule.Dependency.Core.xml"

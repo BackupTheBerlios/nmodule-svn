@@ -27,14 +27,34 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
  
-namespace NModule.Dependency.Resolver {
+namespace NModule.Core.Loader {
 	using System;
 	
+	/// <summary>
+	/// Thrown if a modules dependencies could not be resolved.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary />
 	public class UnresolvedDependencyException : Exception {
+		/// <summary>
+		/// Creates a new UnresolvedDependencyException object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public UnresolvedDependencyException ( ) : base ( ) { }
 		
+		/// <summary>
+		/// Creates a new UnresolvedDependencyException object with the given message.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the execption is thrown.</param>
 		public UnresolvedDependencyException (string _msg) : base (_msg) { }
 		
-		public UnresolvedDependencyException (string _msg, Exception _exc) : base (_msg) { }
+		/// <summary>
+		/// Creates a new UnresolvedDependencyException object with the given message and inner exception.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the exception is thrown.</param>
+		/// <param name="_exc">The inner exception of this exception.</param>
+		public UnresolvedDependencyException (string _msg, Exception _exc) : base (_msg, _exc) { }
 	}
 }

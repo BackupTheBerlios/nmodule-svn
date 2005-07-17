@@ -1,0 +1,39 @@
+0.4
+---
+
+This is a minor release in terms of bug fixes.  It includes two new unit tests, for entry
+handling and exit handling, and some API additions to ModuleController.  It has full class
+documentation along with some auxillary documentation for things like roles, depstrings,
+etc.  The mbuild files have been removed from this release in favor of the nant build
+system.  In addition, due to the automatically generated ndoc documentation, monodoc documentation
+has been removed.
+
+The following bugs still remain in this release, not all of which are within my control:
+
+  - Mono does not honor the PrivatePath, so even though nmodule adds the search path to the
+    appdomain's resolving path, it doesnt work.  The work around until Mono fixes this bug is
+    to set MONO_PATH="$MONO_PATH:my_search_dir_1:mysearch_dir_2:...:my_search_dir_n".  This is
+    unnecessary on Microsoft's implementation.
+
+    - UPDATE:  I have provided a patch to the Mono folks to fix this issue, however, they have
+      not added this yet to the distribution, in the meantime, you can apply the patch found at
+      http://bugzilla.ximian.com/show_bug.cgi?id=57612 to make the search path work as expected.
+      The patch was created against svn HEAD, but it also applies cleanly to 1.1.8.2.
+
+  - This release generates ndoc documentation.  Run the create-docs target to generate them.
+
+  - This release contains several components of the new NUnit based test suite.  The run-tests target
+    can run tests.
+
+  - This release finally contains an install target.  On Windows this simply installs to the GAC.  On
+    Linux it will install to the GAC as well, but there are variables you can use to control the process.
+		Of note are install.destdir which can be used to install to an alternate root, and install.prefix which
+		controls the installation prefix.  They default to / and /usr/local respectively.
+
+  - The test suite is built during the compile-all stage of the build.  There is a run-tests target, but this
+    is not run by default, due to the above Mono bug.  It is run as part of the all target, which will become
+		the default in a future release.  On Mono you will need the above patch to automate the process.  Alternatively
+		you could call a setenv task, but I think this is bad form.
+
+  - The test suite contained in this release is pretty compreshensive.  It contains a total of 46 tests,
+    all of which pass.

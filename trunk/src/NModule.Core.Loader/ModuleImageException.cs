@@ -30,11 +30,31 @@
 namespace NModule.Core.Loader {
 	using System;
 	
+	/// <summary>
+	/// Thrown if a loaded module is a bad image.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary />
 	public class ModuleImageException : Exception {
+		/// <summary>
+		/// Creates a new ModuleImageException object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public ModuleImageException ( ) : base ( ) { }
 		
+		/// <summary>
+		/// Creates a new ModuleImageException object with the given message.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the execption is thrown.</param>
 		public ModuleImageException (string _msg) : base (_msg) { }
 		
-		public ModuleImageException (string _msg, Exception _exc) : base (_msg) { }
+		/// <summary>
+		/// Creates a new ModuleImageException object with the given message and inner exception.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the exception is thrown.</param>
+		/// <param name="_exc">The inner exception of this exception.</param>
+		public ModuleImageException (string _msg, Exception _exc) : base (_msg, _exc) { }
 	}
 }

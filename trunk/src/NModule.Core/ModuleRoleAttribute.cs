@@ -39,21 +39,24 @@ namespace NModule.Core {
 	/// The roles should be a comma-seperated list of roles that
 	/// the module provides facilities for.
 	/// </remarks>
+	/// <preliminary />
 	[AttributeUsage(AttributeTargets.Assembly)]
 	public class ModuleRoleAttribute : Attribute {
 		protected string _roles;
 		
 		/// <summary>
-		/// Creates a new <code>ModuleRoleAttribute</code> with the given roles.
+		/// Creates a new ModuleRoleAttribute with the given roles.
 		/// </summary>
+		/// <remarks>None.</remarks>
 		/// <param name="role">Comma-seperate list of roles the module provides facilities for.</param>
 		public ModuleRoleAttribute (string role) {
 			_roles = role;
 		}
 		
 		/// <summary>
-		/// Retrieves the list of roles from a <code>ModuleRoleAttribute</code> object.
+		/// Retrieves the list of roles from a ModuleRoleAttribute object.
 		/// </summary>
+		/// <remarks>None.</remarks>
 		public string Roles {
 			get {
 				return _roles;

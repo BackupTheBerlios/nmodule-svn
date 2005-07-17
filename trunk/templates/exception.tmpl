@@ -1,5 +1,5 @@
 //
-// AssemblyInfo.cs
+// @NAME@Exception.cs
 //
 // Author:
 //     Michael Tindal <urilith@gentoo.org>
@@ -26,36 +26,34 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-// Information about this assembly is defined by the following
-// attributes.
-//
-// change them to the information which is associated with the assembly
-// you compile.
-
-[assembly: AssemblyTitle("NModule.Core")]
-[assembly: AssemblyDescription("Basic Core Facilities for NModule.")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NModule")]
-[assembly: AssemblyCopyright("Copyright (C) 2005 Michael Tindal and Individuals listed on the ChangeLog entries.")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-
-// The assembly version has following format :
-//
-// Major.Minor.Build.Revision
-//
-// You can specify all values by your own or you can build default build and revision
-// numbers with the '*' character (the default):
-
-[assembly: AssemblyVersion("1.0.*")]
-
-// The following attributes specify the key for the sign of your assembly. See the
-// .NET Framework documentation for more information about signing.
-// This is not required, if you don't want signing let these attributes like they're.
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
+ 
+namespace @NAMESPACE@ {
+	using System;
+	
+	/// <summary>
+	/// FIXME:  Add summary here.
+	/// </summary>
+	/// <preliminary />
+	public class @NAME@Exception : Exception {
+		/// <summary>
+		/// Creates a new <code>@NAME@Exception</code> object.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		public @NAME@Exception ( ) : base ( ) { }
+		
+		/// <summary>
+		/// Creates a new <code>@NAME@Exception</code> object with the given message.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the execption is thrown.</param>
+		public @NAME@Exception (string _msg) : base (_msg) { }
+		
+		/// <summary>
+		/// Creates a new <code>@NAME@Exception</code> object with the given message and inner exception.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_msg">The message to be given when the exception is thrown.</param>
+		/// <param name="_exc">The inner exception of this exception.</param>
+		public @NAME@Exception (string _msg, Exception _exc) : base (_msg, _exc) { }
+	}
+}

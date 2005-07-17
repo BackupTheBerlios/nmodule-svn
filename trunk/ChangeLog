@@ -1,3 +1,50 @@
+2005-07-16 Michael Tindal <urilith@gentoo.org>
+
+  * Documentation, fake 0.4 release :).
+	* NEWS: 
+	* NModule.build: 
+	* NModule.build.include: 
+	* README: 
+	* TODO: 
+	* misc/excgen: 
+	* misc/bash-copy.hdr: 
+	* misc/cs-copy.hdr: 
+	* misc/xml-copy.hdr: 
+	* src/NModule.Core/IModule.cs: 
+	* src/NModule.Core/ModuleDependencyAttribute.cs: 
+	* src/NModule.Core/ModuleRoleAttribute.cs: 
+	* src/NModule.Core/NModule.Core.build: 
+	* src/NModule.Core/AssemblyInfo.cs: 
+	* src/NModule.Core.Loader/CircularDependencyException.cs: 
+	* src/NModule.Core.Loader/DepResolver.cs: 
+	* src/NModule.Core.Loader/DomainStillReferencedException.cs: 
+	* src/NModule.Core.Loader/InvalidModuleException.cs: 
+	* src/NModule.Core.Loader/ModuleController.cs: 
+	* src/NModule.Core.Loader/ModuleImageException.cs: 
+	* src/NModule.Core.Loader/ModuleLoader.cs: 
+	* src/NModule.Core.Loader/ModuleNotFoundException.cs: 
+	* src/NModule.Core.Loader/NModule.Core.Loader.build: 
+	* src/NModule.Core.Loader/UnresolvedDependencyException.cs: 
+	* src/NModule.Core.Loader/AssemblyInfo.cs: 
+	* src/NModule.Core.Module/ModuleInfo.cs: 
+	* src/NModule.Core.Module/NModule.Core.Module.build: 
+	* src/NModule.Core.Module/AssemblyInfo.cs: 
+	* src/NModule.Dependency.Core/NModule.Dependency.Core.build: 
+	* src/NModule.Dependency.Core/AssemblyInfo.cs: 
+	* src/NModule.Dependency.Parser/NModule.Dependency.Parser.build: 
+	* src/NModule.Dependency.Parser/AssemblyInfo.cs: 
+	* src/nmodule.snk: 
+	* templates/nmodule-doc.build: 
+	* templates/bash-file.tmpl: 
+	* templates/cs-file.tmpl: 
+	* templates/depstring.html: 
+	* templates/exception.tmpl: 
+	* templates/nmodule-install.build: 
+	* templates/nmodule.snk: 
+	* templates/xml-file.tmpl: 
+	* RELEASE-NOTES-0.4: 
+	* api-docs: Removed.
+
 2005-07-12 Michael Tindal <urilith@gentoo.org>
 
 	* NModule.build: Moved documentation and test build files into seperate build files that get copied to the build dir at runtime.

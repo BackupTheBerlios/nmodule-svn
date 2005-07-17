@@ -36,6 +36,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   <target name="clean">
      <delete dir="build" failonerror="false" />
+     <delete failonerror="false">
+       <fileset>
+         <include name="**/AssemblyInfo.cs" />
+       </fileset>
+     </delete>
   </target>
 
   <target name="compile-all" depends="compile-src,compile-tests" />
@@ -64,5 +69,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </fileset>
     </copy>
    <nant buildfile="${current.build.dir}/nmodule-test.build" />
+  </target>
+
+  <target name="install" depends="release,compile-src,create-docs">
+    <copy todir="${current.build.dir}">
+      <fileset basedir="templates">
+        <include name="nmodule-install.build" />
+      </fileset>
+    </copy>
+    <nant buildfile="${current.build.dir}/nmodule-install.build" />
   </target>
 </project>

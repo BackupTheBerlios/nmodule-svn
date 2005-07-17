@@ -37,24 +37,50 @@ using NModule.Dependency.Resolver;
 using NModule.Core.Module;
 
 namespace NModule.Core.Loader {
-	// This class is simply the loader class, it just creates a new AppDomain,
-	// and loads the appropriate assembly into it.  It can also load an assembly into
-	// an existing app-domain (for example, grouped dependencies).  See the configuration
-	// options for an example.
+	/// <summary>
+	/// This class loads modules, resolves dependencies, and other
+	/// low-level functions.
+	/// </summary>
+	/// <remarks>None.</remarks>
+	/// <preliminary/>
 	public class ModuleLoader {
 
+		/// <summary>
+		/// A list of currently loaded modules.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected static ArrayList loaded_modules;
 		
+		/// <summary>
+		/// The module search path.
+		/// </summary>
+		/// <remarks>
+		/// See <see href="searching.html">this</see> for information on search paths.
+		/// </remarks>
 		protected ArrayList _search_path;
 		
+		/// <summary>
+		/// The controller which this loader belongs to.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected ModuleController _controller;
 		
+		/// <summary>
+		/// Creates a new ModuleLoader object with the given search path
+		/// and <see cref="ModuleController" /> object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public ModuleLoader (ArrayList search_path, ModuleController controller) {
 			_search_path = search_path;
 			_controller = controller;
 		}
 		
-		// Loads the content of a file to a byte array. 
+		/// <summary>
+		/// Loads the contents of a module into a byte array.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_filename">The name of the file to load.</param>
+		/// <returns>Byte array containing the contents of the file.</returns>
 		protected byte[] LoadRawFile (string _filename) {
 			FileStream _fs = new FileStream (_filename, FileMode.Open);
 			byte[] _buffer = new byte [(int) _fs.Length];
@@ -63,7 +89,15 @@ namespace NModule.Core.Loader {
    
 			return _buffer;
 		}
-		  
+		 
+		/// <summary>
+		/// Searchs for a module along the search path.
+		/// </summary>
+		/// <remarks>
+		/// See <see href="searching.html">this</see> for information on search paths.
+		/// </remarks>
+		/// <param name="_name">The name of the module to search for.</param>
+		/// <returns>The full path to the module if found, otherwise null.</returns>
 		public string SearchForModule (string _name) {
 			foreach (string s in _search_path) {
 				if (Directory.Exists (s)) {
@@ -78,20 +112,44 @@ namespace NModule.Core.Loader {
 			
 			return null;
 		}
-		
-		/*
-		 * We provide two method signatures for loading for convienence.  The first just takes the name of the module (minus the .dll extension),
-		 * and attempts to load it.  The second takes a list of parents and the name.  The first incidentally just calls the second with an empty
-		 * parents list.  The parents list is used for detecting circular dependencies.
-		 */
+	
+		/// <summary>
+		/// Loads a module.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_name">The name of the module to load.</param>
+		/// <param name="_info">A <see cref="NModule.Core.Module.ModuleInfo" /> object to hold the loaded module's information.</param>
+		/// <returns>A <see cref="System.AppDomain" /> object containing the loaded module.</returns>
+		/// <exception cref="ModuleNotFoundException">Thrown if the module was not found along the search path.</exception>
+		/// <exception cref="ModuleImageException">Thrown if the module image is not a valid assembly.</exception>
+		/// <exception cref="InvalidModuleException">Thrown if the assembly is not a valid NModule module.</exception>
 		public AppDomain LoadModule (string _name, out ModuleInfo _info) {
 			return LoadModule (null, _name, out _info, false);
 		}
 		
+		/// <summary>
+		/// Loads a module.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_parents">A list of the modules parents.</param>
+		/// <param name="_name">The name of the module to load.</param>
+		/// <param name="_info">A <see cref="NModule.Core.Module.ModuleInfo" /> object to hold the loaded module's information.</param>
+		/// <param name="checking">If true nothing is loaded, if false the module is loaded.</param>
+		/// <returns>A <see cref="System.AppDomain" /> object containing the loaded module.</returns>
+		/// <exception cref="ModuleNotFoundException">Thrown if the module was not found along the search path.</exception>
+		/// <exception cref="ModuleImageException">Thrown if the module image is not a valid assembly.</exception>
+		/// <exception cref="InvalidModuleException">Thrown if the assembly is not a valid NModule module.</exception>
 		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking) {
 			return LoadModule (_parents, _name, out _info, checking, true);
 		}
 		
+		/// <summary>
+		/// Gets the assembly representing the module from a <see cref="System.AppDomain" /> object.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_domain">The domain to search.</param>
+		/// <param name="_name">The name of the module to get.</param>
+		/// <returns>An assembly object with the same name or null.</returns>
 		public Assembly GetAssembly (AppDomain _domain, string _name) {
 			foreach (Assembly _asm in _domain.GetAssemblies ()) {
 				
@@ -101,6 +159,19 @@ namespace NModule.Core.Loader {
 			return null;
 		}
 
+		/// <summary>
+		/// Loads a module.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_parents">A list of the modules parents.</param>
+		/// <param name="_name">The name of the module to load.</param>
+		/// <param name="_info">A <see cref="NModule.Core.Module.ModuleInfo" /> object to hold the loaded module's information.</param>
+		/// <param name="checking">If true nothing is loaded, if false the module is loaded.</param>
+		/// <param name="depcheck">If set to true dependencies are checked, if false dependencies are ignored.</param>
+		/// <returns>A <see cref="System.AppDomain" /> object containing the loaded module.</returns>
+		/// <exception cref="ModuleNotFoundException">Thrown if the module was not found along the search path.</exception>
+		/// <exception cref="ModuleImageException">Thrown if the module image is not a valid assembly.</exception>
+		/// <exception cref="InvalidModuleException">Thrown if the assembly is not a valid NModule module.</exception>
 		public AppDomain LoadModule (ArrayList _parents, string _name, out ModuleInfo _info, bool checking, bool depcheck) {
 			
 

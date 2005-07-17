@@ -89,8 +89,8 @@ namespace NModule.Core.Module {
 			if (_roleAttr != null) {
 				_roles = _roleAttr.Roles;
 			} else
-				throw new ModuleInfoException (string.Format ("The module {0} has no defined roles, and is not a valid NModule module.", _asm.GetName ().Name));
-				
+				_roles = null;
+			
 			_owner = _asm;
 		}
 		
