@@ -1,5 +1,15 @@
 2005-07-16 Michael Tindal <urilith@gentoo.org>
 
+	* src/NModule.Core.Loader/ModuleLoader.cs: ModuleInfo no longer throws exceptions.
+	* src/NModule.Core.Module/ModuleInfo.cs: Exception here is pointless. Documentation.
+	* src/NModule.Core.Module/ModuleRole.cs: Documentation.
+	* src/NModule.Core.Module/ModuleInfoException.cs: Removed since its pointless.
+	* test/NModule.Core.Test/AssemblyInfo.cs: Proper removal.
+	* test/src/nm-ur-01e.cs: Proper removal.
+	* test/src/nm-ur-01f.cs: Proper removal.
+
+2005-07-16 Michael Tindal <urilith@gentoo.org>
+
   * Documentation, fake 0.4 release :).
 	* NEWS: 
 	* NModule.build: 

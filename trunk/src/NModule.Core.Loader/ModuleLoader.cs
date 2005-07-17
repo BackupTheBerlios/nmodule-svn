@@ -222,13 +222,8 @@ namespace NModule.Core.Loader {
 			Assembly _asm = GetAssembly (_tempDomain, _name);
 			
 			
-			try {
-				_info = new ModuleInfo (_asm);
-			} catch (ModuleInfoException e) {
-				AppDomain.Unload (_tempDomain);
-				throw new InvalidModuleException (e.Message);
-			}
-			
+			_info = new ModuleInfo (_asm);
+					
 			// okay, now we've got the info, let's do some magic with the dependencies.
 			// this will recursively load all of the appropriate assemblies as per the parsed
 			// depedency tree.  It will take into account dependency operators, such as AND, OR

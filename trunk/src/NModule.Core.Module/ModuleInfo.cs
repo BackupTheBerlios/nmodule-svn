@@ -36,23 +36,47 @@ namespace NModule.Core.Module {
 	using NModule.Dependency.Core;
 	using NModule.Dependency.Parser;
 	using NModule.Core;
-		
+
+	/// <summary>
+	/// Represents information about a module.
+	/// </summary>
+	/// <remarks>None.</remarks>
 	public class ModuleInfo {
-		// name
+		/// <summary>
+		/// The name of the module.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected string _name;
 		
-		// version
+		/// <summary>
+		/// The module version.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected DepVersion _version;
 		
-		// dependency stuff
+		/// <summary>
+		/// Modules generated dependency tree.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected DepNode _dependencies;
 		
-		// roles
+		/// <summary>
+		/// Modules fulfilled roles.
+		/// </summary>
+		/// <remarks>See <see href="roles.html">Roles</see> for an explanation of roles.</remarks>
 		protected string _roles;
 		
-		// owner
+		/// <summary>
+		/// The owning assembly.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		protected Assembly _owner;
 		
+		/// <summary>
+		/// Creates a new ModuleInfo belonging to the given assembly.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="_asm">The owning assembly.</param>
 		public ModuleInfo (Assembly _asm) {
 			_name = _asm.GetName ().Name;
 			_version = DepVersion.VersionParse (_asm.GetName().Version.ToString ());
@@ -62,9 +86,6 @@ namespace NModule.Core.Module {
 			
 			try {
 				_depAttr = ((ModuleDependencyAttribute)(_asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)[0]));
-				foreach (ModuleDependencyAttribute _attr in _asm.GetCustomAttributes (typeof (ModuleDependencyAttribute), false)) {
-					
-				}
 			} catch (IndexOutOfRangeException) {
 				_depAttr = null;
 			}
@@ -94,30 +115,50 @@ namespace NModule.Core.Module {
 			_owner = _asm;
 		}
 		
+		/// <summary>
+		/// Gets the modules name.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public string Name {
 			get {
 				return _name;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the modules version.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepVersion Version {
 			get {
 				return _version;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the modules dependency tree.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepNode Dependencies {
 			get {
 				return _dependencies;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the modules roles.
+		/// </summary>
+		/// <remarks>See <see href="roles.html">Roles</see> for more information on module roles.</remarks>
 		public string Roles {
 			get {
 				return _roles;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the owning assembly.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public Assembly Owner {
 			get {
 				return _owner;

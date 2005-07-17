@@ -32,25 +32,36 @@ using System.Collections;
 using System.Reflection;
 
 namespace NModule.Core.Module {
+	/// <summary>
+	/// Handler used to register a new producer of the role.
+	/// </summary>
+	/// <remarks>See <see href="roles.html">Roles</see> for more information on roles.</remarks>
 	public delegate void RoleRegisterHandler (Assembly asm, Type basetype);
 	
+	/// <summary>
+	/// Handler used to unregister a producer of the role.
+	/// </summary>
+	/// <remarks>See <see href="roles.html">Roles</see> for more information on roles.</remarks>
 	public delegate void RoleUnregisterHandler (Assembly asm);
 	
-	/*
-	 * This class handles the roles used by the module loader.
-	 * It represents a role given its name, base type, and the
-	 * handler used to instantiate that role.  This role is opaque,
-	 * and could easily be used as a value type, but I feel this is
-	 * the best way to go to ensure future changes dont require semantic
-	 * changes to the engine.
-	 */
+	/// <summary>
+	/// This represents a role that modules can fulfill.
+	/// </summary>
+	/// <remarks>See <see href="roles.html">Roles</see> for more information on roles.</remarks>
 	public class ModuleRole {
 		private Type _baseType;
 		private string _roleName;
 		private RoleRegisterHandler _regHandler;
 		private RoleUnregisterHandler _unregHandler;
 		
-		// Lets get this baby setup :)
+		/// <summary>
+		/// Creates a new ModuleRole argument.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="name">The name of the role.</param>
+		/// <param name="basetype">The basetype of the role.</param>
+		/// <param name="regHandler">The registration handler for the role.</param>
+		/// <param name="unregHandler">The unregistration handler for the role.</param>
 		public ModuleRole (string name, Type basetype, RoleRegisterHandler regHandler, RoleUnregisterHandler unregHandler) {
 			_baseType = basetype;
 			_roleName = name;
@@ -58,26 +69,40 @@ namespace NModule.Core.Module {
 			_unregHandler = unregHandler;
 		}
 		
-		// all properties are read-only for the moment except the handler (which could conceivably change as other modules are loaded which may take the load
-		// off the main engine)
+		/// <summary>
+		/// Gets the base type of the role.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public Type BaseType {
 			get {
 				return _baseType;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the name of the role.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public string RoleName {
 			get {
 				return _roleName;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the registration handler for the role.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public RoleRegisterHandler RegistrationHandler {
 			get {
 				return _regHandler;
 			}
 		}
 		
+		/// <summary>
+		/// Gets the registration handler for the role.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public RoleUnregisterHandler UnregistrationHandler {
 			get {
 				return _unregHandler;
