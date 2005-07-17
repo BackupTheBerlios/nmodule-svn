@@ -1,0 +1,59 @@
+NModule is a modular architecture for writing applications which are based on loadable-modules 
+as their support platform rather than a monolithic platform, or as a base for adding plugin
+support to an existing application.  NModule differs from other plugin systems in its extensible
+architecture.  Where most plug-in systems use a predefined entry method to initialize the plugin
+and retrieve necessary information, we use .NET's reflection capabilities to determine the
+facilities a module offers, and retrieve the types needed.
+
+NModule uses assembly-level attributes to define and resolve dependencies, declare what "roles"
+a module fulfills, and determine a modules name and version.  Type introspection determines
+the types needed to fulfill each role.
+
+NModule is also free to use, and is licensed under the MIT/X11 license.  The license can be
+found in the COPYING file.
+
+Requirements:
+
+  - antlr 2.7.5 or higher is required to generate the parser.
+    We keep up-to-date sources in the release, so the only reason you'd need that is if you were
+    hacking on the grammar.
+  - NUnit 2.2 or greater is required for the test suite.
+  - NAnt 0.85 or greater is required for building.
+  - NAntContrib 0.85 or greater for installation.  Patches against NAntContrib-0.85-rc3 for building on
+    Linux are available at http://dev.gentoo.org/~urilith/overlay/dev-dotnet/nantcontrib/files.
+
+Building:
+
+  Building NModule is relatively simple.  You need to determine what kind of release you want,
+  what runtime you're targetting, and whether you want to compile the test cases or not.
+  
+  For the runtime, you can either let the build files determine the appropriate runtime (determined by
+  looking at the default runtime), or you can pick one yourself.  They take the form <runtime>-<version>
+  and the following runtimes/versions are supported:
+  
+    mono 1.0 and 2.0
+    net 1.0, 1.1, and 2.0
+  
+  To determine if you want a release or debug build, you call the appropriate target.  The default build
+  is debug.
+  
+  The compile-all, compile-src, and compile-tests targets are available for compiling.  compile-all calls
+  both compile-src and compile-tests.  compile-src compiles the main libraries, and compile-tests compiles
+  the sources used for the test cases.
+  
+  If you modify the grammar in src/NModule.Dependency.Parser and you want to regenerate the classes as
+  part of the build process, define regenerate.parser to any value.  (nant -D:regenerate.parser=yes compile-src)
+  
+  The create-docs target uses ndoc to generate HTML and CHM (if you're on Windows) documentation.
+  
+  The run-tests target runs the unit test suite, which currently consists of 44 tests.
+  
+  The default behavior if not called with targets is to call compile-all for a debug build with the current
+  runtime.
+  
+Using:
+
+  Your library will likely need to link with all four of the NModule libraries to take full advantage of its
+  API.  The modules will need to at least link to NModule.Core.Module.dll to get access to the attributes,
+  and may want to link to the others to register new roles/etc.  Complete documentation of the API is available
+  in the generated documentation, as well as the source.

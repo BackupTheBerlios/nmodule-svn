@@ -1,0 +1,17 @@
+<namespaces>
+    <namespace name="NModule.Core">
+       The <b>NModule.Core</b> namespace contains basic helper classes and interfaces.
+    </namespace>
+    <namespace name="NModule.Core.Loader">
+       The <b>NModule.Core.Loader</b> namespace contains the classes that facilitate module loading, registration, and unloading.
+    </namespace>
+    <namespace name="NModule.Core.Module">
+       The <b>NModule.Core.Module</b> namespace contains helper classes and facilities to identify modules.
+    </namespace>
+    <namespace name="NModule.Dependency.Core">
+       The <b>NModule.Dependency.Core</b> namespace contains the core classes that represent various pieces of a dependency tree.
+    </namespace>
+    <namespace name="NModule.Dependency.Resolver">
+       The <b>NModule.Dependency.Resolver</b> namespace contains the depedency resolver classes and exceptions used for dependency resolution.
+    </namespace>
+</namespaces>

@@ -1,0 +1,162 @@
+<!--
+nm-rc.build
+
+Author:
+    Michael Tindal <urilith@gentoo.org>
+
+Copyright (C) 2005 Michael Tindal and the individuals listed on
+the ChangeLog entries.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<project name="nm-rc" default="compile-all" basedir=".">
+  <description>NModule ref count test build file.</description>
+
+  <include buildfile="../../NModule.build.include" />
+
+  <target name="compile-all" depends="nm-rc-01,nm-rc-02,nm-rc-03a,nm-rc-03b,nm-rc-03c,nm-rc-04a,nm-rc-04b" />
+  
+  <target name="nm-rc-01" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-01.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-01.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-02" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-02.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-02.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-03a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-03a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-03a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-03b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-03b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-03b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-03c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-03c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-03c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-04a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-04a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-04a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-rc-04b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-rc-dir}/nm-rc-04b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-rc-04b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+</project>
