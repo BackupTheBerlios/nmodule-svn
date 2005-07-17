@@ -1,5 +1,15 @@
 2005-07-17 Michael Tindal <urilith@gentoo.org>
 
+	*******************
+	***** RELEASE *****
+	*******************
+	*
+	***
+	* Tag 0.4 release.
+	***
+                                                        
+2005-07-17 Michael Tindal <urilith@gentoo.org>
+
 	* INSTALL: Added instructions.
 	* README: Made it proper for this release.
 	* src/NModule.Dependency.Core/DepConstraint.cs: Docs.
