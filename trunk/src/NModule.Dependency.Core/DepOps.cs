@@ -28,5 +28,9 @@
 //
 
 namespace NModule.Dependency.Core {
+	/// <summary>
+	/// Represents the dependency operators.
+	/// </summary>
+	/// <remarks>None.</remarks>
 	public enum DepOps { And, Or, Xor, Opt, Equal, NotEqual, LessThanEqual, LessThan, GreaterThanEqual, GreaterThan, Loaded, NotLoaded, Null };
 }

@@ -1,3 +1,22 @@
+2005-07-17 Michael Tindal <urilith@gentoo.org>
+
+	* INSTALL: Added instructions.
+	* README: Made it proper for this release.
+	* src/NModule.Dependency.Core/DepConstraint.cs: Docs.
+	* src/NModule.Dependency.Core/DepNode.cs: Docs.
+	* src/NModule.Dependency.Core/DepOps.cs: Docs.
+	* src/NModule.Dependency.Core/DepVersion.cs: Docs.
+	* src/NModule.Dependency.Parser/DepLexer.cs: Regenerated due to change in DepVersion.
+	* src/NModule.Dependency.Parser/DepParser.cs: Regenerated due to change in DepVersion.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.cs: Regenerated due to change in DepVersion.
+	* src/NModule.Dependency.Parser/DepParserTokenTypes.txt: Regenerated due to change in DepVersion.
+	* src/NModule.Dependency.Parser/nmodule-dep.g: Use SetVersion instead of VersionTmp.
+	* templates/nmodule-doc.build: Copy *.html instead of just depstring.html.
+	* templates/exhandler.html: New file.
+	* templates/refcount.html: New file.
+	* templates/roles.html: New file.
+	* templates/searching.html: New file.
+
 2005-07-16 Michael Tindal <urilith@gentoo.org>
 
 	* src/NModule.Core.Loader/ModuleLoader.cs: ModuleInfo no longer throws exceptions.

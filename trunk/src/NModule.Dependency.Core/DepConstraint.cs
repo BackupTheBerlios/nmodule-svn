@@ -27,19 +27,31 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections;
-
 namespace NModule.Dependency.Core {
+	using System;
+	using System.Collections;
+	
+	/// <summary>
+	/// Represents a dependency constraint.
+	/// </summary>
+	/// <remarks>None.</remarks>
 	public class DepConstraint {
 		private DepVersion _version;
 		private string _name;
 
+		/// <summary>
+		/// Creates a new DepConstraint object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepConstraint () {
 			_name = "";
 			_version = new DepVersion (-1, -1, -1, -1);
 		}
 
+		/// <summary>
+		/// Gets or sets the needed version.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepVersion Version {
 			get {
 				return _version;
@@ -49,6 +61,10 @@ namespace NModule.Dependency.Core {
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the needed module name.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public string Name {
 			get {
 				return _name;
@@ -58,10 +74,12 @@ namespace NModule.Dependency.Core {
 			}
 		}
 
-		public string VersionTmp {
-			set {
-				_version = DepVersion.VersionParse(value);
-			}
+		/// <summary>
+		/// Sets the version based on a string representation of it.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		public void SetVersion (string _ver) {
+			_version = DepVersion.VersionParse (_ver);
 		}
 	}
 }

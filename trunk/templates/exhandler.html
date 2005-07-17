@@ -1,0 +1,67 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NModule Entry/Exit Handlers</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">NModule Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Entry/Exit Handlers</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+       This document describes the function of entry and exit handlers in NModule.
+    </p>
+      <h3 class="dtH3">Introduction</h3>
+      <p>
+      NModule provides mechanisms for modules to add/remove roles from the controller in order to add new
+      functionality to the application.  This behavior is done using entry/exit handlers, which may also be
+      used for initialization and deinitialization of module-specific data structures.
+      </p>
+      <p>
+      This behavior is optional, and modules are not required to provide a type which implements the IModule
+      interface.  The behavior is provided to facilitate functionality which we believe belongs in NModule.
+      </p>
+      <h3 class="dtH3">IModule</h3>
+      <p>
+      In order to make use of these facilities, the module needs to define a type which implements the IModule
+      interface.  This interface consists of two methods, an entry handler and an exit handler.  Both handlers
+      take one argument, which is an object variable that houses the controller that loaded the module.  It is
+      always of type ModuleController, and is only sent as an object to avoid circular dependencies between
+      NModule.Core and NModule.Core.Loader.
+      </p>
+      <h3 class="dtH3">Entry Handlers</h3>
+        <p>
+        Entry handlers are called when the module is loaded.  Modules can use this to register new roles
+        with the controller, or initialize needed data structures.
+        </p>
+      <h3 class="dtH3">Exit Handlers</h3>
+        <p>
+        Exit handlers are called when the module is unloaded.  This can be used to unregister roles the module
+        registered with the controller, or clean up after itself.
+        </p>
+      <hr />
+      <div id="footer">
+        <p>
+          <a>Copyright (C) 2005 Michael Tindal and Individuals listed in the ChangeLog</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

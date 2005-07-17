@@ -29,13 +29,25 @@
 
 namespace NModule.Dependency.Core {
 	using System;
-	
+
+	/// <summary>
+	/// Represents a dependency's version is an opaque structure.
+	/// </summary>
+	/// <remarks>None.</remarks>
 	public class DepVersion {
 		private int _major;
 		private int _minor;
 		private int _build;
 		private int _revision;
 		
+		/// <summary>
+		/// Creates a new version with the given information.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="major">The major version number.</param>
+		/// <param name="minor">The minor version number.</param>
+		/// <param name="build">The build version number.</param>
+		/// <param name="revision">The revision version number.</param>
 		public DepVersion (int major, int minor, int build, int revision) {
 			_major = major;
 			_minor = minor;
@@ -43,6 +55,13 @@ namespace NModule.Dependency.Core {
 			_revision = revision;
 		}
 		
+		/// <summary>
+		/// Creates a new version with the given information.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="major">The major version number.</param>
+		/// <param name="minor">The minor version number.</param>
+		/// <param name="build">The build version number.</param>
 		public DepVersion (int major, int minor, int build) {
 			_major = major;
 			_minor = minor;
@@ -50,6 +69,12 @@ namespace NModule.Dependency.Core {
 			_revision = -1;
 		}
 		
+		/// <summary>
+		/// Creates a new version with the given information.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="major">The major version number.</param>
+		/// <param name="minor">The minor version number.</param>
 		public DepVersion (int major, int minor) {
 			_major = major;
 			_minor = minor;
@@ -57,6 +82,10 @@ namespace NModule.Dependency.Core {
 			_revision = -1;
 		}
 		 
+		/// <summary>
+		/// Creates a new empty version.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepVersion () {
 			_major = -1;
 			_minor = -1;
@@ -64,6 +93,10 @@ namespace NModule.Dependency.Core {
 			_revision = -1;
 		}
 	
+		/// <summary>
+		/// Gets or sets the major version number.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public int Major {
 			get {
 				return _major;
@@ -73,6 +106,10 @@ namespace NModule.Dependency.Core {
 			}
 		}
 		
+		/// <summary>
+		/// Gets or sets the minor version number.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public int Minor {
 			get {
 				return _minor;
@@ -82,6 +119,10 @@ namespace NModule.Dependency.Core {
 			}
 		}
 		
+		/// <summary>
+		/// Gets or sets the build version number.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public int Build {
 			get {
 				return _build;
@@ -91,6 +132,10 @@ namespace NModule.Dependency.Core {
 			}
 		}
 		
+		/// <summary>
+		/// Gets or sets the revision version number.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public int Revision {
 			get {
 				return _revision;
@@ -100,6 +145,11 @@ namespace NModule.Dependency.Core {
 			}
 		}
 		
+		/// <summary>
+		/// Parses a string to generate a new DepVersion object.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="v">The string representation of the version.</param>
 		public static DepVersion VersionParse (string v) {
 			// Here we go :)
 			DepVersion ver = new DepVersion ();
@@ -113,6 +163,11 @@ namespace NModule.Dependency.Core {
 			return ver;
 		}
 		
+		/// <summary>
+		/// Converts the version into a string.
+		/// </summary>
+		/// <remarks>The output is the same format as CIL version strings, i.e. 1:0:0:0.</remarks>
+		/// <returns>Returns a string representation of the version.</returns>
 		public override string ToString ( ) {
 			return string.Format ("{0}:{1}:{2}:{3}", Major, Minor, Build, Revision);
 		}

@@ -1,4 +1,4 @@
-// $ANTLR 2.7.5 (20050704): "nmodule-dep.g" -> "DepParser.cs"$
+// $ANTLR 2.7.5 (20050714): "nmodule-dep.g" -> "DepParser.cs"$
 
 //
 // ANTLR Generated Files.
@@ -552,7 +552,7 @@ _loop18_breakloop:				;
 				{
 					v = LT(1);
 					match(VER);
-					node.Constraint.VersionTmp=v.getText();
+					node.Constraint.SetVersion (v.getText());
 					break;
 				}
 				case RPAREN:

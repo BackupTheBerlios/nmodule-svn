@@ -27,44 +27,74 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections;
-
 namespace NModule.Dependency.Core {
+	using System;
+	using System.Collections;
+
+	/// <summary>
+	/// Represents a node in the dependency tree.
+	/// </summary>
+	/// <remarks>None.</remarks>
 	public class DepNode {
 		private DepConstraint _constraint;
 		private DepOps _op;
 		private DepNode _parent;
 		private ArrayList _children;
 
+		/// <summary>
+		/// Creates a new DepNode object.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepNode () {
 			_parent = null;
 			_children = new ArrayList ();
 		}
 
+		/// <summary>
+		/// Creates a new DepNode object with the given parent.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <param name="parent">Parent node for this node.</param>
 		public DepNode (DepNode parent) {
 			_parent = parent;
 			_children = new ArrayList ();
 		}
 
+		/// <summary>
+		/// Gets this nodes parent node.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepNode Parent {
 			get {
 				return _parent;
 			}
 		}
 
+		/// <summary>
+		/// Gets the children of this node.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public ArrayList Children {
 			get {
 				return _children;
 			}
 		}
 
+		/// <summary>
+		/// Creates a new child node of this node.
+		/// </summary>
+		/// <remarks>None.</remarks>
+		/// <returns>Returns the newly created child.</returns>
 		public DepNode CreateNewChild () {
 			DepNode child = new DepNode (this);
 			_children.Add (child);
 			return child;
 		}
 
+		/// <summary>
+		/// Gets or sets the operator for this node.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepOps DepOp {
 			get {
 				return _op;
@@ -74,6 +104,10 @@ namespace NModule.Dependency.Core {
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the constraint for this node.
+		/// </summary>
+		/// <remarks>None.</remarks>
 		public DepConstraint Constraint {
 			get {
 				return _constraint;

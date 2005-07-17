@@ -80,7 +80,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </ndoc>
     <copy todir="${path::combine(current.doc.dir,'MSDN')}">
       <fileset basedir="${project.templates.dir}">
-         <include name="depstring.html" />
+         <include name="*.html" />
       </fileset>
     </copy>
   </target>

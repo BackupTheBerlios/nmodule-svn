@@ -157,7 +157,7 @@ nlexpr[DepNode parent, bool root]
 	
 iexpr[DepNode node]
 { node.Constraint = new DepConstraint(); }
-	: c:CLASS ( v:VER { node.Constraint.VersionTmp=v.getText(); } )? { node.Constraint.Name=c.getText(); };
+	: c:CLASS ( v:VER { node.Constraint.SetVersion (v.getText()); } )? { node.Constraint.Name=c.getText(); };
 		
 class DepLexer extends Lexer;
 
