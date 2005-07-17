@@ -1,0 +1,279 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NModule Dependency String Information</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">NModule Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">NModule Dependency Strings</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+       This document describes the format of NModule dependency strings and operators.
+    </p>
+      <h3 class="dtH3">String Format</h3>
+      <p>
+      NModule specifies a means for modules to depend on other modules.  This is done by using
+      a string which is transformed into a dependency tree that the dependency resolver uses to
+      find and load (or unload, as needed) modules to fulfill those dependencies.
+      </p>
+      <p>
+      A string consists of a series of combination or single operators.  Combination operators contain
+      either another combination operator or one or more single operators.  Combination operators take
+      the form: 
+      <pre>(&lt;op&gt; (&lt;combination-operator&gt; | &lt;single-operator&gt;)+)</pre>
+      Single operators take the form: <pre>(&lt;op&gt; &lt;name&gt; [&lt;version&gt;])</pre>
+      Version numbers are generally required for most of the operators, although the "loaded" and 
+      "not loaded" operators have no need of version numbers.  The operators can be found in the table 
+      below, along with a description of their effects.
+      <h3 class="dtH3">Dependency Operators</h3>
+      <div class="tablediv">
+        <table class="dtTABLE" cellspacing="0">
+          <tr valign="top">
+            <th width="5%">Symbol</th>
+            <th width="10%">Operator</th>
+            <th width="10%">Type</th>
+            <th width="25%">Example</th>
+            <th width="50%">Description</th>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              ==
+            </td>
+            <td width="10%">
+              Equal
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (== Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with exactly the same version number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              !=
+            </td>
+            <td width="10%">
+              Not Equal
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (!= Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with a version number that is not equal to the given number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              &lt;&lt;
+            </td>
+            <td width="10%">
+              Less Than
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (&lt;&lt; Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with a version number less than the given version number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              &lt;=
+            </td>
+            <td width="10%">
+              Less Than Equal
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (&lt;= Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with a version number less than or equal to the given version number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              &gt;&gt;
+            </td>
+            <td width="10%">
+              Greater Than
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (&gt;&gt; Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with a version number greater than the given version number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              &gt;=
+            </td>
+            <td width="10%">
+              Greater Than Equal
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (&gt;= Example.Test 1.0)
+            </td>
+            <td width="50%">
+              Requires a module with a version number greater than or equal to the given version number.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              ##
+            </td>
+            <td width="10%">
+              Loaded
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (## Example.Test)
+            </td>
+            <td width="50%">
+              Requires the module just to be loaded, any version number will do.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              !#
+            </td>
+            <td width="10%">
+              Not Loaded
+            </td>
+            <td width="10%">
+              Single
+            </td>
+            <td width="25%">
+              (!# Example.Test)
+            </td>
+            <td width="50%">
+              Requires a module to not be loaded, used for specifying conflicts.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              &amp;&amp;
+            </td>
+            <td width="10%">
+              And
+            </td>
+            <td width="10%">
+              Combination
+            </td>
+            <td width="25%">
+              (&amp;&amp; (== Elfblade.Test.One 1.0) (&lt;= Elfblade.Test.Two 3.0))
+            </td>
+            <td width="50%">
+              Requires all of the nested operators to be sucessfully fulfilled.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              ||
+            </td>
+            <td width="10%">
+              Or
+            </td>
+            <td width="10%">
+              Combination
+            </td>
+            <td width="25%">
+              (|| (== Example.Test 1.0) (== Elfblade.Test 2.0))
+            </td>
+            <td width="50%">
+              Requires one or more of the nested operators to be sucessfully fulfilled.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              ^^
+            </td>
+            <td width="10%">
+              Xor
+            </td>
+            <td width="10%">
+              Combination
+            </td>
+            <td width="25%">
+              (^^ (== Example.Test 1.0) (!= Elfblade.Test.Two 2.0))
+            </td>
+            <td width="50%">
+              Requires one or more, but not all, of the nested operators to suceed.
+            </td>
+          </tr>
+          <tr valign="top">
+            <td width="5%">
+              ??
+            </td>
+            <td width="10%">
+              Optional
+            </td>
+            <td width="10%">
+              Combination
+            </td>
+            <td width="25%">
+              (?? (== Example.Test 1.0))
+            </td>
+            <td width="50%">
+              Specifies that the nested operators are optional, if they fail, resolution will still suceed.
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <h3 class="dtH3">Version Numbers</h3>
+        <p>
+        Version numbers contain up to four parts, exactly like .NET Assembly Version numbers.  NModule pulls a modules
+        version number out of its AssemblyVersionAttribute value.  Version numbers in the dependency string can contain
+        one or more parts.  Any missing parts are simply ignored for the comparison.  The more parts you specify, the
+        tighter the match needs to be.  This is useful if a specific build of a version added new API, but did not contain
+        a version number increase.
+        </p>
+      <hr />
+      <div id="footer">
+        <p>
+          <a>Copyright (C) 2005 Michael Tindal and Individuals listed in the ChangeLog</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

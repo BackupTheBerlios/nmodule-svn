@@ -1,0 +1,17 @@
+Installing NModule is simple.
+
+Windows:
+
+  On Windows, simply run nant install.  This will install NModule to the GAC.
+  
+Linux:
+
+  On Linux, you can also run nant install, but there are some properties that influence the build.
+  
+  The ones most notable of use are:
+  
+  install.libdir:  Defaults to "lib".  The name of the library dir, typically lib or lib64.
+  install.prefix:  The prefix to install to, defaults to "/usr/local".  Packagers will likely want to set this to "/usr".
+  install.destdir:  Defaults to "/".  The root directory of the destination.  Packagers can use this to install to a temp directory before merging to the real root.
+  
+  Other variables can be used to control more aspects of the installation process, see templates/nmodule-install.build for more information.

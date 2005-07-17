@@ -1,0 +1,88 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NModule Roles</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">NModule Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Roles</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+       This document describes module roles for NModule.
+    </p>
+      <h3 class="dtH3">Introduction</h3>
+      <p>
+      NModule is a generic architecture for plug-ins.  It does not know how the plug-ins
+      will be used, or what API the plug-ins need to expose.  It works seamlessly for everything
+      from games to high-end business class applications.  It does this by using "roles".  Roles
+      define a modules behavior, what functionality it provides.  Roles also specify the API an
+      application expects for that functionality.  This document describes how roles work in NModule,
+      and how your application can take advantage of this technology.
+      </p>
+      <h3 class="dtH3">Basics</h3>
+      <p>
+      Roles are defined by two things:  a name and base type.  The name is an arbitrary name that represents
+      the role, for example "Server" or "GameLoop".  The base type is the class or interface (usually interface)
+      the new module must provide an implementation for.  Using the above system, they would be something like
+      IServer or IGameLoop.  These two things are used in conjunction to specify and consume the roles that
+      a module provides.
+      </p>
+      <h3 class="dtH3">Registration</h3>
+        <p>
+        Before a role can be utilized, it must be registered with the controller.  When registering a new role you
+        need four things:  the name of the role, the base type of the role, a registration handler, and a deregistration
+        handler.  The registration handler is a method that takes two arguments:  an assembly and a type name.  The registration
+        handler usually creates an instance from this information, but you could store it in a table too to be consumed later as
+        needed.  Unregistration handlers take the assembly name, and this is to let the application or interested parties
+        know that the producer is no longer available, and would not be able to create new instances of the type.  Existing instances
+        will continue to work as expected.  Unregistering a role from the controller only requires the 
+        </p>
+        <p>
+        Modules may register new roles with the controller using the entry handler.  This is useful to extend the application in ways
+        the writers did not plan for.
+        </p>
+        <p>
+        When a new role is registered, already loaded modules are searched to see if any of them fulfill the new role, if so, the registration
+        handler is called.  The same goes for unregistration.
+        </p>
+      <h3 class="dtH3">Loading</h3>
+        <p>
+        When a module is loaded, the list of roles is scanned and compared to the list of registered roles.  For every role the module
+        implements that is registered with the controller, the registration handler is called.  When a module is unloaded, the unregistration
+        handler is called.
+        </p>
+      <h3 class="dtH3">Specification</h3>
+        <p>
+        So how does an application know what roles a module implements?  Attributes are specified at the assembly level to let the
+        application know.  ModuleRoleAttribute takes a comma-seperated string of values which specify the implemented roles, for example,
+        if we had a module which implemented both Server and GameLoop, we would list something like the following in AssemblyInfo.cs:
+        <pre>[assembly: ModuleRole ("Server,GameLoop")];</pre>
+        ModuleRoleAttribute is defined in NModule.Core.Module.dll.
+        </p>
+      <hr />
+      <div id="footer">
+        <p>
+          <a>Copyright (C) 2005 Michael Tindal and Individuals listed in the ChangeLog</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

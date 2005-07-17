@@ -1,0 +1,54 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NModule Search Path Information</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">NModule Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Search Paths</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+       This document describes how NModule uses search paths to find modules.
+    </p>
+      <h3 class="dtH3">Introduction/Explanation</h3>
+      <p>
+      Your application will probably want a way to space out modules in a way seperate from the main application.
+      NModule provides a mechanism for this similar to PATH to achieve this.  Internally, this is just a list
+      of directories to search for modules, externally, it can be in any form you want.  NModule just uses your
+      search path.  You must add at least one directory to the search path before you can load a module, this is
+      done by doing something like:
+      <pre>controller.SearchPath.Add ("path/to/modules");</pre>
+      </p>
+      <p>
+      NModule adds the paths to the AppDomain's search path when loading modules, so there are some rules to the
+      directories.  Beyond the usual requirements (you must have the permission to read the files and directories),
+      the directories must be subdirectories of the directory your application resides in.  For example, if your
+      application resides in a directory called foo, your modules can live in foo/bar, or foo/bar/baz, but not anything
+      that is not underneath foo.
+      <hr />
+      <div id="footer">
+        <p>
+          <a>Copyright (C) 2005 Michael Tindal and Individuals listed in the ChangeLog</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

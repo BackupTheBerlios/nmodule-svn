@@ -1,0 +1,630 @@
+<!--
+nm-ur.build
+
+Author:
+    Michael Tindal <urilith@gentoo.org>
+
+Copyright (C) 2005 Michael Tindal and the individuals listed on
+the ChangeLog entries.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<project name="nm-ur" default="compile-all" basedir=".">
+  <description>NModule dependency resolver (unresolved) test build file.</description>
+
+  <include buildfile="../../NModule.build.include" />
+
+  <target name="compile-all" depends="nm-ur-01a,nm-ur-01b,nm-ur-01c,nm-ur-01d,nm-ur-02a,nm-ur-02b,nm-ur-03a,nm-ur-03b,nm-ur-04a,nm-ur-04b,nm-ur-05a,nm-ur-05b,nm-ur-06a,nm-ur-06b,nm-ur-07a,nm-ur-08a,nm-ur-08b,nm-ur-08c,nm-ur-09a,nm-ur-09b,nm-ur-09c,nm-ur-10a,nm-ur-10b,nm-ur-10c,nm-ur-11a,nm-ur-11b,nm-ur-12a,nm-ur-12b,nm-ur-13a,nm-ur-13b,nm-ur-13c,nm-ur-14a,nm-ur-14d" />
+
+  <target name="nm-ur-01a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-01a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-01a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-ur-01b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-01b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-01b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-01c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-01c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-01c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-01d" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-01d.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-01d.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-02a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-02a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-02a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-02b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-02b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-02b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-03a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-03a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-03a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-03b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-03b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-03b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-04a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-04a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-04a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-04b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-04b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-04b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-05a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-05a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-05a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-05b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-05b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-05b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-06a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-06a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-06a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-06b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-06b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-06b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-07a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-07a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-07a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-08a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-08a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-08a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-08b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-08b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-08b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-08c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-08c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-08c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-09a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-09a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-09a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-09b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-09b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-09b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-09c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-09c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-09c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-10a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-10a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-10a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-10b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-10b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-10b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-10c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-10c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-10c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-11a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-11a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-11a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-11b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-11b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-11b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-12a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-12a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-12a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-12b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-12b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-12b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-13a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-13a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-13a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-13b" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-13b.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-13b.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-13c" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-13c.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-13c.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+
+  <target name="nm-ur-14a" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-14a.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-14a.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+  
+  <target name="nm-ur-14d" depends="set-build-dir,set-test-dirs">
+    <csc target="library"
+        output="${nm-ur-dir}/nm-ur-14d.dll"
+        debug="${build.debug}" define="${build.defines.csc}">
+      <sources basedir=".">
+        <include name="nm-ur-14d.cs"/>
+      </sources>
+      <references basedir="${current.build.dir}">
+        <include name="NModule.Dependency.Parser.dll" />        
+        <include name="NModule.Core.dll" />
+        <include name="NModule.Core.Loader.dll" />
+        <include name="NModule.Core.Module.dll" />
+        <include name="NModule.Dependency.Core.dll" />
+        <include name="NModule.Dependency.Parser.dll" />
+      </references>
+    </csc>
+  </target>
+</project>

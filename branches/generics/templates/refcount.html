@@ -1,0 +1,63 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>NModule Reference Counts</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">NModule Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Reference Counts</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>
+       This document describes the reference counts in NModule.
+    </p>
+      <h3 class="dtH3">Introduction</h3>
+      <p>
+      NModule maintains a list of reference counts on modules to ensure they cannot be unloaded
+      if another module is depending on them, or the application is depending on them.  This document
+      describes the internal behavior of reference counts in NModule and the public API available
+      for manipulating reference counts.
+      <h3 class="dtH3">Basic RefCount Handling</h3>
+      <p>
+      When a module is loaded, its initial reference count is 1.  Subsequent attempts to load the module
+      will increment the reference count by 1.  In addition, if a module is laoded that depends on a module,
+      the dependency's reference count will be increased by 1.  A module can only be unloaded if its reference
+      count is 1 or under.  All of this can get pretty confusing, but NModule provides an API for easily
+      manipulating and tracking reference counts.
+      </p>
+      <h3 class="dtH3">IncRef and friends</h3>
+        <p>
+        ModuleController exports a set of public functions that can be used for manipulating and tracking
+        reference counts.  All of the public methods take a string which is the module name to manipulate.
+        IncRef increments the reference count on the module by 1, DecRef decrements the reference count by 1,
+        and GetRefCount returns the current reference count on the module.  Care should be taken with IncRef
+        and DecRef to ensure you do not break the implicit rules enforced by the controller, as this could
+        break behavior that the framework expects to be present (such as modules not being unloaded when
+        other modules depend on them).
+        </p>
+      <hr />
+      <div id="footer">
+        <p>
+          <a>Copyright (C) 2005 Michael Tindal and Individuals listed in the ChangeLog</a>
+        </p>
+        <p>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
